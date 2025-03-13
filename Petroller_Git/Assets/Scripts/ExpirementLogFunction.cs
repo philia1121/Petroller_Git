@@ -11,7 +11,7 @@ public class ExpirementLogFunction : MonoBehaviour
     public void SimpleRecord()
     {
         triggerCount++;
-        RecordCSVWriter.CSV_Write(role.ToString() + "_"+ currentTrackingState.ToString(), true, true, triggerCount.ToString());
+        RecordCSVWriter.CSV_WriteByCase(role.ToString() + "_"+ currentTrackingState.ToString(), true, true, triggerCount.ToString());
     }
 }
 

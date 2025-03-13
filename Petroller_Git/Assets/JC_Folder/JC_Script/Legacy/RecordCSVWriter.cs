@@ -25,15 +25,28 @@ public static class RecordCSVWriter
         tw.WriteLine(content);
         tw.Close();
     }
-    public static void CSV_Write(string m_case, bool realityTimeLog = true, bool gameTimeLog = false, string extraData = null)
+    public static void CSV_WriteByCase(string m_case, bool realityTimeLog = true, bool gameTimeLog = false, string extraData = null)
     {
         TextWriter tw = new StreamWriter(filePath, true);
         string rtime = realityTimeLog? System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")+"," : null;
-        string gtime = realityTimeLog? Time.time.ToString()+"," : null;
+        string gtime = gameTimeLog? Time.time.ToString()+"," : null;
         string content = m_case + "," + rtime + gtime + extraData;
         tw.WriteLine(content);
         tw.Close();
-        Debug.Log("Recorded: " + content);
     }
-
+    public static void CSV_WriteByTime(bool realityTimeLog = false, bool gameTimeLog = true, string Data = null)
+    {
+        TextWriter tw = new StreamWriter(filePath, true);
+        string rtime = realityTimeLog? System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")+"," : null;
+        string gtime = gameTimeLog? Time.time.ToString()+"," : null;
+        string content = rtime + gtime + Data;
+        tw.WriteLine(content);
+        tw.Close();
+    }
+    public static void WriteTableTitle(string allTitle)
+    {
+        TextWriter tw = new StreamWriter(filePath, true);
+        tw.WriteLine(allTitle);
+        tw.Close();
+    }
 }

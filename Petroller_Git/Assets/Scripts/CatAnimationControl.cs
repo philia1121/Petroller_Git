@@ -289,27 +289,27 @@ public class CatAnimationControl : MonoBehaviour
             //    PullDoubleHand();
             //    break;
             case JoystickZone.Up:
-                Debug.Log("搖桿在上區域：拉耳朵");
+                // Debug.Log("搖桿在上區域：拉耳朵");
                 PullEar();
                 GameManager.Instance.AddPress("JoystickUp");
                 break;
             case JoystickZone.Down:
-                Debug.Log("搖桿在下區域：拉尾巴");
+                // Debug.Log("搖桿在下區域：拉尾巴");
                 PullTail();
                 GameManager.Instance.AddPress("JoystickDown");
                 break;
             case JoystickZone.Left:
-                Debug.Log("搖桿在左區域：拉左手");
+                // Debug.Log("搖桿在左區域：拉左手");
                 PullLeftHand();
                 GameManager.Instance.AddPress("JoystickLeft");
                 break;
             case JoystickZone.Right:
-                Debug.Log("搖桿在右區域：拉右手");
+                // Debug.Log("搖桿在右區域：拉右手");
                 PullRightHand();
                 GameManager.Instance.AddPress("JoystickRight");
                 break;
             default:
-                Debug.Log("未知區域");
+                // Debug.Log("未知區域");
                 break;
         }
     }
