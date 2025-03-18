@@ -128,6 +128,8 @@ MonoBehaviour:
   LogInterval: 1
   Participant_Tracked: 1
   Observer_Tracked: 1
+  Participant_Changed: 0
+  Observer_Changed: 0
   RTouch_Tracked: 0
   LTouch_Tracked: 0
 --- !u!1 &785493945019307683
@@ -344,7 +346,7 @@ GameObject:
   - component: {fileID: 1032025832299769700}
   - component: {fileID: 7337565108615859255}
   m_Layer: 0
-  m_Name: File_Config // Do Remember to change the file name each and evey time
+  m_Name: File_Config
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -377,6 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67e2c6f7bda1e774ea4d8d02c76e09a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  namingType: 1
   fileName: pre_user01
 --- !u!1 &3231386223645153269
 GameObject:
