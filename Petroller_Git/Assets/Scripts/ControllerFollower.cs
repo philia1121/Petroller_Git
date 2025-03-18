@@ -5,33 +5,34 @@ using UnityEngine;
 public class ControllerFollower : MonoBehaviour
 {
     public OVRInput.Controller targetController = OVRInput.Controller.RTouch; 
-    public Transform modelTransform; 
+    public bool autoInitializeModel;
+    public Transform modelTransform;
+    public Vector3 model_initialPos, model_initialRot;
     private Vector3 lastKnownPosition;
     private Quaternion lastKnownRotation;
-    public Vector3 offset = new Vector3(1,1,1);
 
     void Start()
     {
         if (modelTransform == null)
-            modelTransform = this.transform;
+            modelTransform = this.transform.GetChild(0).transform;
+        if(autoInitializeModel)
+            modelTransform.position = model_initialPos;
+            modelTransform.rotation = Quaternion.Euler(model_initialRot);
     }
     void Update()
     {
         if (OVRInput.GetControllerPositionTracked(targetController))
         {
-            var pos = OVRInput.GetLocalControllerPosition(targetController);
-            modelTransform.position = new Vector3(pos.x*offset.x, pos.y*offset.y, pos.z*offset.z);
-            var rot = OVRInput.GetLocalControllerRotation(targetController);
-            var rot_flip = rot.eulerAngles;
-            modelTransform.rotation = Quaternion.Euler(new Vector3(rot_flip.x*offset.x, rot_flip.y*offset.y, rot_flip.z*offset.z));
+            transform.position = OVRInput.GetLocalControllerPosition(targetController);
+            transform.rotation = OVRInput.GetLocalControllerRotation(targetController);
 
-            lastKnownPosition = modelTransform.position;
-            lastKnownRotation = modelTransform.rotation;
+            lastKnownPosition = transform.position;
+            lastKnownRotation = transform.rotation;
         }
         else
         {
-            modelTransform.position = lastKnownPosition;
-            modelTransform.rotation = lastKnownRotation;
+            transform.position = lastKnownPosition;
+            transform.rotation = lastKnownRotation;
         }
     }
 }

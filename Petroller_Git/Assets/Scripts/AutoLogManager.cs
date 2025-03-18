@@ -8,6 +8,8 @@ public class AutoLogManager : MonoBehaviour
     public float LogInterval = 1;
     public bool Participant_Tracked = true;
     public bool Observer_Tracked = true;
+    public bool Participant_Changed = false;
+    public bool Observer_Changed = false;
     public bool RTouch_Tracked, LTouch_Tracked;
 
     void Start()
@@ -28,8 +30,12 @@ public class AutoLogManager : MonoBehaviour
     {
         while(auto)
         {
-            string participant = Participant_Tracked? "Tracked," : "Lost,";
-            string observer = Observer_Tracked? "Tracked," : "Lost,";
+            string participant = Participant_Tracked? "Tracked" : "Lost";
+            string observer = Observer_Tracked? "Tracked" : "Lost";
+            participant += Participant_Changed? " O," : ",";
+            observer += Observer_Changed? " O," : ",";
+            Participant_Changed = false;
+            Observer_Changed = false;
             string L = OVRInput.GetControllerPositionTracked(OVRInput.Controller.LTouch)? "Tracked," : "Lost,";
             string R = OVRInput.GetControllerPositionTracked(OVRInput.Controller.RTouch)? "Tracked," : "Lost,";
             string data = participant + observer + L + R;
@@ -41,9 +47,11 @@ public class AutoLogManager : MonoBehaviour
     public void ParticipantTrackedReport(bool tracked)
     {
         Participant_Tracked = tracked;
+        Participant_Changed = true;
     }
     public void ObserverTrackedReport(bool tracked)
     {
         Observer_Tracked = tracked;
+        Observer_Changed = true;
     }
 }
