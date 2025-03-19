@@ -11,6 +11,7 @@ public class AutoLogManager : MonoBehaviour
     public bool Participant_Changed = false;
     public bool Observer_Changed = false;
     public bool RTouch_Tracked, LTouch_Tracked;
+    public int recordCount = 130;
 
     void Start()
     {
@@ -40,6 +41,10 @@ public class AutoLogManager : MonoBehaviour
             string R = OVRInput.GetControllerPositionTracked(OVRInput.Controller.RTouch)? "Tracked," : "Lost,";
             string data = participant + observer + L + R;
             RecordCSVWriter.CSV_WriteByTime(true, true, data);
+
+            recordCount --;
+            auto = (recordCount < 1)? false : true;
+            
             yield return new WaitForSeconds(LogInterval);
         }
         yield return null;
