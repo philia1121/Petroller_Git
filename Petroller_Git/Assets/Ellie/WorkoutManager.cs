@@ -11,13 +11,17 @@ public class WorkoutManager : MonoBehaviour
     public Animator animator;               // 角色 Animator
     public TextMeshProUGUI textMeshPro;     // 顯示倒數文字
     public RawImage img;
-    public Color restColor, workoutColor;
-    public UnityEvent StartWorkoutEvent, EndWorkoutEvent, StartRestEvent, EndRestEvent;
+    public Color restColor, workoutColor, defaultColor;
 
     private float currentTime;
     private bool isCounting = false;        // 是否正在運動倒數
     private bool isResting = false;         // 是否正在休息
     private string currentAnimation = "";   // 紀錄現在是哪個動作
+
+    void Start()
+    {
+        img.color = defaultColor;
+    }
 
     void Update()
     {
@@ -79,28 +83,24 @@ public class WorkoutManager : MonoBehaviour
 
             currentAnimation = move;
             animator.SetBool(move, true);
-
-            StartWorkoutEvent.Invoke();
         }
     }
     public void EndWorkout()
     {
+        img.color = defaultColor;
         isCounting = false;
 
         animator.SetBool(currentAnimation, false);
-
-        EndWorkoutEvent.Invoke();
     }
     public void StartRest()
     {
         img.color = restColor;
-        StartWorkoutEvent.Invoke();
+        isResting = true;
     }
     public void EndRest()
     {
-        isCounting = false;
+        img.color = defaultColor;
         isResting = false;
-        EndWorkoutEvent.Invoke();
     }
     void StartMyWorkout(string animationBool)
     {
