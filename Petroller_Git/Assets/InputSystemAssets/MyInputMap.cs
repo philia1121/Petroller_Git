@@ -70,6 +70,133 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Gameplay"",
+            ""id"": ""1807ceb7-ca96-4352-a61e-fa0bfe4da55c"",
+            ""actions"": [
+                {
+                    ""name"": ""AnyInput"",
+                    ""type"": ""Button"",
+                    ""id"": ""db3a0538-95cd-43df-8cc6-46f6d42058c2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""96593c8e-fdfa-4778-b0b1-bf8d774dba4f"",
+                    ""path"": ""*/{TriggerButton}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1ce3efbb-4817-4455-8ce6-6a05da6aa754"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Ellie"",
+            ""id"": ""95447849-4482-4480-bb0c-42b0541296ed"",
+            ""actions"": [
+                {
+                    ""name"": ""MoveA"",
+                    ""type"": ""Button"",
+                    ""id"": ""7d8592f6-569c-48e4-8527-7ef2d46020b4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveB"",
+                    ""type"": ""Button"",
+                    ""id"": ""672c93b0-bd1e-40c4-b2be-d3fa6bf24d21"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveC"",
+                    ""type"": ""Button"",
+                    ""id"": ""69b60b80-8c32-44cf-833f-57044b329750"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""ea72c66f-bd56-407e-88af-f469d310b2bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""342a951b-a2fa-46e8-a2c1-9936cf537459"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveA"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0687473-b210-4f19-94ef-ed7f176bd81d"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e84ef37-9dc7-4e02-9549-3e1284dad7ff"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveC"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8303bd2f-3016-41a1-9046-5f5e3e7f8bc5"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -78,6 +205,15 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
         m_VRBasic = asset.FindActionMap("VRBasic", throwIfNotFound: true);
         m_VRBasic_LH_TrackState = m_VRBasic.FindAction("LH_TrackState", throwIfNotFound: true);
         m_VRBasic_RH_TrackState = m_VRBasic.FindAction("RH_TrackState", throwIfNotFound: true);
+        // Gameplay
+        m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
+        m_Gameplay_AnyInput = m_Gameplay.FindAction("AnyInput", throwIfNotFound: true);
+        // Ellie
+        m_Ellie = asset.FindActionMap("Ellie", throwIfNotFound: true);
+        m_Ellie_MoveA = m_Ellie.FindAction("MoveA", throwIfNotFound: true);
+        m_Ellie_MoveB = m_Ellie.FindAction("MoveB", throwIfNotFound: true);
+        m_Ellie_MoveC = m_Ellie.FindAction("MoveC", throwIfNotFound: true);
+        m_Ellie_Reset = m_Ellie.FindAction("Reset", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -189,9 +325,136 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
         }
     }
     public VRBasicActions @VRBasic => new VRBasicActions(this);
+
+    // Gameplay
+    private readonly InputActionMap m_Gameplay;
+    private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
+    private readonly InputAction m_Gameplay_AnyInput;
+    public struct GameplayActions
+    {
+        private @MyInputMap m_Wrapper;
+        public GameplayActions(@MyInputMap wrapper) { m_Wrapper = wrapper; }
+        public InputAction @AnyInput => m_Wrapper.m_Gameplay_AnyInput;
+        public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GameplayActions set) { return set.Get(); }
+        public void AddCallbacks(IGameplayActions instance)
+        {
+            if (instance == null || m_Wrapper.m_GameplayActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GameplayActionsCallbackInterfaces.Add(instance);
+            @AnyInput.started += instance.OnAnyInput;
+            @AnyInput.performed += instance.OnAnyInput;
+            @AnyInput.canceled += instance.OnAnyInput;
+        }
+
+        private void UnregisterCallbacks(IGameplayActions instance)
+        {
+            @AnyInput.started -= instance.OnAnyInput;
+            @AnyInput.performed -= instance.OnAnyInput;
+            @AnyInput.canceled -= instance.OnAnyInput;
+        }
+
+        public void RemoveCallbacks(IGameplayActions instance)
+        {
+            if (m_Wrapper.m_GameplayActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IGameplayActions instance)
+        {
+            foreach (var item in m_Wrapper.m_GameplayActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_GameplayActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // Ellie
+    private readonly InputActionMap m_Ellie;
+    private List<IEllieActions> m_EllieActionsCallbackInterfaces = new List<IEllieActions>();
+    private readonly InputAction m_Ellie_MoveA;
+    private readonly InputAction m_Ellie_MoveB;
+    private readonly InputAction m_Ellie_MoveC;
+    private readonly InputAction m_Ellie_Reset;
+    public struct EllieActions
+    {
+        private @MyInputMap m_Wrapper;
+        public EllieActions(@MyInputMap wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MoveA => m_Wrapper.m_Ellie_MoveA;
+        public InputAction @MoveB => m_Wrapper.m_Ellie_MoveB;
+        public InputAction @MoveC => m_Wrapper.m_Ellie_MoveC;
+        public InputAction @Reset => m_Wrapper.m_Ellie_Reset;
+        public InputActionMap Get() { return m_Wrapper.m_Ellie; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(EllieActions set) { return set.Get(); }
+        public void AddCallbacks(IEllieActions instance)
+        {
+            if (instance == null || m_Wrapper.m_EllieActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_EllieActionsCallbackInterfaces.Add(instance);
+            @MoveA.started += instance.OnMoveA;
+            @MoveA.performed += instance.OnMoveA;
+            @MoveA.canceled += instance.OnMoveA;
+            @MoveB.started += instance.OnMoveB;
+            @MoveB.performed += instance.OnMoveB;
+            @MoveB.canceled += instance.OnMoveB;
+            @MoveC.started += instance.OnMoveC;
+            @MoveC.performed += instance.OnMoveC;
+            @MoveC.canceled += instance.OnMoveC;
+            @Reset.started += instance.OnReset;
+            @Reset.performed += instance.OnReset;
+            @Reset.canceled += instance.OnReset;
+        }
+
+        private void UnregisterCallbacks(IEllieActions instance)
+        {
+            @MoveA.started -= instance.OnMoveA;
+            @MoveA.performed -= instance.OnMoveA;
+            @MoveA.canceled -= instance.OnMoveA;
+            @MoveB.started -= instance.OnMoveB;
+            @MoveB.performed -= instance.OnMoveB;
+            @MoveB.canceled -= instance.OnMoveB;
+            @MoveC.started -= instance.OnMoveC;
+            @MoveC.performed -= instance.OnMoveC;
+            @MoveC.canceled -= instance.OnMoveC;
+            @Reset.started -= instance.OnReset;
+            @Reset.performed -= instance.OnReset;
+            @Reset.canceled -= instance.OnReset;
+        }
+
+        public void RemoveCallbacks(IEllieActions instance)
+        {
+            if (m_Wrapper.m_EllieActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IEllieActions instance)
+        {
+            foreach (var item in m_Wrapper.m_EllieActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_EllieActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public EllieActions @Ellie => new EllieActions(this);
     public interface IVRBasicActions
     {
         void OnLH_TrackState(InputAction.CallbackContext context);
         void OnRH_TrackState(InputAction.CallbackContext context);
+    }
+    public interface IGameplayActions
+    {
+        void OnAnyInput(InputAction.CallbackContext context);
+    }
+    public interface IEllieActions
+    {
+        void OnMoveA(InputAction.CallbackContext context);
+        void OnMoveB(InputAction.CallbackContext context);
+        void OnMoveC(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
     }
 }
