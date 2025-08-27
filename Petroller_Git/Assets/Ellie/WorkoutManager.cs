@@ -23,56 +23,56 @@ public class WorkoutManager : MonoBehaviour
         img.color = defaultColor;
     }
 
-    void Update()
+    /*void Update()
     {
         // 按下 S 開始 Squat
-        // if (Input.GetKeyDown(KeyCode.S) && !isCounting && !isResting)
-        // {
-        //     StartMyWorkout("isSquating");
-        // }
+        if (Input.GetKeyDown(KeyCode.S) && !isCounting && !isResting)
+        {
+            StartMyWorkout("isSquating");
+        }
 
         // // 按下 P 開始 Plank
-        // if (Input.GetKeyDown(KeyCode.P) && !isCounting && !isResting)
-        // {
-        //     StartMyWorkout("isPlanking");
-        // }
+        if (Input.GetKeyDown(KeyCode.P) && !isCounting && !isResting)
+        {
+            StartMyWorkout("isPlanking");
+        }
 
         // // 按下 U 開始 Uping
-        // if (Input.GetKeyDown(KeyCode.U) && !isCounting && !isResting)
-        // {
-        //     StartMyWorkout("isUping");
-        // }
+        if (Input.GetKeyDown(KeyCode.U) && !isCounting && !isResting)
+        {
+            StartMyWorkout("isUping");
+        }
 
         // 運動倒數中
-        // if (isCounting)
-        // {
-        //     currentTime -= Time.deltaTime;
-        //     textMeshPro.text = Mathf.Ceil(currentTime).ToString();
+        if (isCounting)
+        {
+            currentTime -= Time.deltaTime;
+            textMeshPro.text = Mathf.Ceil(currentTime).ToString();
 
-        //     if (currentTime <= 0)
-        //     {
-        //         // 運動結束 → 關閉動畫，進入休息
-        //         animator.SetBool(currentAnimation, false);
-        //         isCounting = false;
+            if (currentTime <= 0)
+            {
+                // 運動結束 → 關閉動畫，進入休息
+                animator.SetBool(currentAnimation, false);
+                isCounting = false;
 
-        //         currentTime = 10f; // 休息時間
-        //         isResting = true;
-        //     }
-        // }
+                currentTime = 10f; // 休息時間
+                isResting = true;
+            }
+        }
 
         // // 休息倒數中
-        // if (isResting)
-        // {
-        //     currentTime -= Time.deltaTime;
-        //     textMeshPro.text = "Rest: " + Mathf.Ceil(currentTime).ToString();
+        if (isResting)
+        {
+            currentTime -= Time.deltaTime;
+            textMeshPro.text = "Rest: " + Mathf.Ceil(currentTime).ToString();
 
-        //     if (currentTime <= 0)
-        //     {
-        //         isResting = false;
-        //         textMeshPro.text = "Ready!";
-        //     }
-        // }
-    }
+            if (currentTime <= 0)
+            {
+                isResting = false;
+                textMeshPro.text = "Ready!";
+            }
+        }
+    }*/
 
     public void StartWorkout(string move)
     {
@@ -83,6 +83,8 @@ public class WorkoutManager : MonoBehaviour
 
             currentAnimation = move;
             animator.SetBool(move, true);
+
+            CountDownTimer(20);
         }
     }
     public void EndWorkout()
@@ -96,6 +98,7 @@ public class WorkoutManager : MonoBehaviour
     {
         img.color = restColor;
         isResting = true;
+        CountDownTimer(10);
     }
     public void EndRest()
     {

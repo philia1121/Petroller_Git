@@ -149,6 +149,24 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchMove"",
+                    ""type"": ""Button"",
+                    ""id"": ""7f0bd7e8-55fc-47fb-897b-5397f6abaeb0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchBG"",
+                    ""type"": ""Button"",
+                    ""id"": ""2eb67a69-f42f-4968-adb1-74f4d5159a3d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -195,6 +213,61 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
                     ""action"": ""Reset"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5198b5d8-95a7-401b-b6a0-34b65870a2e1"",
+                    ""path"": ""<XRController>{LeftHand}/triggerButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b3dcf0f-9b72-4fc6-a9d4-683e7d358bb5"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8db05fa0-db86-4f0d-935d-5ecd1e873cd8"",
+                    ""path"": ""<XRController>{LeftHand}/{TriggerButton}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de171e56-436b-42cb-9f1f-43890b55539b"",
+                    ""path"": ""<XRController>{LeftHand}/gripButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchBG"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d66ac67-2bf0-4b10-b93b-babc9afc65ae"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchBG"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -214,6 +287,8 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
         m_Ellie_MoveB = m_Ellie.FindAction("MoveB", throwIfNotFound: true);
         m_Ellie_MoveC = m_Ellie.FindAction("MoveC", throwIfNotFound: true);
         m_Ellie_Reset = m_Ellie.FindAction("Reset", throwIfNotFound: true);
+        m_Ellie_SwitchMove = m_Ellie.FindAction("SwitchMove", throwIfNotFound: true);
+        m_Ellie_SwitchBG = m_Ellie.FindAction("SwitchBG", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -379,6 +454,8 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
     private readonly InputAction m_Ellie_MoveB;
     private readonly InputAction m_Ellie_MoveC;
     private readonly InputAction m_Ellie_Reset;
+    private readonly InputAction m_Ellie_SwitchMove;
+    private readonly InputAction m_Ellie_SwitchBG;
     public struct EllieActions
     {
         private @MyInputMap m_Wrapper;
@@ -387,6 +464,8 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
         public InputAction @MoveB => m_Wrapper.m_Ellie_MoveB;
         public InputAction @MoveC => m_Wrapper.m_Ellie_MoveC;
         public InputAction @Reset => m_Wrapper.m_Ellie_Reset;
+        public InputAction @SwitchMove => m_Wrapper.m_Ellie_SwitchMove;
+        public InputAction @SwitchBG => m_Wrapper.m_Ellie_SwitchBG;
         public InputActionMap Get() { return m_Wrapper.m_Ellie; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -408,6 +487,12 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
             @Reset.started += instance.OnReset;
             @Reset.performed += instance.OnReset;
             @Reset.canceled += instance.OnReset;
+            @SwitchMove.started += instance.OnSwitchMove;
+            @SwitchMove.performed += instance.OnSwitchMove;
+            @SwitchMove.canceled += instance.OnSwitchMove;
+            @SwitchBG.started += instance.OnSwitchBG;
+            @SwitchBG.performed += instance.OnSwitchBG;
+            @SwitchBG.canceled += instance.OnSwitchBG;
         }
 
         private void UnregisterCallbacks(IEllieActions instance)
@@ -424,6 +509,12 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
             @Reset.started -= instance.OnReset;
             @Reset.performed -= instance.OnReset;
             @Reset.canceled -= instance.OnReset;
+            @SwitchMove.started -= instance.OnSwitchMove;
+            @SwitchMove.performed -= instance.OnSwitchMove;
+            @SwitchMove.canceled -= instance.OnSwitchMove;
+            @SwitchBG.started -= instance.OnSwitchBG;
+            @SwitchBG.performed -= instance.OnSwitchBG;
+            @SwitchBG.canceled -= instance.OnSwitchBG;
         }
 
         public void RemoveCallbacks(IEllieActions instance)
@@ -456,5 +547,7 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
         void OnMoveB(InputAction.CallbackContext context);
         void OnMoveC(InputAction.CallbackContext context);
         void OnReset(InputAction.CallbackContext context);
+        void OnSwitchMove(InputAction.CallbackContext context);
+        void OnSwitchBG(InputAction.CallbackContext context);
     }
 }
