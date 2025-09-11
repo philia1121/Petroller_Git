@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class CSVWriter_Config : MonoBehaviour
 {
-    public NamingType namingType = NamingType.Custom;
-    public string fileName;
+    [SerializeField]private NamingType namingType = NamingType.Custom;
+    [SerializeField]private string fileName;
     void Awake()
     {
         string fName = "DefaultFileName";
@@ -23,7 +23,7 @@ public class CSVWriter_Config : MonoBehaviour
                 break;
         }
         
-        RecordCSVWriter.CSV_SetFileName(fName);
+        CSVWriter.CSV_SetFileName(fName);
     }  
 }
 
