@@ -16,14 +16,14 @@ public class AutoLogManager : MonoBehaviour
     void Start()
     {
         if(auto)
-            RecordCSVWriter.WriteTableTitle("Real World Time,Game World Time,Participant,Observer,LTouch,RTouch");
+            CSVWriter.CSV_WriteTableTitle("Real World Time,Game World Time,Participant,Observer,LTouch,RTouch");
             StartCoroutine(AutoLog());
     }
 
     public void StartAutoLog()
     {
         auto = true;
-        RecordCSVWriter.WriteTableTitle("Real World Time,Game World Time,Participant,Observer,LTouch,RTouch");
+        CSVWriter.CSV_WriteTableTitle("Real World Time,Game World Time,Participant,Observer,LTouch,RTouch");
         StartCoroutine(AutoLog());
     }
 
@@ -40,7 +40,7 @@ public class AutoLogManager : MonoBehaviour
             string L = OVRInput.GetControllerPositionTracked(OVRInput.Controller.LTouch)? "Tracked," : "Lost,";
             string R = OVRInput.GetControllerPositionTracked(OVRInput.Controller.RTouch)? "Tracked," : "Lost,";
             string data = participant + observer + L + R;
-            RecordCSVWriter.CSV_WriteByTime(true, true, data);
+            CSVWriter.CSV_WriteByTime(true, true, data);
 
             recordCount --;
             auto = (recordCount < 1)? false : true;
