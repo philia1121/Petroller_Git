@@ -56,5 +56,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Petroller_Git.sln"
+    "dotnet.defaultSolution": "Petroller_Git.sln",
+    "razor.format.codeBlockBraceOnNextLine": true,
+    "razor.format.enable": false
 }

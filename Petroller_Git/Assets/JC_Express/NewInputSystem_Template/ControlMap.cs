@@ -143,6 +143,42 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""DeviceVelocity"",
+                    ""type"": ""Value"",
+                    ""id"": ""90eacbe6-65a4-44a0-8c19-45864f0e8923"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""DeviceAngularVelocity"",
+                    ""type"": ""Value"",
+                    ""id"": ""fc7fe55f-386d-4bda-81ed-8637ed9b5f71"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""DeviceAcceleration"",
+                    ""type"": ""Value"",
+                    ""id"": ""237bbc40-d2e9-4b3d-9a6a-b5790bfc081a"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""DeviceAugularAcceleration"",
+                    ""type"": ""Value"",
+                    ""id"": ""5ef3ca71-6b5f-4775-b32c-276b0a1ee6e6"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -200,6 +236,50 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
                     ""action"": ""Rot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f44ea030-83a8-4346-800b-9a12a1b25eb6"",
+                    ""path"": ""<XRController>{RightHand}/deviceVelocity"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeviceVelocity"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4274467f-1163-4801-bea9-808651b504d7"",
+                    ""path"": ""<XRController>{RightHand}/deviceAngularVelocity"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeviceAngularVelocity"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4450fd98-01b6-428d-bfe9-a3111a408c60"",
+                    ""path"": ""<XRController>{RightHand}/deviceAcceleration"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeviceAcceleration"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ab0b91a-30ea-445f-8d1d-c0c926cc89f1"",
+                    ""path"": ""<XRController>{RightHand}/deviceAngularAcceleration"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeviceAugularAcceleration"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -216,6 +296,10 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
         m_Petroller_HorizontalPress = m_Petroller.FindAction("HorizontalPress", throwIfNotFound: true);
         m_Petroller_Pos = m_Petroller.FindAction("Pos", throwIfNotFound: true);
         m_Petroller_Rot = m_Petroller.FindAction("Rot", throwIfNotFound: true);
+        m_Petroller_DeviceVelocity = m_Petroller.FindAction("DeviceVelocity", throwIfNotFound: true);
+        m_Petroller_DeviceAngularVelocity = m_Petroller.FindAction("DeviceAngularVelocity", throwIfNotFound: true);
+        m_Petroller_DeviceAcceleration = m_Petroller.FindAction("DeviceAcceleration", throwIfNotFound: true);
+        m_Petroller_DeviceAugularAcceleration = m_Petroller.FindAction("DeviceAugularAcceleration", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -328,6 +412,10 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
     private readonly InputAction m_Petroller_HorizontalPress;
     private readonly InputAction m_Petroller_Pos;
     private readonly InputAction m_Petroller_Rot;
+    private readonly InputAction m_Petroller_DeviceVelocity;
+    private readonly InputAction m_Petroller_DeviceAngularVelocity;
+    private readonly InputAction m_Petroller_DeviceAcceleration;
+    private readonly InputAction m_Petroller_DeviceAugularAcceleration;
     public struct PetrollerActions
     {
         private @ControlMap m_Wrapper;
@@ -337,6 +425,10 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
         public InputAction @HorizontalPress => m_Wrapper.m_Petroller_HorizontalPress;
         public InputAction @Pos => m_Wrapper.m_Petroller_Pos;
         public InputAction @Rot => m_Wrapper.m_Petroller_Rot;
+        public InputAction @DeviceVelocity => m_Wrapper.m_Petroller_DeviceVelocity;
+        public InputAction @DeviceAngularVelocity => m_Wrapper.m_Petroller_DeviceAngularVelocity;
+        public InputAction @DeviceAcceleration => m_Wrapper.m_Petroller_DeviceAcceleration;
+        public InputAction @DeviceAugularAcceleration => m_Wrapper.m_Petroller_DeviceAugularAcceleration;
         public InputActionMap Get() { return m_Wrapper.m_Petroller; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -361,6 +453,18 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
             @Rot.started += instance.OnRot;
             @Rot.performed += instance.OnRot;
             @Rot.canceled += instance.OnRot;
+            @DeviceVelocity.started += instance.OnDeviceVelocity;
+            @DeviceVelocity.performed += instance.OnDeviceVelocity;
+            @DeviceVelocity.canceled += instance.OnDeviceVelocity;
+            @DeviceAngularVelocity.started += instance.OnDeviceAngularVelocity;
+            @DeviceAngularVelocity.performed += instance.OnDeviceAngularVelocity;
+            @DeviceAngularVelocity.canceled += instance.OnDeviceAngularVelocity;
+            @DeviceAcceleration.started += instance.OnDeviceAcceleration;
+            @DeviceAcceleration.performed += instance.OnDeviceAcceleration;
+            @DeviceAcceleration.canceled += instance.OnDeviceAcceleration;
+            @DeviceAugularAcceleration.started += instance.OnDeviceAugularAcceleration;
+            @DeviceAugularAcceleration.performed += instance.OnDeviceAugularAcceleration;
+            @DeviceAugularAcceleration.canceled += instance.OnDeviceAugularAcceleration;
         }
 
         private void UnregisterCallbacks(IPetrollerActions instance)
@@ -380,6 +484,18 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
             @Rot.started -= instance.OnRot;
             @Rot.performed -= instance.OnRot;
             @Rot.canceled -= instance.OnRot;
+            @DeviceVelocity.started -= instance.OnDeviceVelocity;
+            @DeviceVelocity.performed -= instance.OnDeviceVelocity;
+            @DeviceVelocity.canceled -= instance.OnDeviceVelocity;
+            @DeviceAngularVelocity.started -= instance.OnDeviceAngularVelocity;
+            @DeviceAngularVelocity.performed -= instance.OnDeviceAngularVelocity;
+            @DeviceAngularVelocity.canceled -= instance.OnDeviceAngularVelocity;
+            @DeviceAcceleration.started -= instance.OnDeviceAcceleration;
+            @DeviceAcceleration.performed -= instance.OnDeviceAcceleration;
+            @DeviceAcceleration.canceled -= instance.OnDeviceAcceleration;
+            @DeviceAugularAcceleration.started -= instance.OnDeviceAugularAcceleration;
+            @DeviceAugularAcceleration.performed -= instance.OnDeviceAugularAcceleration;
+            @DeviceAugularAcceleration.canceled -= instance.OnDeviceAugularAcceleration;
         }
 
         public void RemoveCallbacks(IPetrollerActions instance)
@@ -408,5 +524,9 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
         void OnHorizontalPress(InputAction.CallbackContext context);
         void OnPos(InputAction.CallbackContext context);
         void OnRot(InputAction.CallbackContext context);
+        void OnDeviceVelocity(InputAction.CallbackContext context);
+        void OnDeviceAngularVelocity(InputAction.CallbackContext context);
+        void OnDeviceAcceleration(InputAction.CallbackContext context);
+        void OnDeviceAugularAcceleration(InputAction.CallbackContext context);
     }
 }

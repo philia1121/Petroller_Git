@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 public class ComplexTrigger : MonoBehaviour
 {
-
-    [Tooltip("要參考的玩家 (或其他目標)")] public Transform playerReference;
+    public GameObject petrollerObject;
+    public Transform playerReference;
 
     public List<TriggerRule> rules;
 
@@ -12,7 +12,7 @@ public class ComplexTrigger : MonoBehaviour
     {
         foreach (var rule in rules)
         {
-            rule.Tick(this.gameObject, playerReference, Time.deltaTime);
+            if (!rule.Ignore) rule.Tick(petrollerObject, playerReference, Time.deltaTime);
         }
     }
 }

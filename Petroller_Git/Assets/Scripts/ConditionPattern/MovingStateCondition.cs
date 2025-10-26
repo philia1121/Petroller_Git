@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Condition_IsMoving", menuName = "JC/Conditions/Is Moving")]
-public class IsMovingCondition : BaseCondition
+[CreateAssetMenu(fileName = "Condition_MovingState", menuName = "JC/Conditions/Moving State")]
+public class MovingStateCondition : BaseCondition
 {
     private PetrollerObjectInfo cachedInfo;
+    public bool desiredState = true;
 
     public override bool IsMet(GameObject owner, Transform player)
     {
@@ -15,7 +16,6 @@ public class IsMovingCondition : BaseCondition
         }
         if (cachedInfo == null) return false;
 
-        // 直接讀取狀態，非常乾淨！
-        return cachedInfo.CurrentMovementState == PetrollerObjectInfo.MovementState.Moving;
+        return desiredState == cachedInfo.IsMoving;
     }
 }
