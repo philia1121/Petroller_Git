@@ -14,12 +14,8 @@ public class PetrollerObjectInfo : MonoBehaviour
     public Material my_mat;
     public GameObject[] dirArrows;
     public GameObject[] rotateAxis;
-    enum CoordsType { World, Player, Petroller }
+    enum CoordsType { World, Petroller }
     [SerializeField] private CoordsType logCoords = CoordsType.World;
-
-    // for world and local coords convertion
-    public Transform PlayerTransform;
-    public Transform PetrollerTransform;
 
     // Joystick and Button
     public Vector2 JoystickRead { get; private set; }
@@ -38,25 +34,21 @@ public class PetrollerObjectInfo : MonoBehaviour
     // Controller Motion
     // Velocity
     public Vector3 Velocity { get; private set; }
-    public Vector3 PlayerRelativeVelocity { get; private set; }
     public Vector3 PetrollerRelativeVelocity { get; private set; }
     [SerializeField] private float speedThreshold = 0.75f; //0.75f
     [SerializeField] private float moveDirThreshold = 0.3f; //0.3f
     public float Speed { get; private set; }
     public bool IsMoving { get; private set; } = false;
     public Vector3 WorldMoveDirection { get; private set; } = Vector3.zero;
-    public Vector3 PlayerRelativeMoveDirection { get; private set; } = Vector3.zero;
     public Vector3 PetrollerRelativeMoveDirection { get; private set; } = Vector3.zero;
     // AngularVelocity
     public Vector3 AngularVelocity { get; private set; }
-    public Vector3 PlayerRelativeAngularVelocity { get; private set; } = Vector3.zero;
     public Vector3 PetrollerRelativeAngularVelocity { get; private set; } = Vector3.zero;
     [SerializeField] private float rotateSpeedThreshold = 1f; //1f
     [SerializeField] private float rotateDirThreshold = 0.5f; //0.5f
     public float AngularSpeed { get; private set; }
     public bool IsRotating { get; private set; }
     public Vector3 WorldRotateDirection { get; private set; } = Vector3.zero;
-    public Vector3 PlayerRelativeRotateDirection { get; private set; } = Vector3.zero;
     public Vector3 PetrollerRelativeRotateDirection { get; private set; } = Vector3.zero;
     public Vector3 Acceleration { get; private set; }
     public Vector3 AngularAcceleration { get; private set; }
@@ -169,8 +161,7 @@ public class PetrollerObjectInfo : MonoBehaviour
     {
         Vector3 value = ctx.ReadValue<Vector3>();
         Velocity = value;
-        PlayerRelativeVelocity = PlayerTransform.InverseTransformDirection(Velocity);
-        PetrollerRelativeVelocity = PetrollerTransform.InverseTransformDirection(Velocity);
+        PetrollerRelativeVelocity = transform.InverseTransformDirection(Velocity);
 
         Speed = Velocity.magnitude;
 
@@ -178,19 +169,13 @@ public class PetrollerObjectInfo : MonoBehaviour
         {
             IsMoving = true;
             WorldMoveDirection = ConvertRelativeDirection(Velocity, moveDirThreshold);
-            PlayerRelativeMoveDirection = ConvertRelativeDirection(PlayerRelativeVelocity, moveDirThreshold);
             PetrollerRelativeMoveDirection = ConvertRelativeDirection(PetrollerRelativeVelocity, moveDirThreshold);
-
-            if (showDebug) my_mat.color = Color.red;
         }
         else
         {
             IsMoving = false;
             WorldMoveDirection = Vector3.zero;
-            PlayerRelativeMoveDirection = Vector3.zero;
             PetrollerRelativeMoveDirection = Vector3.zero;
-
-            if (showDebug) my_mat.color = Color.white;
         }
 
         if (showDebug)
@@ -202,7 +187,6 @@ public class PetrollerObjectInfo : MonoBehaviour
 
             Vector3 moveDir = Vector3.zero;
             if (logCoords == CoordsType.World) moveDir = WorldMoveDirection;
-            if (logCoords == CoordsType.Player) moveDir = PlayerRelativeMoveDirection;
             if (logCoords == CoordsType.Petroller) moveDir = PetrollerRelativeMoveDirection;
 
             if (moveDir.x > 0) dirArrows[0].SetActive(true);
@@ -217,8 +201,7 @@ public class PetrollerObjectInfo : MonoBehaviour
     {
         Vector3 value = ctx.ReadValue<Vector3>();
         AngularVelocity = value;
-        PlayerRelativeAngularVelocity = PlayerTransform.InverseTransformDirection(AngularVelocity);
-        PetrollerRelativeAngularVelocity = PetrollerTransform.InverseTransformDirection(AngularVelocity);
+        PetrollerRelativeAngularVelocity = transform.InverseTransformDirection(AngularVelocity);
 
         AngularSpeed = AngularVelocity.magnitude;
 
@@ -226,18 +209,13 @@ public class PetrollerObjectInfo : MonoBehaviour
         {
             IsRotating = true;
             WorldRotateDirection = ConvertRelativeDirection(AngularVelocity, rotateDirThreshold);
-            PlayerRelativeRotateDirection = ConvertRelativeDirection(PlayerRelativeAngularVelocity, rotateDirThreshold);
             PetrollerRelativeRotateDirection = ConvertRelativeDirection(PetrollerRelativeAngularVelocity, rotateDirThreshold);
-            if (showDebug) my_mat.color = Color.red;
         }
         else
         {
             IsRotating = false;
             WorldRotateDirection = Vector3.zero;
-            PlayerRelativeRotateDirection = Vector3.zero;
             PetrollerRelativeRotateDirection = Vector3.zero;
-
-            if (showDebug) my_mat.color = Color.white;
         }
 
         if (showDebug)
@@ -249,7 +227,6 @@ public class PetrollerObjectInfo : MonoBehaviour
 
             Vector3 rotateDir = Vector3.zero;
             if (logCoords == CoordsType.World) rotateDir = WorldRotateDirection;
-            if (logCoords == CoordsType.Player) rotateDir = PlayerRelativeRotateDirection;
             if (logCoords == CoordsType.Petroller) rotateDir = PetrollerRelativeRotateDirection;
 
             if (Mathf.Abs(rotateDir.x) > 0) rotateAxis[0].SetActive(true);
