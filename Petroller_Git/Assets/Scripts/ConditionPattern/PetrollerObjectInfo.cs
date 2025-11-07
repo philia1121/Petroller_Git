@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 public class PetrollerObjectInfo : MonoBehaviour
 {
     ControlMap controlMap;
+    [SerializeField] private bool useOVRInput = true;
 
     // For Debug
     public bool showDebug;
@@ -16,6 +17,7 @@ public class PetrollerObjectInfo : MonoBehaviour
     public GameObject[] rotateAxis;
     enum CoordsType { World, Petroller }
     [SerializeField] private CoordsType logCoords = CoordsType.World;
+    public Transform PetrollerTransform;
 
     // Joystick and Button
     public Vector2 JoystickRead { get; private set; }
@@ -52,6 +54,8 @@ public class PetrollerObjectInfo : MonoBehaviour
     public Vector3 PetrollerRelativeRotateDirection { get; private set; } = Vector3.zero;
     public Vector3 Acceleration { get; private set; }
     public Vector3 AngularAcceleration { get; private set; }
+    private Vector3 oldAngularVelocity;
+    private Vector3 oldVelocity;
 
     // Tracking State
     public enum TrackingStatus
@@ -64,6 +68,7 @@ public class PetrollerObjectInfo : MonoBehaviour
     void Awake()
     {
         controlMap = new ControlMap();
+        if (!PetrollerTransform) PetrollerTransform = transform;
     }
     void OnEnable()
     {
@@ -76,12 +81,12 @@ public class PetrollerObjectInfo : MonoBehaviour
         controlMap.Petroller.VerticalPress.canceled += GetAction_VerticalPress;
         controlMap.Petroller.HorizontalPress.started += GetAction_HorizontalPress;
         controlMap.Petroller.HorizontalPress.canceled += GetAction_HorizontalPress;
-        controlMap.Petroller.Pos.performed += GetPos;
-        controlMap.Petroller.Rot.performed += GetRot;
-        controlMap.Petroller.DeviceVelocity.performed += GetDevice_Velocity;
-        controlMap.Petroller.DeviceAngularVelocity.performed += GetDevice_AngularVelocity;
-        controlMap.Petroller.DeviceAcceleration.performed += GetDevice_Acceleration;
-        controlMap.Petroller.DeviceAugularAcceleration.performed += GetDevice_AngularAcceleration;
+
+        if (useOVRInput) return;
+        controlMap.Petroller.Pos.performed += GetAction_Pos;
+        controlMap.Petroller.Rot.performed += GetAction_Rot;
+        controlMap.Petroller.DeviceVelocity.performed += GetAction_Velocity;
+        controlMap.Petroller.DeviceAngularVelocity.performed += GetAction_AngularVelocity;
     }
     void OnDisable()
     {
@@ -92,19 +97,47 @@ public class PetrollerObjectInfo : MonoBehaviour
         controlMap.Petroller.VerticalPress.canceled -= GetAction_VerticalPress;
         controlMap.Petroller.HorizontalPress.started -= GetAction_HorizontalPress;
         controlMap.Petroller.HorizontalPress.canceled -= GetAction_HorizontalPress;
-        controlMap.Petroller.Pos.performed -= GetPos;
-        controlMap.Petroller.Rot.performed -= GetRot;
-        controlMap.Petroller.DeviceVelocity.performed -= GetDevice_Velocity;
-        controlMap.Petroller.DeviceAngularVelocity.performed -= GetDevice_AngularVelocity;
-        controlMap.Petroller.DeviceAcceleration.performed -= GetDevice_Acceleration;
-        controlMap.Petroller.DeviceAugularAcceleration.performed -= GetDevice_AngularAcceleration;
+
+        if (useOVRInput) return;
+        controlMap.Petroller.Pos.performed -= GetAction_Pos;
+        controlMap.Petroller.Rot.performed -= GetAction_Rot;
+        controlMap.Petroller.DeviceVelocity.performed -= GetAction_Velocity;
+        controlMap.Petroller.DeviceAngularVelocity.performed -= GetAction_AngularVelocity;
 
         controlMap.Petroller.Disable();
     }
+    void Start()
+    {
+        oldAngularVelocity = OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.RTouch);
+        oldVelocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch);
+    }
     void Update()
     {
-        bool isTracked = (OVRInput.GetControllerPositionTracked(OVRInput.Controller.RTouch) & OVRInput.GetControllerOrientationTracked(OVRInput.Controller.RTouch)) ? true : false;
+        OVRInput.Controller controller = OVRInput.Controller.RTouch;
+        bool isTracked = (OVRInput.GetControllerPositionTracked(controller) & OVRInput.GetControllerOrientationTracked(controller)) ? true : false;
         CurrentTrackingState = isTracked ? TrackingStatus.Tracked : TrackingStatus.LostTracked;
+
+        if (!useOVRInput) return;
+        Debug.Log("Manual Input");
+        GetPos(OVRInput.GetLocalControllerPosition(controller));
+        GetRot(OVRInput.GetLocalControllerRotation(controller));
+        GetVelocity(OVRInput.GetLocalControllerVelocity(controller));
+        GetAngularVelocity(OVRInput.GetLocalControllerAngularVelocity(controller));
+    }
+    void FixedUpdate()
+    {
+        if (Time.fixedDeltaTime <= 0) return;
+
+        OVRInput.Controller controller = OVRInput.Controller.RTouch;
+
+        Vector3 currentVelocity = OVRInput.GetLocalControllerVelocity(controller);
+        Acceleration = AccelerationCalculator(currentVelocity, oldVelocity, Time.fixedDeltaTime);
+
+        Vector3 currentAngularVelocity = OVRInput.GetLocalControllerAngularVelocity(controller);
+        AngularAcceleration = AccelerationCalculator(currentAngularVelocity, oldAngularVelocity, Time.fixedDeltaTime);
+
+        oldAngularVelocity = currentAngularVelocity;
+        oldVelocity = currentVelocity;
     }
     void GetAction_Pull(InputAction.CallbackContext ctx)
     {
@@ -147,21 +180,33 @@ public class PetrollerObjectInfo : MonoBehaviour
         float value = ctx.ReadValue<float>();
         HorizontalPress = value > 0.5f ? true : false;
     }
-    void GetPos(InputAction.CallbackContext ctx)
+    void GetAction_Pos(InputAction.CallbackContext ctx)
     {
         Vector3 value = ctx.ReadValue<Vector3>();
+        GetPos(value);
+    }
+    void GetPos(Vector3 value)
+    {
         transform.position = value;
     }
-    void GetRot(InputAction.CallbackContext ctx)
+    void GetAction_Rot(InputAction.CallbackContext ctx)
     {
         Quaternion value = ctx.ReadValue<Quaternion>();
+        GetRot(value);
+    }
+    void GetRot(Quaternion value)
+    {
         transform.rotation = value;
     }
-    void GetDevice_Velocity(InputAction.CallbackContext ctx)
+    void GetAction_Velocity(InputAction.CallbackContext ctx)
     {
         Vector3 value = ctx.ReadValue<Vector3>();
+        GetVelocity(value);
+    }
+    void GetVelocity(Vector3 value)
+    {
         Velocity = value;
-        PetrollerRelativeVelocity = transform.InverseTransformDirection(Velocity);
+        PetrollerRelativeVelocity = PetrollerTransform.InverseTransformDirection(Velocity);
 
         Speed = Velocity.magnitude;
 
@@ -197,11 +242,15 @@ public class PetrollerObjectInfo : MonoBehaviour
             if (moveDir.z < 0) dirArrows[5].SetActive(true);
         }
     }
-    void GetDevice_AngularVelocity(InputAction.CallbackContext ctx)
+    void GetAction_AngularVelocity(InputAction.CallbackContext ctx)
     {
         Vector3 value = ctx.ReadValue<Vector3>();
+        GetAngularVelocity(value);
+    }
+    void GetAngularVelocity(Vector3 value)
+    {
         AngularVelocity = value;
-        PetrollerRelativeAngularVelocity = transform.InverseTransformDirection(AngularVelocity);
+        PetrollerRelativeAngularVelocity = PetrollerTransform.InverseTransformDirection(AngularVelocity);
 
         AngularSpeed = AngularVelocity.magnitude;
 
@@ -244,14 +293,8 @@ public class PetrollerObjectInfo : MonoBehaviour
 
         return new Vector3(dirX, dirY, dirZ);
     }
-    void GetDevice_Acceleration(InputAction.CallbackContext ctx)
+    Vector3 AccelerationCalculator(Vector3 currentValue, Vector3 oldValue, float time)
     {
-        Vector3 value = ctx.ReadValue<Vector3>();
-        Acceleration = value;
-    }
-    void GetDevice_AngularAcceleration(InputAction.CallbackContext ctx)
-    {
-        Vector3 value = ctx.ReadValue<Vector3>();
-        AngularAcceleration = value;
+        return (currentValue - oldValue) / time;
     }
 }

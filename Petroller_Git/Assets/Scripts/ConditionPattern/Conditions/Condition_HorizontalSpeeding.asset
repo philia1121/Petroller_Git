@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 840fddb0080db4a49894e0cf3bf713b9, type: 3}
   m_Name: Condition_HorizontalSpeeding
   m_EditorClassIdentifier: 
-  speedingThreshold: 1
+  speedingThreshold: 2
