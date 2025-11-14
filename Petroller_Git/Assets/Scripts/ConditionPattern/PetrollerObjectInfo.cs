@@ -58,12 +58,19 @@ public class PetrollerObjectInfo : MonoBehaviour
     private Vector3 oldVelocity;
 
     // Tracking State
+    OVRInput.Controller controller = OVRInput.Controller.RTouch;
     public enum TrackingStatus
     {
         Tracked,
         LostTracked
     }
     public TrackingStatus CurrentTrackingState { get; private set; } = TrackingStatus.Tracked;
+    public enum ControllerPairing
+    {
+        Connected,
+        Disconnected
+    }
+    public ControllerPairing CurrentControllerConnection { get; private set; } = ControllerPairing.Connected;
 
     void Awake()
     {
@@ -108,17 +115,20 @@ public class PetrollerObjectInfo : MonoBehaviour
     }
     void Start()
     {
-        oldAngularVelocity = OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.RTouch);
-        oldVelocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch);
+        oldAngularVelocity = OVRInput.GetLocalControllerAngularVelocity(controller);
+        oldVelocity = OVRInput.GetLocalControllerVelocity(controller);
     }
     void Update()
     {
-        OVRInput.Controller controller = OVRInput.Controller.RTouch;
+        string message = OVRInput.connectedControllerTypes.ToString();
+        CurrentControllerConnection = (message.Contains("RTouch") || (message.Contains("Touch") && !message.Contains("LTouch"))) ? ControllerPairing.Connected : ControllerPairing.Disconnected;
+        if (CurrentControllerConnection == ControllerPairing.Disconnected) return;
+
         bool isTracked = (OVRInput.GetControllerPositionTracked(controller) & OVRInput.GetControllerOrientationTracked(controller)) ? true : false;
         CurrentTrackingState = isTracked ? TrackingStatus.Tracked : TrackingStatus.LostTracked;
 
         if (!useOVRInput) return;
-        Debug.Log("Manual Input");
+        Debug.Log(OVRInput.connectedControllerTypes);
         GetPos(OVRInput.GetLocalControllerPosition(controller));
         GetRot(OVRInput.GetLocalControllerRotation(controller));
         GetVelocity(OVRInput.GetLocalControllerVelocity(controller));
@@ -127,8 +137,6 @@ public class PetrollerObjectInfo : MonoBehaviour
     void FixedUpdate()
     {
         if (Time.fixedDeltaTime <= 0) return;
-
-        OVRInput.Controller controller = OVRInput.Controller.RTouch;
 
         Vector3 currentVelocity = OVRInput.GetLocalControllerVelocity(controller);
         Acceleration = AccelerationCalculator(currentVelocity, oldVelocity, Time.fixedDeltaTime);
