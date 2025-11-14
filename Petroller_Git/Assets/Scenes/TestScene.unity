@@ -3909,7 +3909,7 @@ MonoBehaviour:
   petrollerInfo: {fileID: 1150334138}
   autoInitializeModel: 0
   modelTransform: {fileID: 609109102}
-  solution: 0
+  solution: 4
   settings:
   - lostTrackedSolution: 0
     snapPos: {x: 0, y: 0, z: 0}
@@ -3934,8 +3934,8 @@ MonoBehaviour:
   - lostTrackedSolution: 4
     snapPos: {x: 0, y: 0, z: 0}
     snapRot: {x: 0, y: 0, z: 0}
-    offsetPos: {x: 0, y: 0, z: 0}
-    offesetRot: {x: 0, y: 0, z: 0}
+    offsetPos: {x: -0.05, y: -0.09, z: 0.12}
+    offesetRot: {x: -105.89, y: 0, z: 0}
   - lostTrackedSolution: 5
     snapPos: {x: 0, y: 0, z: 0}
     snapRot: {x: 0, y: 0, z: 0}

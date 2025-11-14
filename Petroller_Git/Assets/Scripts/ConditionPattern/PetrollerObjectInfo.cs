@@ -128,7 +128,7 @@ public class PetrollerObjectInfo : MonoBehaviour
         CurrentTrackingState = isTracked ? TrackingStatus.Tracked : TrackingStatus.LostTracked;
 
         if (!useOVRInput) return;
-        Debug.Log(OVRInput.connectedControllerTypes);
+        // Debug.Log(OVRInput.connectedControllerTypes);
         GetPos(OVRInput.GetLocalControllerPosition(controller));
         GetRot(OVRInput.GetLocalControllerRotation(controller));
         GetVelocity(OVRInput.GetLocalControllerVelocity(controller));
