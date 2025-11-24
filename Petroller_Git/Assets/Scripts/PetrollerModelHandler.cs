@@ -6,7 +6,7 @@ public class PetrollerModelHandler : MonoBehaviour
 {
     [SerializeField] private PetrollerObjectInfo petrollerInfo;
     [SerializeField] private bool autoInitializeModel;
-    [SerializeField] private Transform modelTransform, fakeTransform;
+    [SerializeField] private Transform modelTransform, shellTransform;
     public HandModelHandler LHandHandler, RHandHandler;
     bool LHandTracked, RHandTracked;
     public bool debugSolution;
@@ -207,6 +207,10 @@ public class PetrollerModelHandler : MonoBehaviour
         selfLastKnownPos = transform.position;
         selfLastKnownRot = transform.rotation;
         oldDebug = debugSolution;
+    }
+    public void SetPresumptiveTrackStatus(bool tracked)
+    {
+
     }
 }
 

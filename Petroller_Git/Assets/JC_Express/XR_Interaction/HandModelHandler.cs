@@ -14,6 +14,8 @@ public class HandModelHandler : MonoBehaviour
     public OVRHand hand;
     public OVRSkeleton skeleton;
     public Renderer handRenderer;
+    [Header("Filter")]
+    public SkinnedMeshRenderer filter;
 
     [Header("延遲處理 (Hysteresis for Blinking)")]
     [Tooltip("手部必須持續穩定多長時間才重新顯示 (秒)")]
@@ -67,6 +69,8 @@ public class HandModelHandler : MonoBehaviour
         {
             isTrackingGood = false;
         }
+
+        if (filter.enabled) return;
 
         // 3. 狀態更新與延遲處理 (防止閃爍)
         if (isTrackingGood)

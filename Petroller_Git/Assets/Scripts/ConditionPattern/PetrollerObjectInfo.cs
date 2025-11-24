@@ -65,6 +65,7 @@ public class PetrollerObjectInfo : MonoBehaviour
         LostTracked
     }
     public TrackingStatus CurrentTrackingState { get; private set; } = TrackingStatus.Tracked;
+    public TrackingStatus PresumptiveTrackingState { get; private set; } = TrackingStatus.Tracked;
     public enum ControllerPairing
     {
         Connected,
@@ -304,5 +305,9 @@ public class PetrollerObjectInfo : MonoBehaviour
     Vector3 AccelerationCalculator(Vector3 currentValue, Vector3 oldValue, float time)
     {
         return (currentValue - oldValue) / time;
+    }
+    public void ChangePresumptiveTrackingState(bool isTracked)
+    {
+        PresumptiveTrackingState = isTracked ? TrackingStatus.Tracked : TrackingStatus.LostTracked;
     }
 }
