@@ -8,15 +8,12 @@ public class HandModelHandler : MonoBehaviour
     public OVRMeshRenderer oVRMeshRenderer;
     public SkinnedMeshRenderer skinnedMeshRenderer;
     public Material mat;
-
+    public bool isTrackingGood;
+    public Transform PalmTransform { get; private set; }
     [Header("核心組件 (Core Components)")]
     public OVRHand hand;
     public OVRSkeleton skeleton;
     public Renderer handRenderer;
-
-    [Header("穩定性閾值 (Confidence Threshold)")]
-    [Tooltip("『平均骨骼信心指數』的最低門檻 (0.0 - 1.0)。低於此值將隱藏手部。")]
-    public float minAverageConfidenceThreshold = 0.6f;
 
     [Header("延遲處理 (Hysteresis for Blinking)")]
     [Tooltip("手部必須持續穩定多長時間才重新顯示 (秒)")]
@@ -50,34 +47,24 @@ public class HandModelHandler : MonoBehaviour
                 this.enabled = false;
             }
         }
+
+        PalmTransform = skeleton.Bones[(int)OVRSkeleton.BoneId.XRHand_Palm].Transform;
     }
 
     void LateUpdate()
     {
         if (skeleton == null || handRenderer == null) return;
-
-        bool isTrackingGood = false;
-        mat.color = skeleton.IsDataHighConfidence ? Color.white : Color.red;
+        // mat.color = skeleton.IsDataHighConfidence ? Color.white : Color.red;
 
         // 1. 基礎 API 檢測
         // 我們仍然需要 IsDataHighConfidence，因為當它為 false 時，骨骼信心也為 0
         if (hand.IsTracked && hand.IsDataHighConfidence)
         {
             int boneCount = skeleton.Bones.Count;
-
-            if (boneCount == 0)
-            {
-                isTrackingGood = false;
-            }
-            else
-            {
-                // 檢查平均信心是否高於我們的門檻
-                isTrackingGood = skeleton.IsDataHighConfidence;
-            }
+            isTrackingGood = boneCount == 0 ? false : skeleton.IsDataHighConfidence;
         }
         else
         {
-            // 如果高層級 API 說沒追蹤到，那肯定是不好的
             isTrackingGood = false;
         }
 

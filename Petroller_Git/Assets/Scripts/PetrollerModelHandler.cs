@@ -6,15 +6,19 @@ public class PetrollerModelHandler : MonoBehaviour
 {
     [SerializeField] private PetrollerObjectInfo petrollerInfo;
     [SerializeField] private bool autoInitializeModel;
-    [SerializeField] private Transform modelTransform;
+    [SerializeField] private Transform modelTransform, fakeTransform;
+    public HandModelHandler LHandHandler, RHandHandler;
+    bool LHandTracked, RHandTracked;
+    public bool debugSolution;
+    bool oldDebug;
     public enum LostTrackedSolution { StayLastKnown, Fixed, SnapToCenter, SnapToRightHand, SnapToLeftHand, AsDefault }
     [SerializeField] private LostTrackedSolution solution = LostTrackedSolution.StayLastKnown;
+    enum SnapHandException { StayLastKnown, Available }
+    [SerializeField] private SnapHandException snapHandException = SnapHandException.Available;
     [SerializeField] private SolutionSetting[] settings;
     private Dictionary<LostTrackedSolution, SolutionSetting> SolutionSettingPairs = new Dictionary<LostTrackedSolution, SolutionSetting>();
     PetrollerObjectInfo.ControllerPairing oldConnection = PetrollerObjectInfo.ControllerPairing.Connected;
     PetrollerObjectInfo.TrackingStatus oldTrackingState;
-    bool LHandTracked, RHandTracked;
-    public bool debugSolution;
     Vector3 selfLastKnownPos;
     Quaternion selfLastKnownRot;
     void Awake()
@@ -34,6 +38,7 @@ public class PetrollerModelHandler : MonoBehaviour
             modelTransform.rotation = Quaternion.Euler(SolutionSettingPairs[LostTrackedSolution.AsDefault].offesetRot);
         }
         oldTrackingState = petrollerInfo.CurrentTrackingState;
+        oldDebug = debugSolution;
     }
 
     void Update()
@@ -46,12 +51,30 @@ public class PetrollerModelHandler : MonoBehaviour
         oldConnection = petrollerInfo.CurrentControllerConnection;
 
         // Check for Hand Tracking
-        LHandTracked = OVRInput.GetControllerPositionTracked(OVRInput.Controller.LHand);
-        RHandTracked = OVRInput.GetControllerPositionTracked(OVRInput.Controller.RHand);
+        LHandTracked = LHandHandler.isTrackingGood;
+        RHandTracked = RHandHandler.isTrackingGood;
+
+        // should be remove once the debugging option is no longer needed
+        if (oldDebug != debugSolution)
+        {
+            Debug.Log("Reset Pos and Rot offset from debug solution");
+            if (debugSolution)
+            {
+                modelTransform.localPosition = SolutionSettingPairs[LostTrackedSolution.AsDefault].offsetPos;
+                modelTransform.localEulerAngles = SolutionSettingPairs[LostTrackedSolution.AsDefault].offesetRot;
+            }
+            else
+            {
+                modelTransform.localPosition = SolutionSettingPairs[solution].offsetPos;
+                modelTransform.localEulerAngles = SolutionSettingPairs[solution].offesetRot;
+            }
+        }
+
 
         // On Tracked State Changed
         if (oldTrackingState != petrollerInfo.CurrentTrackingState) // On Tracked State Changed
         {
+            Debug.Log("Reset Pos and Rot offset from normal option");
             if (petrollerInfo.CurrentTrackingState == PetrollerObjectInfo.TrackingStatus.Tracked)
             {
                 modelTransform.localPosition = SolutionSettingPairs[LostTrackedSolution.AsDefault].offsetPos;
@@ -91,25 +114,39 @@ public class PetrollerModelHandler : MonoBehaviour
                 case LostTrackedSolution.SnapToCenter:
                     if (LHandTracked & RHandTracked)
                     {
-                        Vector3 LHandPos = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand);
-                        Vector3 RHandPos = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand);
-                        Quaternion LHandRot = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LHand);
-                        Quaternion RHandRot = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RHand);
+                        Vector3 LHandPos = LHandHandler.PalmTransform.position;
+                        Vector3 RHandPos = RHandHandler.PalmTransform.position;
 
                         finalPos = Vector3.Lerp(LHandPos, RHandPos, 0.5f);
-                        finalRot = Quaternion.Lerp(LHandRot, RHandRot, 0.5f);
+
+                        Vector3 leftForward = LHandHandler.PalmTransform.forward;
+                        Vector3 leftRight = LHandHandler.PalmTransform.right;
+
+                        Vector3 rightForward = RHandHandler.PalmTransform.forward;
+                        Vector3 rightRight = -RHandHandler.PalmTransform.right;
+
+                        Vector3 leftUp = Vector3.Cross(leftForward, leftRight);
+                        Quaternion leftStandardRot = Quaternion.LookRotation(leftForward, leftUp);
+
+                        Vector3 rightUp = Vector3.Cross(rightForward, rightRight);
+                        Quaternion rightStandardRot = Quaternion.LookRotation(rightForward, rightUp);
+
+                        finalRot = Quaternion.Slerp(leftStandardRot, rightStandardRot, 0.5f);
                     }
                     else
                     {
-                        if (RHandTracked)
+                        if (snapHandException == SnapHandException.Available & (RHandTracked | LHandTracked))
                         {
-                            finalPos = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand);
-                            finalRot = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RHand);
-                        }
-                        else if (LHandTracked)
-                        {
-                            finalPos = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand);
-                            finalRot = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LHand);
+                            if (RHandTracked)
+                            {
+                                finalPos = RHandHandler.PalmTransform.position;
+                                finalRot = RHandHandler.PalmTransform.rotation;
+                            }
+                            else if (LHandTracked)
+                            {
+                                finalPos = LHandHandler.PalmTransform.position;
+                                finalRot = LHandHandler.PalmTransform.rotation;
+                            }
                         }
                         else
                         {
@@ -121,15 +158,15 @@ public class PetrollerModelHandler : MonoBehaviour
                 case LostTrackedSolution.SnapToRightHand:
                     if (RHandTracked)
                     {
-                        finalPos = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand);
-                        finalRot = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RHand);
+                        finalPos = RHandHandler.PalmTransform.position;
+                        finalRot = RHandHandler.PalmTransform.rotation;
                     }
                     else
                     {
-                        if (LHandTracked)
+                        if (snapHandException == SnapHandException.Available & LHandTracked)
                         {
-                            finalPos = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand);
-                            finalRot = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LHand);
+                            finalPos = LHandHandler.PalmTransform.position;
+                            finalRot = LHandHandler.PalmTransform.rotation;
                         }
                         else
                         {
@@ -141,15 +178,15 @@ public class PetrollerModelHandler : MonoBehaviour
                 case LostTrackedSolution.SnapToLeftHand:
                     if (LHandTracked)
                     {
-                        finalPos = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand);
-                        finalRot = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LHand);
+                        finalPos = LHandHandler.PalmTransform.position;
+                        finalRot = LHandHandler.PalmTransform.rotation;
                     }
                     else
                     {
-                        if (LHandTracked)
+                        if (snapHandException == SnapHandException.Available & RHandTracked)
                         {
-                            finalPos = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand);
-                            finalRot = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LHand);
+                            finalPos = RHandHandler.PalmTransform.position;
+                            finalRot = RHandHandler.PalmTransform.rotation;
                         }
                         else
                         {
@@ -169,14 +206,7 @@ public class PetrollerModelHandler : MonoBehaviour
         oldTrackingState = petrollerInfo.CurrentTrackingState;
         selfLastKnownPos = transform.position;
         selfLastKnownRot = transform.rotation;
-    }
-
-    public void RecordCoords()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Debug.Log("Current Offset |  Pos: " + modelTransform.localPosition + " , Rot: " + modelTransform.localEulerAngles);
-        }
+        oldDebug = debugSolution;
     }
 }
 
