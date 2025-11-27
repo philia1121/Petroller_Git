@@ -62,10 +62,11 @@ public class PetrollerObjectInfo : MonoBehaviour
     public enum TrackingStatus
     {
         Tracked,
+        PresumptiveLostTracked,
         LostTracked
     }
     public TrackingStatus CurrentTrackingState { get; private set; } = TrackingStatus.Tracked;
-    public TrackingStatus PresumptiveTrackingState { get; private set; } = TrackingStatus.Tracked;
+    bool presumptiveTracked = false;
     public enum ControllerPairing
     {
         Connected,
@@ -125,8 +126,7 @@ public class PetrollerObjectInfo : MonoBehaviour
         CurrentControllerConnection = (message.Contains("RTouch") || (message.Contains("Touch") && !message.Contains("LTouch"))) ? ControllerPairing.Connected : ControllerPairing.Disconnected;
         if (CurrentControllerConnection == ControllerPairing.Disconnected) return;
 
-        bool isTracked = (OVRInput.GetControllerPositionTracked(controller) & OVRInput.GetControllerOrientationTracked(controller)) ? true : false;
-        CurrentTrackingState = isTracked ? TrackingStatus.Tracked : TrackingStatus.LostTracked;
+        CurrentTrackingState = HandleTrackingStatus();
 
         if (!useOVRInput) return;
         // Debug.Log(OVRInput.connectedControllerTypes);
@@ -147,6 +147,12 @@ public class PetrollerObjectInfo : MonoBehaviour
 
         oldAngularVelocity = currentAngularVelocity;
         oldVelocity = currentVelocity;
+    }
+    TrackingStatus HandleTrackingStatus()
+    {
+        bool isTracked = (OVRInput.GetControllerPositionTracked(controller) & OVRInput.GetControllerOrientationTracked(controller)) ? true : false;
+        return isTracked ? (presumptiveTracked ? TrackingStatus.Tracked : TrackingStatus.PresumptiveLostTracked) : TrackingStatus.LostTracked;
+
     }
     void GetAction_Pull(InputAction.CallbackContext ctx)
     {
@@ -308,6 +314,6 @@ public class PetrollerObjectInfo : MonoBehaviour
     }
     public void ChangePresumptiveTrackingState(bool isTracked)
     {
-        PresumptiveTrackingState = isTracked ? TrackingStatus.Tracked : TrackingStatus.LostTracked;
+        presumptiveTracked = isTracked;
     }
 }
