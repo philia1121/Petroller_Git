@@ -13,7 +13,7 @@ enum PetrollerStates
     passOut,
     inactive
 }
-public class PetrollerStateFactory : MonoBehaviour
+public class PetrollerStateFactory
 {
     PetrollerStateMachine _context;
     Dictionary<PetrollerStates, PetrollerBaseState> _states = new Dictionary<PetrollerStates, PetrollerBaseState>();

@@ -20,7 +20,10 @@ public class PetrollerHappyState : PetrollerBaseState
     }
     public override void CheckSwitchStates()
     {
-
+        if (_ctx.PulledEar)
+        {
+            SwitchState(_factory.Angry());
+        }
     }
     public override void InitializeSubState()
     {
