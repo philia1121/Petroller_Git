@@ -133,7 +133,7 @@ public class PetrollerStateMachine : MonoBehaviour
     public void GetReboot() { Reboot = true; }
     void CountCozyTime()
     {
-        if (Speeding)
+        if (!Speeding & PetrollerInfo.IsInZone("Cozy"))
         {
             if (!IsCozy) IsCozy = true;
             CozyTimer += Time.deltaTime;

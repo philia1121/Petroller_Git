@@ -37,6 +37,10 @@ public class PetrollerIdleState : PetrollerBaseState
         {
             SwitchState(_factory.Surprised());
         }
+        else if (_ctx.CozyTimer > _ctx.HappyThreshold)
+        {
+            SwitchState(_factory.Happy());
+        }
     }
     void RandomAnimationBlend()
     {
