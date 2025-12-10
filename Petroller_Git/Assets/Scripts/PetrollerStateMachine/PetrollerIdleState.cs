@@ -29,8 +29,11 @@ public class PetrollerIdleState : PetrollerBaseState
         {
             SwitchState(_factory.Angry());
         }
-
-        if (_ctx.Pressed | _ctx.Speeding)
+        else if (_ctx.PetrollerInfo.CurrentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
+        {
+            SwitchState(_factory.Umcomfortable());
+        }
+        else if (_ctx.Pressed | _ctx.Speeding)
         {
             SwitchState(_factory.Surprised());
         }

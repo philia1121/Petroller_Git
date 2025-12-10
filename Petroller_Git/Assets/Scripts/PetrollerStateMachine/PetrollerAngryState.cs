@@ -17,13 +17,21 @@ public class PetrollerAngryState : PetrollerBaseState
     }
     public override void ExitState()
     {
+        _ctx.MyAnimator.ResetTrigger(_ctx.GetAngryHash);
     }
     public override void CheckSwitchStates()
     {
         if (!_ctx.PulledEar)
         {
-            _ctx.MyAnimator.ResetTrigger(_ctx.GetAngryHash);
             SwitchState(_factory.Idle());
+        }
+        else if (_ctx.PetrollerInfo.CurrentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
+        {
+            SwitchState(_factory.Umcomfortable());
+        }
+        else if (_ctx.Pressed | _ctx.Speeding)
+        {
+            SwitchState(_factory.Surprised());
         }
     }
     public override void InitializeSubState()

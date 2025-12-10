@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
+#pragma warning disable 0414
 public class PetrollerStateMachine : MonoBehaviour
 {
+    // State Machine //
     PetrollerBaseState _currentState;
     public PetrollerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
     public string currentState_string;
     PetrollerStateFactory _states;
+
+    // Petroller Info //
+    public PetrollerObjectInfo PetrollerInfo { get; private set; }
 
     [Header("Animation")]
     public Animator MyAnimator;
@@ -24,23 +28,38 @@ public class PetrollerStateMachine : MonoBehaviour
     public int GetPassOutHash { get; private set; }
     public int GetSpitHash { get; private set; }
     public int GetHappyHash { get; private set; }
+    public int IsHappyHash { get; private set; }
     public int IsUncomfortableHash { get; private set; }
     public int GetRebootHash { get; private set; }
     #endregion
 
     [Header("Audio")]
-    public AudioSource MyAudioSource;
-    public AudioClip[] MyAudioClips { get; private set; }
+    public SimpleAudioPlayer IdleAudioPlayer;
+    public SimpleAudioPlayer HappyAudioPlayer;
+    public SimpleAudioPlayer SleepAudioPlayer;
+    public SimpleAudioPlayer AllForOneAudioPlayer;
 
     [Header("Automation")]
     private bool simpleTimeUp;
 
     [Header("Interaction")]
-    [HideInInspector] public bool Speeding;
-    [HideInInspector] public bool PulledEar;
-    [HideInInspector] public bool Pressed;
-    [HideInInspector] public bool CozyForHappy;
-    [HideInInspector] public bool CozyForSleep;
+    [SerializeField] private float speedingThreshold = 2f;
+    [SerializeField] private float spitThreshold = 5f;
+    public float SpitThreshold { get { return SpitThreshold; } }
+    [SerializeField] private float passOutThreshold = 5f;
+    public float PassOutThreshold { get { return passOutThreshold; } }
+    [SerializeField] private float sleepThreshold = 15f;
+    public float SleepThreshold {get{ return sleepThreshold; } } 
+    public bool Speeding;
+    public bool PulledEar { get; private set; }
+    public bool Pressed { get; private set; }
+    public bool IsCozy { get; private set; }
+    public float CozyTimer { get; private set; } = 0;
+    public float PreLTTimer { get; private set; } = 0;
+    public float LTTimer { get; private set; } = 0;
+    public float OverallLTTimer { get; private set; } = 0;
+    public bool Reboot { get; private set; }
+
     void OnEnable()
     {
         myAnimationEvent.AnimationTriggerEvent.AddListener(AnimationEventReceiver);
@@ -54,19 +73,10 @@ public class PetrollerStateMachine : MonoBehaviour
         // Auto Get Refs
         if (!myAnimationEvent) myAnimationEvent = GetComponent<AnimationEvent>();
         if (!MyAnimator) MyAnimator = GetComponent<Animator>();
-        if (!MyAudioSource) MyAudioSource = GetComponent<AudioSource>();
+        PetrollerInfo = FindFirstObjectByType<PetrollerObjectInfo>();
 
-        // Animation Hash Setup
-        IdleBlendHash = Animator.StringToHash("IdleBlend");
-        GetAngryHash = Animator.StringToHash("GetAngry");
-        GetSurprisedHash = Animator.StringToHash("GetSurprised");
-        IsSleepingHash = Animator.StringToHash("IsSleeping");
-        SleepBlendHash = Animator.StringToHash("SleepBlend");
-        GetPassOutHash = Animator.StringToHash("GetPassOut");
-        GetSpitHash = Animator.StringToHash("GetSpit");
-        GetHappyHash = Animator.StringToHash("GetHappy");
-        IsUncomfortableHash = Animator.StringToHash("IsUncomfortable");
-        GetRebootHash = Animator.StringToHash("GetReboot");
+        // setup animator parameter hash
+        SetupAnimatorHash();
     }
 
     void Start()
@@ -77,14 +87,14 @@ public class PetrollerStateMachine : MonoBehaviour
     }
     void Update()
     {
+        CheckInteraction();
+        CheckSpeeding();
+        CountLostTrackedTime();
+        CountCozyTime();
+
         currentState_string = _currentState.ToString();
         _currentState.UpdateState();
     }
-    void AnimationEventReceiver()
-    {
-        ClipEnd = true;
-    }
-
     public IEnumerator AnimatorFloatTransition(int parameter, float targetValue, float duration)
     {
         float time = 0;
@@ -106,27 +116,62 @@ public class PetrollerStateMachine : MonoBehaviour
         simpleTimeUp = true;
     }
 
-    public void RuleFired_IsSpeeding(bool value)
-    {
-        Speeding = value;
-    }
-    public void RuleFired_GetPressed(bool value)
-    {
-        Pressed = value;
-    }
-    public void RuleFired_GetPulledEar(bool value)
-    {
-        PulledEar = value;
-    }
-    public void RuleFired_GetCozyForHappy(bool value) // {stay within [assigned zone]} with {speed no faster than [value]} (for [value] sec.)
-    {
-        CozyForHappy = value;
-    }
-    public void RuleFired_GetCozyForSleep(bool value)
-    {
-        CozyForSleep = value;
-    }
 
+    public void CheckInteraction()
+    {
+        PulledEar = PetrollerInfo.CurrentJoystickDir == PetrollerObjectInfo.JoystickDir.Ear;
+        Pressed = PetrollerInfo.HorizontalPress | PetrollerInfo.VerticalPress;
+    }
+    public void CheckSpeeding()
+    {
+        // Speeding = PetrollerInfo.Speed > speedingThreshold;
+    }
+    void AnimationEventReceiver() { ClipEnd = true; }
+    public void RuleFired_IsSpeeding(bool value) { Speeding = value; }
+    public void GetReboot() { Reboot = true; }
+    void CountCozyTime()
+    {
+        if (Speeding)
+        {
+            if (!IsCozy) IsCozy = true;
+            CozyTimer += Time.deltaTime;
+        }
+        else
+        {
+            IsCozy = false;
+            CozyTimer = 0;
+        }
+    }
+    void CountLostTrackedTime()
+    {
+        var currentTrackingState = PetrollerInfo.CurrentTrackingState;
+        if (currentTrackingState == PetrollerObjectInfo.TrackingStatus.PresumptiveLostTracked)
+        {
+            PreLTTimer += Time.deltaTime;
+        }
+        else
+        {
+            PreLTTimer = 0;
+        }
+
+        if (currentTrackingState == PetrollerObjectInfo.TrackingStatus.LostTracked)
+        {
+            LTTimer += Time.deltaTime;
+        }
+        else
+        {
+            LTTimer = 0;
+        }
+
+        if (currentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
+        {
+            OverallLTTimer += Time.deltaTime;
+        }
+        else
+        {
+            OverallLTTimer = 0;
+        }
+    }
     public void ResetCatStateMachine()
     {
         // reset all parameters
@@ -135,5 +180,19 @@ public class PetrollerStateMachine : MonoBehaviour
         // reset state
         _currentState = _states.Idle();
         _currentState.EnterState();
+    }
+    void SetupAnimatorHash()
+    {
+        IdleBlendHash = Animator.StringToHash("IdleBlend");
+        GetAngryHash = Animator.StringToHash("GetAngry");
+        GetSurprisedHash = Animator.StringToHash("GetSurprised");
+        IsSleepingHash = Animator.StringToHash("IsSleeping");
+        SleepBlendHash = Animator.StringToHash("SleepBlend");
+        GetPassOutHash = Animator.StringToHash("GetPassOut");
+        GetSpitHash = Animator.StringToHash("GetSpit");
+        GetHappyHash = Animator.StringToHash("GetHappy");
+        IsHappyHash = Animator.StringToHash("IsHappy");
+        IsUncomfortableHash = Animator.StringToHash("IsUncomfortable");
+        GetRebootHash = Animator.StringToHash("GetReboot");
     }
 }

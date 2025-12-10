@@ -8,15 +8,22 @@ public class PetrollerSleepState : PetrollerBaseState
     : base(currentContext, stateFactory) { }
     public override void EnterState()
     {
-
+        _ctx.MyAnimator.SetBool(_ctx.IsSleepingHash, true);
+        _ctx.MyAnimator.SetFloat(_ctx.SleepBlendHash, 0);
     }
     public override void UpdateState()
     {
-
+        if(_ctx.ClipEnd)
+        {
+            RandomAnimationBlend();
+            _ctx.ClipEnd = false;
+        }
+        CheckSwitchStates();
     }
     public override void ExitState()
     {
-
+        _ctx.MyAnimator.SetBool(_ctx.IsSleepingHash, false);
+        _ctx.MyAnimator.SetFloat(_ctx.SleepBlendHash, 0);
     }
     public override void CheckSwitchStates()
     {
@@ -24,6 +31,30 @@ public class PetrollerSleepState : PetrollerBaseState
         {
             SwitchState(_factory.Angry());
         }
+        else if (_ctx.PetrollerInfo.CurrentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
+        {
+            SwitchState(_factory.Umcomfortable());
+        }
+        else if (_ctx.Pressed | _ctx.Speeding)
+        {
+            SwitchState(_factory.Surprised());
+        }
+    }
+    void RandomAnimationBlend()
+    {
+        float rd = Random.Range(0, 1f);
+        float blend;
+        switch (rd)
+        {
+            // auto states
+            case <= 0.1f: // 10%
+                blend = 1;
+                break;
+            default: // 90%
+                blend = 0;
+                break;
+        }
+        _ctx.StartCoroutine(_ctx.AnimatorFloatTransition(_ctx.SleepBlendHash, blend, 0.2f));
     }
     public override void InitializeSubState()
     {
