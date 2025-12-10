@@ -56,8 +56,8 @@ public class PetrollerObjectInfo : MonoBehaviour
     OVRInput.Controller controller = OVRInput.Controller.RTouch;
     public enum TrackingStatus
     { Tracked, PresumptiveLostTracked, LostTracked }
-    public TrackingStatus CurrentTrackingState { get; private set; } = TrackingStatus.Tracked;
-    bool presumptiveTracked = false;
+    public TrackingStatus CurrentTrackingState = TrackingStatus.Tracked;
+    bool presumptiveTracked = true;
     public enum ControllerPairing { Connected, Disconnected }
     public ControllerPairing CurrentControllerConnection { get; private set; } = ControllerPairing.Connected;
 
@@ -302,9 +302,9 @@ public class PetrollerObjectInfo : MonoBehaviour
     {
         return (currentValue - oldValue) / time;
     }
-    
+
     // Extension Function //
-    public void ChangePresumptiveTrackingState(bool isTracked) { presumptiveTracked = isTracked; }
+    public void ChangePresumptiveTrackingState(bool tracked) { presumptiveTracked = tracked; }
     public void AddZoneID(string zoneID) { currentZoneIDs.Add(zoneID); }
     public void RemoveZoneID(string zoneID) { currentZoneIDs.Remove(zoneID); }
     public bool IsInZone(string zoneID) { return currentZoneIDs.Contains(zoneID); }

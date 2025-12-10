@@ -9,8 +9,6 @@ enum PetrollerStates
     angry,
     sleep,
     uncomfortable,
-    spit,
-    passOut,
     inactive
 }
 public class PetrollerStateFactory
@@ -26,8 +24,6 @@ public class PetrollerStateFactory
         _states[PetrollerStates.angry] = new PetrollerAngryState(_context, this);
         _states[PetrollerStates.sleep] = new PetrollerSleepState(_context, this);
         _states[PetrollerStates.uncomfortable] = new PetrollerUncomfortableState(_context, this);
-        _states[PetrollerStates.spit] = new PetrollerSpitState(_context, this);
-        _states[PetrollerStates.passOut] = new PetrollerPassOutState(_context, this);
         _states[PetrollerStates.inactive] = new PetrollerInactiveState(_context, this);
     }
     public PetrollerBaseState Idle() { return _states[PetrollerStates.idle]; }
@@ -36,7 +32,5 @@ public class PetrollerStateFactory
     public PetrollerBaseState Angry() { return _states[PetrollerStates.angry]; }
     public PetrollerBaseState Sleep() { return _states[PetrollerStates.sleep]; }
     public PetrollerBaseState Umcomfortable() { return _states[PetrollerStates.uncomfortable]; }
-    public PetrollerBaseState Spit() { return _states[PetrollerStates.spit]; }
-    public PetrollerBaseState PassOut() { return _states[PetrollerStates.passOut]; }
     public PetrollerBaseState Inactive() { return _states[PetrollerStates.inactive]; }
 }

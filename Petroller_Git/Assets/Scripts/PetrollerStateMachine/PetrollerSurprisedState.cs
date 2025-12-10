@@ -13,7 +13,10 @@ public class PetrollerSurprisedState : PetrollerBaseState
     }
     public override void UpdateState()
     {
-        CheckSwitchStates();
+        if (_ctx.ClipEnd)
+        {
+            CheckSwitchStates();
+        }
     }
     public override void ExitState()
     {
@@ -21,13 +24,11 @@ public class PetrollerSurprisedState : PetrollerBaseState
     }
     public override void CheckSwitchStates()
     {
-        if (!_ctx.ClipEnd) return;
-
         if (_ctx.PulledEar)
         {
             SwitchState(_factory.Angry());
         }
-        else if(_ctx.PetrollerInfo.CurrentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
+        else if (_ctx.PetrollerInfo.CurrentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
         {
             SwitchState(_factory.Umcomfortable());
         }

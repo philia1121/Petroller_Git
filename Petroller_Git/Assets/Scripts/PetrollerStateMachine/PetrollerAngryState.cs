@@ -23,16 +23,20 @@ public class PetrollerAngryState : PetrollerBaseState
     {
         if (!_ctx.PulledEar)
         {
-            SwitchState(_factory.Idle());
+            if (_ctx.PetrollerInfo.CurrentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
+            {
+                SwitchState(_factory.Umcomfortable());
+            }
+            else if (_ctx.Pressed | _ctx.Speeding)
+            {
+                SwitchState(_factory.Surprised());
+            }
+            else
+            {
+                SwitchState(_factory.Idle());
+            }
         }
-        else if (_ctx.PetrollerInfo.CurrentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
-        {
-            SwitchState(_factory.Umcomfortable());
-        }
-        else if (_ctx.Pressed | _ctx.Speeding)
-        {
-            SwitchState(_factory.Surprised());
-        }
+
     }
     public override void InitializeSubState()
     {

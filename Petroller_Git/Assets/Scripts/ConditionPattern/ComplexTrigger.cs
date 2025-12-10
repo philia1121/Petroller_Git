@@ -9,6 +9,7 @@ public class ComplexTrigger : MonoBehaviour
     public List<TriggerRule> rules;
     void Start()
     {
+        if (!petrollerObject) petrollerObject = FindFirstObjectByType<PetrollerObjectInfo>().gameObject;
         if (playerReference == null && Camera.main != null)
         {
             playerReference = Camera.main.transform;

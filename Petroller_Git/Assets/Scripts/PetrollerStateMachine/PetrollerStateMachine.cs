@@ -45,12 +45,14 @@ public class PetrollerStateMachine : MonoBehaviour
     [Header("Interaction")]
     [SerializeField] private float speedingThreshold = 2f;
     [SerializeField] private float spitThreshold = 5f;
-    public float SpitThreshold { get { return SpitThreshold; } }
+    public float SpitThreshold { get { return spitThreshold; } }
     [SerializeField] private float passOutThreshold = 5f;
     public float PassOutThreshold { get { return passOutThreshold; } }
+    [SerializeField] private float happyThreshold = 15f;
+    public float HappyThreshold { get { return happyThreshold; } }
     [SerializeField] private float sleepThreshold = 15f;
-    public float SleepThreshold {get{ return sleepThreshold; } } 
-    public bool Speeding;
+    public float SleepThreshold { get { return sleepThreshold; } }
+    public bool Speeding { get; private set; }
     public bool PulledEar { get; private set; }
     public bool Pressed { get; private set; }
     public bool IsCozy { get; private set; }
@@ -58,7 +60,7 @@ public class PetrollerStateMachine : MonoBehaviour
     public float PreLTTimer { get; private set; } = 0;
     public float LTTimer { get; private set; } = 0;
     public float OverallLTTimer { get; private set; } = 0;
-    public bool Reboot { get; private set; }
+    [HideInInspector] public bool Reboot = false;
 
     void OnEnable()
     {
@@ -71,8 +73,8 @@ public class PetrollerStateMachine : MonoBehaviour
     void Awake()
     {
         // Auto Get Refs
-        if (!myAnimationEvent) myAnimationEvent = GetComponent<AnimationEvent>();
         if (!MyAnimator) MyAnimator = GetComponent<Animator>();
+        if (!myAnimationEvent) myAnimationEvent = MyAnimator.GetComponent<AnimationEvent>();
         PetrollerInfo = FindFirstObjectByType<PetrollerObjectInfo>();
 
         // setup animator parameter hash
@@ -124,9 +126,9 @@ public class PetrollerStateMachine : MonoBehaviour
     }
     public void CheckSpeeding()
     {
-        // Speeding = PetrollerInfo.Speed > speedingThreshold;
+        Speeding = PetrollerInfo.Speed > speedingThreshold;
     }
-    void AnimationEventReceiver() { ClipEnd = true; }
+    void AnimationEventReceiver() { ClipEnd = true; Debug.Log("clip end"); }
     public void RuleFired_IsSpeeding(bool value) { Speeding = value; }
     public void GetReboot() { Reboot = true; }
     void CountCozyTime()
@@ -170,6 +172,8 @@ public class PetrollerStateMachine : MonoBehaviour
         else
         {
             OverallLTTimer = 0;
+            PreLTTimer = 0;
+            LTTimer = 0;
         }
     }
     public void ResetCatStateMachine()

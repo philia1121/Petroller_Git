@@ -104,8 +104,8 @@ public class PetrollerModelHandler : MonoBehaviour
 
         // shellLastKnownPos = shellParentTransform.position;
         // shellLastKnownRot = shellParentTransform.rotation;
-        Debug.Log("Log Last Known Pos: " + shellLastKnownPos + ", LHand Tracking: " + currentHandTrackingState);
-        Debug.Log("Log Last Known Rot: " + shellLastKnownRot + ", " + Quaternion.Angle(shellLastKnownRot, new Quaternion(0, 0, 0, 1)));
+        // Debug.Log("Log Last Known Pos: " + shellLastKnownPos + ", LHand Tracking: " + currentHandTrackingState);
+        // Debug.Log("Log Last Known Rot: " + shellLastKnownRot + ", " + Quaternion.Angle(shellLastKnownRot, new Quaternion(0, 0, 0, 1)));
     }
 
     void HandelAppearence()

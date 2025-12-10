@@ -17,11 +17,12 @@ public class PetrollerInactiveState : PetrollerBaseState
     }
     public override void ExitState()
     {
-        _ctx.MyAnimator.SetBool(_ctx.GetRebootHash, true);
+        _ctx.MyAnimator.SetTrigger(_ctx.GetRebootHash);
+        _ctx.Reboot = false;
     }
     public override void CheckSwitchStates()
     {
-        if(_ctx.Reboot){ SwitchState(_factory.Idle()); }
+        if (_ctx.Reboot) { SwitchState(_factory.Idle()); }
     }
     public override void InitializeSubState()
     {
