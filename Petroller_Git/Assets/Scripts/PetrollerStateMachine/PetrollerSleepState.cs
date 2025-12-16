@@ -10,10 +10,11 @@ public class PetrollerSleepState : PetrollerBaseState
     {
         _ctx.MyAnimator.SetBool(_ctx.IsSleepingHash, true);
         _ctx.MyAnimator.SetFloat(_ctx.SleepBlendHash, 0);
+        _ctx.SleepAudioPlayer.SetRandomPlay(true);
     }
     public override void UpdateState()
     {
-        if(_ctx.ClipEnd)
+        if (_ctx.ClipEnd)
         {
             RandomAnimationBlend();
             _ctx.ClipEnd = false;
@@ -24,6 +25,7 @@ public class PetrollerSleepState : PetrollerBaseState
     {
         _ctx.MyAnimator.SetBool(_ctx.IsSleepingHash, false);
         _ctx.MyAnimator.SetFloat(_ctx.SleepBlendHash, 0);
+        _ctx.SleepAudioPlayer.SetRandomPlay(false);
     }
     public override void CheckSwitchStates()
     {

@@ -9,6 +9,7 @@ public class PetrollerHappyState : PetrollerBaseState
     public override void EnterState()
     {
         _ctx.MyAnimator.SetBool(_ctx.IsHappyHash, true);
+        _ctx.HappyAudioPlayer.SetRandomPlay(true);
     }
     public override void UpdateState()
     {
@@ -17,6 +18,7 @@ public class PetrollerHappyState : PetrollerBaseState
     public override void ExitState()
     {
         _ctx.MyAnimator.SetBool(_ctx.IsHappyHash, false);
+        _ctx.HappyAudioPlayer.SetRandomPlay(false);
     }
     public override void CheckSwitchStates()
     {
@@ -32,7 +34,7 @@ public class PetrollerHappyState : PetrollerBaseState
         {
             SwitchState(_factory.Surprised());
         }
-        else if(_ctx.CozyTimer > _ctx.SleepThreshold)
+        else if (_ctx.CozyTimer > _ctx.SleepThreshold)
         {
             SwitchState(_factory.Sleep());
         }

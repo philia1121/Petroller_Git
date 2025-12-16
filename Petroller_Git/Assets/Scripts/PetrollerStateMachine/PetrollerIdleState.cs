@@ -9,6 +9,7 @@ public class PetrollerIdleState : PetrollerBaseState
     public override void EnterState()
     {
         _ctx.MyAnimator.SetFloat(_ctx.IdleBlendHash, 0);
+        _ctx.IdleAudioPlayer.SetRandomPlay(true);
     }
     public override void UpdateState()
     {
@@ -22,6 +23,7 @@ public class PetrollerIdleState : PetrollerBaseState
     public override void ExitState()
     {
         _ctx.MyAnimator.SetFloat(_ctx.IdleBlendHash, 0);
+        _ctx.IdleAudioPlayer.SetRandomPlay(false);
     }
     public override void CheckSwitchStates()
     {

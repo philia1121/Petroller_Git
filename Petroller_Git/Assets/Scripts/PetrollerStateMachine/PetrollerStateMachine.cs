@@ -37,7 +37,7 @@ public class PetrollerStateMachine : MonoBehaviour
     public SimpleAudioPlayer IdleAudioPlayer;
     public SimpleAudioPlayer HappyAudioPlayer;
     public SimpleAudioPlayer SleepAudioPlayer;
-    public SimpleAudioPlayer AllForOneAudioPlayer;
+    public AudioSource AllForOneAudioSourse;
 
     [Header("Automation")]
     private bool simpleTimeUp;
@@ -128,8 +128,7 @@ public class PetrollerStateMachine : MonoBehaviour
     {
         Speeding = PetrollerInfo.Speed > speedingThreshold;
     }
-    void AnimationEventReceiver() { ClipEnd = true; Debug.Log("clip end"); }
-    public void RuleFired_IsSpeeding(bool value) { Speeding = value; }
+    void AnimationEventReceiver() { ClipEnd = true; }
     public void GetReboot() { Reboot = true; }
     void CountCozyTime()
     {
@@ -147,23 +146,23 @@ public class PetrollerStateMachine : MonoBehaviour
     void CountLostTrackedTime()
     {
         var currentTrackingState = PetrollerInfo.CurrentTrackingState;
-        if (currentTrackingState == PetrollerObjectInfo.TrackingStatus.PresumptiveLostTracked)
-        {
-            PreLTTimer += Time.deltaTime;
-        }
-        else
-        {
-            PreLTTimer = 0;
-        }
+        // if (currentTrackingState == PetrollerObjectInfo.TrackingStatus.PresumptiveLostTracked)
+        // {
+        //     PreLTTimer += Time.deltaTime;
+        // }
+        // else
+        // {
+        //     PreLTTimer = 0;
+        // }
 
-        if (currentTrackingState == PetrollerObjectInfo.TrackingStatus.LostTracked)
-        {
-            LTTimer += Time.deltaTime;
-        }
-        else
-        {
-            LTTimer = 0;
-        }
+        // if (currentTrackingState == PetrollerObjectInfo.TrackingStatus.LostTracked)
+        // {
+        //     LTTimer += Time.deltaTime;
+        // }
+        // else
+        // {
+        //     LTTimer = 0;
+        // }
 
         if (currentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
         {
