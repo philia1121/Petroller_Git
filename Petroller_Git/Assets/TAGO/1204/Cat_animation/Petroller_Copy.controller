@@ -164,7 +164,7 @@ AnimatorStateMachine:
     m_Position: {x: 590, y: 270, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -413511636585840104}
-    m_Position: {x: 1030, y: 850, z: 0}
+    m_Position: {x: 950, y: 720, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1913694683789463872}
     m_Position: {x: 490, y: 620, z: 0}
@@ -456,7 +456,7 @@ AnimatorController:
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
+    m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
   - m_Name: GetSpit
     m_Type: 9
@@ -468,19 +468,19 @@ AnimatorController:
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 9100000}
   - m_Name: IsHappy
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 9100000}
   - m_Name: IsUncomfortable
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
+    m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
   - m_Name: GetReboot
     m_Type: 9

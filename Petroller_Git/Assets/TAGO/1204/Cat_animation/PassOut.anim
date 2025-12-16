@@ -667,7 +667,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.2333333
+        time: 0.68333334
         value: 75.26701
         inSlope: 106.57832
         outSlope: 106.57832
@@ -676,7 +676,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.6500001
+        time: 1.1
         value: 100
         inSlope: 0
         outSlope: 0
@@ -856,7 +856,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 0.81666666
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -865,7 +865,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.033333335
+        time: 0.85
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -878,6 +878,27 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: bool.Beautiful_Rainbow_Bool
     path: OHHHH
+    classID: 2083052967
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: bool.bool
+    path: Happy Vfx
     classID: 2083052967
     script: {fileID: 0}
     flags: 0
@@ -901,6 +922,15 @@ AnimationClip:
     - serializedVersion: 2
       path: 2081396864
       attribute: 3334143771
+      script: {fileID: 0}
+      typeID: 2083052967
+      customType: 38
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 703627987
+      attribute: 1434531474
       script: {fileID: 0}
       typeID: 2083052967
       customType: 38
@@ -1522,7 +1552,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.2333333
+        time: 0.68333334
         value: 75.26701
         inSlope: 106.57832
         outSlope: 106.57832
@@ -1531,7 +1561,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.6500001
+        time: 1.1
         value: 100
         inSlope: 0
         outSlope: 0
@@ -2911,7 +2941,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 0.81666666
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -2920,7 +2950,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.033333335
+        time: 0.85
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -2933,6 +2963,27 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: bool.Beautiful_Rainbow_Bool
     path: OHHHH
+    classID: 2083052967
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: bool.bool
+    path: Happy Vfx
     classID: 2083052967
     script: {fileID: 0}
     flags: 0
