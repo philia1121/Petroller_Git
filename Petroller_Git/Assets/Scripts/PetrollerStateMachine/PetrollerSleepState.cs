@@ -10,7 +10,8 @@ public class PetrollerSleepState : PetrollerBaseState
     {
         _ctx.MyAnimator.SetBool(_ctx.IsSleepingHash, true);
         _ctx.MyAnimator.SetFloat(_ctx.SleepBlendHash, 0);
-        _ctx.SleepAudioPlayer.SetRandomPlay(true);
+        _ctx.MyHaptic.SetFadeOutRumble(10, _ctx.HapticAmplitude[1]);
+        _ctx.AFO_AudioPlayer.StopRandomPlay(true);
     }
     public override void UpdateState()
     {
@@ -25,7 +26,7 @@ public class PetrollerSleepState : PetrollerBaseState
     {
         _ctx.MyAnimator.SetBool(_ctx.IsSleepingHash, false);
         _ctx.MyAnimator.SetFloat(_ctx.SleepBlendHash, 0);
-        _ctx.SleepAudioPlayer.SetRandomPlay(false);
+        _ctx.MyHaptic.StopRumble();
     }
     public override void CheckSwitchStates()
     {

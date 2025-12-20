@@ -10,17 +10,22 @@ public class PetrollerSurprisedState : PetrollerBaseState
     {
         _ctx.MyAnimator.SetTrigger(_ctx.GetSurprisedHash);
         _ctx.ClipEnd = false;
+        _ctx.MyHaptic.SetConstantRumble(0.2f, _ctx.HapticAmplitude[3]);
+        _ctx.AFO_AudioPlayer.StopRandomPlay();
+        _ctx.AFO_AudioPlayer.PlayAudio_Assigned(_ctx.AllAudioClips[4]);
     }
     public override void UpdateState()
     {
         if (_ctx.ClipEnd)
         {
             CheckSwitchStates();
+            _ctx.ClipEnd = false;
         }
     }
     public override void ExitState()
     {
         _ctx.MyAnimator.ResetTrigger(_ctx.GetSurprisedHash);
+        _ctx.MyHaptic.StopRumble();
     }
     public override void CheckSwitchStates()
     {

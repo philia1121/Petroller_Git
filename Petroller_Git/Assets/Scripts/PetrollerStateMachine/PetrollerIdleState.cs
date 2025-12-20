@@ -9,7 +9,8 @@ public class PetrollerIdleState : PetrollerBaseState
     public override void EnterState()
     {
         _ctx.MyAnimator.SetFloat(_ctx.IdleBlendHash, 0);
-        _ctx.IdleAudioPlayer.SetRandomPlay(true);
+        _ctx.MyHaptic.StopRumble();
+        _ctx.AFO_AudioPlayer.StartRandomPLay(new AudioClip[] { _ctx.AllAudioClips[0], _ctx.AllAudioClips[1] }, 1, 5, true);
     }
     public override void UpdateState()
     {
@@ -23,7 +24,8 @@ public class PetrollerIdleState : PetrollerBaseState
     public override void ExitState()
     {
         _ctx.MyAnimator.SetFloat(_ctx.IdleBlendHash, 0);
-        _ctx.IdleAudioPlayer.SetRandomPlay(false);
+        _ctx.MyHaptic.StopRumble();
+        _ctx.AFO_AudioPlayer.StopRandomPlay(true);
     }
     public override void CheckSwitchStates()
     {

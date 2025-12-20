@@ -10,8 +10,8 @@ public class PetrollerModelHandler : MonoBehaviour
     [SerializeField] private bool autoInitializeModel;
     [SerializeField] private Transform modelParentTransform, shellParentTransform;
     [SerializeField] private Transform modelTransform, shellTransform;
-    [SerializeField] private Material modelMaterial;
-    [SerializeField] private Color[] modelColors = new Color[2];
+    [SerializeField] private Material[] modelMaterials;
+    [SerializeField] private float[] modelAlphas;
     [SerializeField] private SolutionSetting modelOffsetSetting;
 
 
@@ -114,15 +114,24 @@ public class PetrollerModelHandler : MonoBehaviour
         {
             case PetrollerObjectInfo.TrackingStatus.Tracked:
                 shellParentTransform.gameObject.SetActive(false);
-                modelMaterial.color = modelColors[0];
+                foreach (var mat in modelMaterials)
+                {
+                    mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, modelAlphas[0]);
+                }
                 break;
             case PetrollerObjectInfo.TrackingStatus.PresumptiveLostTracked:
                 shellParentTransform.gameObject.SetActive(true);
-                modelMaterial.color = modelColors[1];
+                foreach (var mat in modelMaterials)
+                {
+                    mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, modelAlphas[1]);
+                }
                 break;
             case PetrollerObjectInfo.TrackingStatus.LostTracked:
                 shellParentTransform.gameObject.SetActive(true);
-                modelMaterial.color = modelColors[1];
+                foreach (var mat in modelMaterials)
+                {
+                    mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, modelAlphas[1]);
+                }
                 break;
         }
     }

@@ -9,15 +9,24 @@ public class PetrollerAngryState : PetrollerBaseState
     public override void EnterState()
     {
         _ctx.MyAnimator.SetTrigger(_ctx.GetAngryHash);
+        _ctx.MyHaptic.SetConstantRumble(2, _ctx.HapticAmplitude[2]);
+        _ctx.AFO_AudioPlayer.PlayAudio_Assigned(_ctx.AllAudioClips[3]);
     }
     public override void UpdateState()
     {
         _ctx.MyAnimator.SetTrigger(_ctx.GetAngryHash);
+        if (_ctx.PulledEar & _ctx.ClipEnd)
+        {
+            _ctx.MyHaptic.SetConstantRumble(2, _ctx.HapticAmplitude[2]);
+            _ctx.AFO_AudioPlayer.PlayAudio_Assigned(_ctx.AllAudioClips[3]);
+            _ctx.ClipEnd = false;
+        }
         CheckSwitchStates();
     }
     public override void ExitState()
     {
         _ctx.MyAnimator.ResetTrigger(_ctx.GetAngryHash);
+        _ctx.MyHaptic.StopRumble();
     }
     public override void CheckSwitchStates()
     {

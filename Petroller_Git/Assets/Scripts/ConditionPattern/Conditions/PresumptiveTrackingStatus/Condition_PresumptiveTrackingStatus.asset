@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Condition_PresumptiveTrackingStatus
   m_EditorClassIdentifier: 
   conditions:
-  - {fileID: 11400000, guid: 2746cb4eb75de364093944ffbc2eeed2, type: 2}
+  - {fileID: 11400000, guid: acef36a55629b8e43b9cb784c09dac83, type: 2}
+  - {fileID: 11400000, guid: eb43e45ca1843d74781084675b9164e2, type: 2}
   - {fileID: 11400000, guid: b8f51f0d272654f43ba8863fb1b78471, type: 2}
-  - {fileID: 11400000, guid: b8f51f0d272654f43ba8863fb1b78471, type: 2}
+  - {fileID: 11400000, guid: 6eaded63b1cea0b4a9e63faf1095bcb7, type: 2}

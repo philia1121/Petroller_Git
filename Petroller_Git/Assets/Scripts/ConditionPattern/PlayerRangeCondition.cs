@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Condition_InRange", menuName = "JC/Conditions/InRange")]
-public class InRangeCondition : BaseCondition
+[CreateAssetMenu(fileName = "Condition_PlayerRange", menuName = "JC/Conditions/PlayerRange")]
+public class PlayerRangeCondition : BaseCondition
 {
     private PetrollerObjectInfo cachedInfo;
     public bool specialRange = true;
-    public Transform rangeCenter;
+    [HideInInspector] public Transform rangeCenter;
     public float triggerRadius = 0.4f;
     bool inRange;
     public override bool IsMet(GameObject owner, Transform player)
@@ -19,7 +19,7 @@ public class InRangeCondition : BaseCondition
         }
         if (cachedInfo == null) return false;
 
-        if (specialRange && rangeCenter == null && Camera.main != null)
+        if (!specialRange && rangeCenter == null && Camera.main != null)
         {
             rangeCenter = Camera.main.transform;
         }

@@ -9,16 +9,23 @@ public class PetrollerHappyState : PetrollerBaseState
     public override void EnterState()
     {
         _ctx.MyAnimator.SetBool(_ctx.IsHappyHash, true);
-        _ctx.HappyAudioPlayer.SetRandomPlay(true);
+        _ctx.MyHaptic.SetConstantRumble(_ctx.SleepThreshold, _ctx.HapticAmplitude[1]);
+        _ctx.AFO_AudioPlayer.StartRandomPLay(new AudioClip[] { _ctx.AllAudioClips[2] }, 1, 3);
     }
     public override void UpdateState()
     {
+        // if (_ctx.ClipEnd)
+        // {
+        //     _ctx.MyHaptic.StopRumble();
+        //     _ctx.MyHaptic.SetConstantRumble(5, _ctx.HapticAmplitude[1]);
+        //     _ctx.ClipEnd = false;
+        // }
         CheckSwitchStates();
     }
     public override void ExitState()
     {
         _ctx.MyAnimator.SetBool(_ctx.IsHappyHash, false);
-        _ctx.HappyAudioPlayer.SetRandomPlay(false);
+        _ctx.MyHaptic.StopRumble();
     }
     public override void CheckSwitchStates()
     {
@@ -37,6 +44,10 @@ public class PetrollerHappyState : PetrollerBaseState
         else if (_ctx.CozyTimer > _ctx.SleepThreshold)
         {
             SwitchState(_factory.Sleep());
+        }
+        else if (_ctx.CozyTimer == 0)
+        {
+            SwitchState(_factory.Idle());
         }
     }
     public override void InitializeSubState()

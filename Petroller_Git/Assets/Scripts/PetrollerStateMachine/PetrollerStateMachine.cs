@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 #pragma warning disable 0414
@@ -27,17 +28,19 @@ public class PetrollerStateMachine : MonoBehaviour
     public int SleepBlendHash { get; private set; }
     public int GetPassOutHash { get; private set; }
     public int GetSpitHash { get; private set; }
-    public int GetHappyHash { get; private set; }
     public int IsHappyHash { get; private set; }
     public int IsUncomfortableHash { get; private set; }
     public int GetRebootHash { get; private set; }
     #endregion
 
     [Header("Audio")]
-    public SimpleAudioPlayer IdleAudioPlayer;
-    public SimpleAudioPlayer HappyAudioPlayer;
-    public SimpleAudioPlayer SleepAudioPlayer;
-    public AudioSource AllForOneAudioSourse;
+    public SimpleAudioPlayer AFO_AudioPlayer;
+    public AudioSource AFO_AudioSourse;
+    public AudioClip[] AllAudioClips; // 0:idle, 1:idle, 2:happy, 3:angry, 4:surprise, 5:uncomfortable, 6: spit
+
+    [Header("Haptic")]
+    public ControllerHaptic MyHaptic;
+    public float[] HapticAmplitude = new float[] { 0, 0.3f, 0.6f, 1 };
 
     [Header("Automation")]
     private bool simpleTimeUp;
@@ -75,6 +78,7 @@ public class PetrollerStateMachine : MonoBehaviour
         // Auto Get Refs
         if (!MyAnimator) MyAnimator = GetComponent<Animator>();
         if (!myAnimationEvent) myAnimationEvent = MyAnimator.GetComponent<AnimationEvent>();
+        if (!MyHaptic) MyHaptic = this.AddComponent<ControllerHaptic>();
         PetrollerInfo = FindFirstObjectByType<PetrollerObjectInfo>();
 
         // setup animator parameter hash
@@ -179,7 +183,6 @@ public class PetrollerStateMachine : MonoBehaviour
     {
         // reset all parameters
 
-
         // reset state
         _currentState = _states.Idle();
         _currentState.EnterState();
@@ -193,7 +196,6 @@ public class PetrollerStateMachine : MonoBehaviour
         SleepBlendHash = Animator.StringToHash("SleepBlend");
         GetPassOutHash = Animator.StringToHash("GetPassOut");
         GetSpitHash = Animator.StringToHash("GetSpit");
-        GetHappyHash = Animator.StringToHash("GetHappy");
         IsHappyHash = Animator.StringToHash("IsHappy");
         IsUncomfortableHash = Animator.StringToHash("IsUncomfortable");
         GetRebootHash = Animator.StringToHash("GetReboot");
