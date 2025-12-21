@@ -50,13 +50,14 @@ public class PetrollerSleepState : PetrollerBaseState
         switch (rd)
         {
             // auto states
-            case <= 0.1f: // 10%
+            case <= 0.3f: // 30%
                 blend = 1;
                 break;
-            default: // 90%
+            default: // 70%
                 blend = 0;
                 break;
         }
+        Debug.Log("Sleep Blend as " + blend);
         _ctx.StartCoroutine(_ctx.AnimatorFloatTransition(_ctx.SleepBlendHash, blend, 0.2f));
     }
     public override void InitializeSubState()

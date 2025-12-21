@@ -51,13 +51,13 @@ public class SimpleAudioPlayer : MonoBehaviour
             cor = null;
         }
     }
-    public void StartRandomPLay(AudioClip[] clips, float min_Interval, float max_Interval, bool keepRandom = true, Action onPlayCallback = null)
+    public void StartRandomPLay(AudioClip[] clips, float min_Interval, float max_Interval, bool delayFirstPlay = false, bool keepRandom = true, Action onPlayCallback = null)
     {
         if (cor != null) StopCoroutine(cor);
         cor = null;
 
         randomPlay = true;
-        cor = PlayRandomSound(clips, min_Interval, max_Interval, keepRandom, onPlayCallback);
+        cor = PlayRandomSound(clips, min_Interval, max_Interval, delayFirstPlay, keepRandom, onPlayCallback);
         StartCoroutine(cor);
     }
     public void StopRandomPlay(bool forceStop = false)
@@ -67,8 +67,10 @@ public class SimpleAudioPlayer : MonoBehaviour
         cor = null;
         if (forceStop) audioSource.Stop();
     }
-    IEnumerator PlayRandomSound(AudioClip[] clips, float minIn, float maxIn, bool keepRandom = true, Action callBack = null)
+    IEnumerator PlayRandomSound(AudioClip[] clips, float minIn, float maxIn, bool delayFirst = false, bool keepRandom = true, Action callBack = null)
     {
+        if (delayFirst) yield return new WaitForSeconds(UnityEngine.Random.Range(minIn, maxIn));
+
         while (randomPlay)
         {
             float currentClipLength = PlaySoundAndGetLength(clips, callBack);

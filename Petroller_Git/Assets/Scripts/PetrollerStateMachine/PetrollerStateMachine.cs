@@ -179,6 +179,12 @@ public class PetrollerStateMachine : MonoBehaviour
             LTTimer = 0;
         }
     }
+    // for event calling on angry animation event triggered
+    public void TriggerAngryFeedback()
+    {
+        MyHaptic.SetConstantRumble(1, HapticAmplitude[2]);
+        AFO_AudioPlayer.PlayAudio_Assigned(AllAudioClips[3]);
+    }
     public void ResetCatStateMachine()
     {
         // reset all parameters

@@ -25,6 +25,7 @@ public class PetrollerModelHandler : MonoBehaviour
     [Header("Debug Settings")]
     public bool useDebugStatus;
     bool oldUseDebug;
+    public bool updatingOffset;
     public PetrollerObjectInfo.TrackingStatus debugStatus;
     PetrollerObjectInfo.TrackingStatus oldDebugStatus;
 
@@ -83,7 +84,8 @@ public class PetrollerModelHandler : MonoBehaviour
         onChange = ((oldTrackingState != petrollerInfo.CurrentTrackingState)
          | (useDebugStatus && oldDebugStatus != debugStatus)
          | (useDebugStatus && oldUseDebug != useDebugStatus)
-         | (oldHandTrackingState != currentHandTrackingState)) ? true : false;
+         | (oldHandTrackingState != currentHandTrackingState)
+         | updatingOffset) ? true : false;
         if (onChange)
         {
             HandelAppearence();

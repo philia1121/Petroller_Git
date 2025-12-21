@@ -53,13 +53,13 @@ public class PetrollerIdleState : PetrollerBaseState
         switch (rd)
         {
             // auto states
-            case <= 0.1f: // 10%
+            case <= 0.2f: // 20%
                 blend = 1;
                 break;
-            case <= 0.2f: // 10%
+            case <= 0.4f: // 20%
                 blend = 0.5f;
                 break;
-            default: // 80%
+            default: // 60%
                 blend = 0;
                 break;
         }
