@@ -34,7 +34,7 @@ public class PetrollerSleepState : PetrollerBaseState
         {
             SwitchState(_factory.Angry());
         }
-        else if (_ctx.PetrollerInfo.CurrentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
+        else if (_ctx.LT_Compensation && _ctx.PetrollerInfo.CurrentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
         {
             SwitchState(_factory.Umcomfortable());
         }

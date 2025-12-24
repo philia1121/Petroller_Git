@@ -5,6 +5,8 @@ using UnityEngine;
 public class PetrollerModelHandler : MonoBehaviour
 {
     [SerializeField] private PetrollerObjectInfo petrollerInfo;
+    [Header("Experiment")]
+    public bool LT_Compensation = true;
 
     [Header("Model and Appearence Settings")]
     [SerializeField] private bool autoInitializeModel;
@@ -86,7 +88,7 @@ public class PetrollerModelHandler : MonoBehaviour
          | (useDebugStatus && oldUseDebug != useDebugStatus)
          | (oldHandTrackingState != currentHandTrackingState)
          | updatingOffset) ? true : false;
-        if (onChange)
+        if (LT_Compensation && onChange)
         {
             HandelAppearence();
             HandelOffset();
@@ -95,7 +97,7 @@ public class PetrollerModelHandler : MonoBehaviour
 
         // updating position and rotation
         HandelModelUpdate();
-        HandelShellUpdate();
+        if(LT_Compensation) HandelShellUpdate();
 
         // update info for next frame
         oldTrackingState = petrollerInfo.CurrentTrackingState;
@@ -122,10 +124,10 @@ public class PetrollerModelHandler : MonoBehaviour
                 }
                 break;
             case PetrollerObjectInfo.TrackingStatus.PresumptiveLostTracked:
-                shellParentTransform.gameObject.SetActive(true);
+                shellParentTransform.gameObject.SetActive(false);
                 foreach (var mat in modelMaterials)
                 {
-                    mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, modelAlphas[1]);
+                    mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, modelAlphas[0]);
                 }
                 break;
             case PetrollerObjectInfo.TrackingStatus.LostTracked:

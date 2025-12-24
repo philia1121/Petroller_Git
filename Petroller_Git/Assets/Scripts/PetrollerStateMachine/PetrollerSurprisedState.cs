@@ -16,14 +16,11 @@ public class PetrollerSurprisedState : PetrollerBaseState
     }
     public override void UpdateState()
     {
-        if (_ctx.ClipEnd)
-        {
-            CheckSwitchStates();
-            _ctx.ClipEnd = false;
-        }
+        CheckSwitchStates();
     }
     public override void ExitState()
     {
+        _ctx.ClipEnd = false;
         _ctx.MyAnimator.ResetTrigger(_ctx.GetSurprisedHash);
         _ctx.MyHaptic.StopRumble();
     }
@@ -33,11 +30,11 @@ public class PetrollerSurprisedState : PetrollerBaseState
         {
             SwitchState(_factory.Angry());
         }
-        else if (_ctx.PetrollerInfo.CurrentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
+        else if (_ctx.LT_Compensation && _ctx.PetrollerInfo.CurrentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
         {
             SwitchState(_factory.Umcomfortable());
         }
-        else
+        else if(_ctx.ClipEnd)
         {
             SwitchState(_factory.Idle());
         }

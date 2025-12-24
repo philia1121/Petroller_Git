@@ -15,6 +15,9 @@ public class PetrollerStateMachine : MonoBehaviour
     // Petroller Info //
     public PetrollerObjectInfo PetrollerInfo { get; private set; }
 
+    [Header("Experiment")]
+    public bool LT_Compensation = true;
+
     [Header("Animation")]
     public Animator MyAnimator;
     AnimationEvent myAnimationEvent;

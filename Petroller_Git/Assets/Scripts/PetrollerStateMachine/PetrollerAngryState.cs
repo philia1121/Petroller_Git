@@ -32,7 +32,7 @@ public class PetrollerAngryState : PetrollerBaseState
     {
         if (!_ctx.PulledEar)
         {
-            if (_ctx.PetrollerInfo.CurrentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
+            if (_ctx.LT_Compensation && _ctx.PetrollerInfo.CurrentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
             {
                 SwitchState(_factory.Umcomfortable());
             }
