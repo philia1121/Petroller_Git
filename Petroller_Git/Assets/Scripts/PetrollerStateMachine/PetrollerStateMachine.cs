@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 #pragma warning disable 0414
-public class PetrollerStateMachine : MonoBehaviour
+public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
 {
     // State Machine //
     PetrollerBaseState _currentState;
@@ -15,8 +15,9 @@ public class PetrollerStateMachine : MonoBehaviour
     // Petroller Info //
     public PetrollerObjectInfo PetrollerInfo { get; private set; }
 
-    [Header("Experiment")]
+    [Header("Experiment Interface")]
     public bool LT_Compensation = true;
+    public bool LifeBeing = true;
 
     [Header("Animation")]
     public Animator MyAnimator;
@@ -50,23 +51,24 @@ public class PetrollerStateMachine : MonoBehaviour
 
     [Header("Interaction")]
     [SerializeField] private float speedingThreshold = 2f;
+    [SerializeField] private float uncomfortableHapticDuration = 1;
+    [SerializeField] private float uncomfortableHapticInterval = 0.2f;
     [SerializeField] private float spitThreshold = 5f;
-    public float SpitThreshold { get { return spitThreshold; } }
     [SerializeField] private float passOutThreshold = 5f;
-    public float PassOutThreshold { get { return passOutThreshold; } }
     [SerializeField] private float happyThreshold = 15f;
-    public float HappyThreshold { get { return happyThreshold; } }
     [SerializeField] private float sleepThreshold = 15f;
-    public float SleepThreshold { get { return sleepThreshold; } }
     public bool Speeding { get; private set; }
     public bool PulledEar { get; private set; }
     public bool Pressed { get; private set; }
     public bool IsCozy { get; private set; }
     public float CozyTimer { get; private set; } = 0;
-    public float PreLTTimer { get; private set; } = 0;
-    public float LTTimer { get; private set; } = 0;
-    public float OverallLTTimer { get; private set; } = 0;
     [HideInInspector] public bool Reboot = false;
+    public float UncomfortableHaticDuration { get { return uncomfortableHapticDuration; } }
+    public float UncomfortableHapticInterval { get { return uncomfortableHapticInterval; } }
+    public float SpitThreshold { get { return spitThreshold; } }
+    public float PassOutThreshold { get { return passOutThreshold; } }
+    public float HappyThreshold { get { return happyThreshold; } }
+    public float SleepThreshold { get { return sleepThreshold; } }
 
     void OnEnable()
     {
@@ -75,6 +77,14 @@ public class PetrollerStateMachine : MonoBehaviour
     void OnDisable()
     {
         myAnimationEvent.AnimationTriggerEvent.RemoveListener(AnimationEventReceiver);
+    }
+    public void Initialize_LTCompensation(bool value)
+    {
+        LT_Compensation = value;
+    }
+    public void Initialize_LifeBeing(bool value)
+    {
+        if (LifeBeing != value) this.gameObject.SetActive(false);
     }
     void Awake()
     {
@@ -98,7 +108,6 @@ public class PetrollerStateMachine : MonoBehaviour
     {
         CheckInteraction();
         CheckSpeeding();
-        CountLostTrackedTime();
         CountCozyTime();
 
         currentState_string = _currentState.ToString();
@@ -124,8 +133,6 @@ public class PetrollerStateMachine : MonoBehaviour
         yield return new WaitForSeconds(randomTime);
         simpleTimeUp = true;
     }
-
-
     public void CheckInteraction()
     {
         PulledEar = PetrollerInfo.CurrentJoystickDir == PetrollerObjectInfo.JoystickDir.Ear;
@@ -148,38 +155,6 @@ public class PetrollerStateMachine : MonoBehaviour
         {
             IsCozy = false;
             CozyTimer = 0;
-        }
-    }
-    void CountLostTrackedTime()
-    {
-        var currentTrackingState = PetrollerInfo.CurrentTrackingState;
-        // if (currentTrackingState == PetrollerObjectInfo.TrackingStatus.PresumptiveLostTracked)
-        // {
-        //     PreLTTimer += Time.deltaTime;
-        // }
-        // else
-        // {
-        //     PreLTTimer = 0;
-        // }
-
-        // if (currentTrackingState == PetrollerObjectInfo.TrackingStatus.LostTracked)
-        // {
-        //     LTTimer += Time.deltaTime;
-        // }
-        // else
-        // {
-        //     LTTimer = 0;
-        // }
-
-        if (currentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
-        {
-            OverallLTTimer += Time.deltaTime;
-        }
-        else
-        {
-            OverallLTTimer = 0;
-            PreLTTimer = 0;
-            LTTimer = 0;
         }
     }
     // for event calling on angry animation event triggered

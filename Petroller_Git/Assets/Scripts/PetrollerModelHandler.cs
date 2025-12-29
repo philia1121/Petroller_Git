@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PetrollerModelHandler : MonoBehaviour
+public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
 {
     [SerializeField] private PetrollerObjectInfo petrollerInfo;
     [Header("Experiment")]
@@ -51,6 +51,14 @@ public class PetrollerModelHandler : MonoBehaviour
             SolutionSettingPairs.Add(setting.lostTrackedSolution, setting);
         }
     }
+    public void Initialize_LTCompensation(bool value)
+    {
+        LT_Compensation = value;
+    }
+    public void Initialize_LifeBeing(bool LifeBeing)
+    {
+
+    }
     void Start()
     {
         if (modelTransform == null) modelTransform = this.transform.GetChild(0).transform;
@@ -97,7 +105,7 @@ public class PetrollerModelHandler : MonoBehaviour
 
         // updating position and rotation
         HandelModelUpdate();
-        if(LT_Compensation) HandelShellUpdate();
+        if (LT_Compensation) HandelShellUpdate();
 
         // update info for next frame
         oldTrackingState = petrollerInfo.CurrentTrackingState;
