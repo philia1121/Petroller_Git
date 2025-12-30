@@ -130,8 +130,8 @@ Material:
     - _Start_Height: 0.4
     - _Strengh: 0.7
     - _Strengh_Adjust: 0.8039999
-    - _Substract_Multiplyer: 0.2
-    - _Substract_Multiplyer2: 0.78
+    - _Substract_Multiplyer: 0.38
+    - _Substract_Multiplyer2: 1.16
     - _Substract_Multiplyer_Time: 0.22
     - _Surface: 0
     - _WorkflowMode: 1
