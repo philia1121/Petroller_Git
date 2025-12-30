@@ -12,6 +12,8 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
     [SerializeField] private bool autoInitializeModel;
     [SerializeField] private Transform modelParentTransform, shellParentTransform;
     [SerializeField] private Transform modelTransform, shellTransform;
+    [SerializeField] private Transform ghostEffectTransform;
+    public bool keepFollow = false;
     [SerializeField] private Material[] modelMaterials;
     [SerializeField] private float[] modelAlphas;
     [SerializeField] private SolutionSetting modelOffsetSetting;
@@ -126,6 +128,7 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
         {
             case PetrollerObjectInfo.TrackingStatus.Tracked:
                 shellParentTransform.gameObject.SetActive(false);
+                ghostEffectTransform.gameObject.SetActive(false);
                 foreach (var mat in modelMaterials)
                 {
                     mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, modelAlphas[0]);
@@ -133,6 +136,7 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
                 break;
             case PetrollerObjectInfo.TrackingStatus.PresumptiveLostTracked:
                 shellParentTransform.gameObject.SetActive(false);
+                ghostEffectTransform.gameObject.SetActive(false);
                 foreach (var mat in modelMaterials)
                 {
                     mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, modelAlphas[0]);
@@ -140,6 +144,7 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
                 break;
             case PetrollerObjectInfo.TrackingStatus.LostTracked:
                 shellParentTransform.gameObject.SetActive(true);
+                ghostEffectTransform.gameObject.SetActive(true);
                 foreach (var mat in modelMaterials)
                 {
                     mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, modelAlphas[1]);
@@ -156,21 +161,29 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
     }
     void HandelModelUpdate()
     {
-        if ((useDebugStatus & debugStatus == PetrollerObjectInfo.TrackingStatus.LostTracked)
-         | (!useDebugStatus & petrollerInfo.CurrentTrackingState == PetrollerObjectInfo.TrackingStatus.LostTracked))
+        if (keepFollow)
         {
-            // stay at last known position and rotation when lost tracked
-            modelParentTransform.position = modelLastKnownPos;
-            modelParentTransform.rotation = modelLastKnownRot;
+            modelParentTransform.position = petrollerInfo.transform.position;
+            modelParentTransform.rotation = petrollerInfo.transform.rotation;
         }
         else
         {
-            // keep following wherever the controller is
-            modelParentTransform.position = petrollerInfo.transform.position;
-            modelParentTransform.rotation = petrollerInfo.transform.rotation;
+            if ((useDebugStatus & debugStatus == PetrollerObjectInfo.TrackingStatus.LostTracked)
+             | (!useDebugStatus & petrollerInfo.CurrentTrackingState == PetrollerObjectInfo.TrackingStatus.LostTracked))
+            {
+                // stay at last known position and rotation when lost tracked
+                modelParentTransform.position = modelLastKnownPos;
+                modelParentTransform.rotation = modelLastKnownRot;
+            }
+            else
+            {
+                // keep following wherever the controller is
+                modelParentTransform.position = petrollerInfo.transform.position;
+                modelParentTransform.rotation = petrollerInfo.transform.rotation;
 
-            modelLastKnownPos = modelParentTransform.transform.position;
-            modelLastKnownRot = modelParentTransform.transform.rotation;
+                modelLastKnownPos = modelParentTransform.transform.position;
+                modelLastKnownRot = modelParentTransform.transform.rotation;
+            }
         }
     }
     void HandelShellUpdate()
@@ -278,6 +291,8 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
         }
         shellParentTransform.position = finalPos;
         shellParentTransform.rotation = finalRot;
+
+        ghostEffectTransform.position = finalPos;
     }
     HandTrackingStatus CheckHandTrackingStatus()
     {
