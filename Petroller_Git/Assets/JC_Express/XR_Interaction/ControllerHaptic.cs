@@ -46,7 +46,39 @@ public class ControllerHaptic : MonoBehaviour
 
         OVRInput.SetControllerVibration(0, 0, targetController);
     }
+    public void StartIntervalRumble(float vibrateDuration, float pauseDuration, float amplitude, int loops = -1)
+    {
+        if (!active) return;
+        if (cor != null) StopCoroutine(cor);
 
+        cor = StartCoroutine(SetIntervalHaptic(vibrateDuration, pauseDuration, amplitude, loops));
+    }
+    IEnumerator SetIntervalHaptic(float vibrateDuration, float pauseDuration, float amplitude, int loops)
+    {
+        int count = 0;
+
+        while (loops == -1 || count < loops)
+        {
+            float timer = 0f;
+            while (timer < vibrateDuration)
+            {
+                timer += Time.deltaTime;
+                OVRInput.SetControllerVibration(1, amplitude, targetController);
+                yield return null;
+            }
+
+            OVRInput.SetControllerVibration(0, 0, targetController);
+            yield return new WaitForSeconds(pauseDuration);
+
+            if (loops != -1)
+            {
+                count++;
+            }
+        }
+
+        OVRInput.SetControllerVibration(0, 0, targetController);
+        cor = null;
+    }
     public void Rumble(RumbleMode mode = RumbleMode.Constant, float duration = -1, float amplitude = -1, float delay = 0)
     {
         if (!active) return;

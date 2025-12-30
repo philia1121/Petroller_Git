@@ -11,6 +11,7 @@ enum PetrollerStates
     uncomfortable,
     inactive
 }
+
 public class PetrollerStateFactory
 {
     PetrollerStateMachine _context;
