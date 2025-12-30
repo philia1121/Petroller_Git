@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -54,6 +55,7 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
     [SerializeField] private float uncomfortableHapticDuration = 1;
     [SerializeField] private float uncomfortableHapticInterval = 0.2f;
     [SerializeField] private float spitThreshold = 5f;
+    [SerializeField] private float spitRandomizeRange = 5f;
     [SerializeField] private float passOutThreshold = 5f;
     [SerializeField] private float happyThreshold = 15f;
     [SerializeField] private float sleepThreshold = 15f;
@@ -62,10 +64,13 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
     public bool Pressed { get; private set; }
     public bool IsCozy { get; private set; }
     public float CozyTimer { get; private set; } = 0;
-    [HideInInspector] public bool Reboot = false;
+    public bool Reboot { get; private set; } = false;
+    public float LT_Timer { get; private set; }
+    public float PLT_Timer { get; private set; }
     public float UncomfortableHaticDuration { get { return uncomfortableHapticDuration; } }
     public float UncomfortableHapticInterval { get { return uncomfortableHapticInterval; } }
     public float SpitThreshold { get { return spitThreshold; } }
+    public float SpitRandomizeRange { get { return spitRandomizeRange; } }
     public float PassOutThreshold { get { return passOutThreshold; } }
     public float HappyThreshold { get { return happyThreshold; } }
     public float SleepThreshold { get { return sleepThreshold; } }
@@ -108,6 +113,7 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
     {
         CheckInteraction();
         CheckSpeeding();
+        CountLostTrackedTime();
         CountCozyTime();
 
         currentState_string = _currentState.ToString();
@@ -155,6 +161,26 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
         {
             IsCozy = false;
             CozyTimer = 0;
+        }
+    }
+    void CountLostTrackedTime()
+    {
+        switch (PetrollerInfo.CurrentTrackingState)
+        {
+            case PetrollerObjectInfo.TrackingStatus.Tracked:
+                PLT_Timer = 0;
+                LT_Timer = 0;
+                break;
+            case PetrollerObjectInfo.TrackingStatus.PresumptiveLostTracked:
+                PLT_Timer += Time.deltaTime;
+                LT_Timer = 0;
+                break;
+            case PetrollerObjectInfo.TrackingStatus.LostTracked:
+                PLT_Timer = 0;
+                LT_Timer += Time.deltaTime;
+                break;
+            default:
+                break;
         }
     }
     // for event calling on angry animation event triggered

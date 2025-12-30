@@ -30,7 +30,7 @@ public class PetrollerInactiveState : PetrollerBaseState
         _ctx.MyAnimator.SetBool(_ctx.IsHappyHash, false);
         _ctx.MyAnimator.SetBool(_ctx.IsUncomfortableHash, false);
 
-        _ctx.Reboot = false;
+        _ctx.GetReboot();
     }
     public override void CheckSwitchStates()
     {

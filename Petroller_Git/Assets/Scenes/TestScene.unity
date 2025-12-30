@@ -28641,10 +28641,10 @@ MonoBehaviour:
   uncomfortableHapticDuration: 0.5
   uncomfortableHapticInterval: 0.2
   spitThreshold: 5
+  spitRandomizeRange: 5
   passOutThreshold: 30
   happyThreshold: 5
   sleepThreshold: 35
-  Reboot: 0
 --- !u!82 &1908761611
 AudioSource:
   m_ObjectHideFlags: 0

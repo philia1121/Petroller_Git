@@ -8,27 +8,38 @@ public class PetrollerUncomfortableState : PetrollerBaseState
     public PetrollerUncomfortableState(PetrollerStateMachine currentContext, PetrollerStateFactory stateFactory)
     : base(currentContext, stateFactory) { }
 
-    bool haveSpited = false;
-    float LT_Timer = 0;
-    float PLT_Timer = 0;
+    float spitTime = 0;
+    bool setSpitTime = false;
     public override void EnterState()
     {
         _ctx.MyAnimator.SetBool(_ctx.IsUncomfortableHash, true);
+        _ctx.MyAnimator.ResetTrigger(_ctx.GetSpitHash);
         _ctx.AFO_AudioPlayer.StartRandomPLay(new AudioClip[] { _ctx.AllAudioClips[5] }, 1, 3);
         _ctx.MyHaptic.StartIntervalRumble(_ctx.UncomfortableHaticDuration, _ctx.UncomfortableHapticInterval, _ctx.HapticAmplitude[3]);
-        _ctx.ClipEnd = false;
-        LT_Timer = 0;
-        PLT_Timer = 0;
+        setSpitTime = false;
     }
     public override void UpdateState()
     {
-        if (_ctx.PetrollerInfo.CurrentTrackingState == PetrollerObjectInfo.TrackingStatus.PresumptiveLostTracked)
+        switch (_ctx.PetrollerInfo.CurrentTrackingState)
         {
-            PLT_Timer += Time.deltaTime;
-        }
-        else if (_ctx.PetrollerInfo.CurrentTrackingState == PetrollerObjectInfo.TrackingStatus.LostTracked)
-        {
-            LT_Timer += Time.deltaTime;
+            case PetrollerObjectInfo.TrackingStatus.PresumptiveLostTracked:
+                if (!setSpitTime)
+                {
+                    setSpitTime = true;
+                    spitTime = _ctx.PLT_Timer + Random.Range(_ctx.SpitThreshold, _ctx.SpitThreshold + _ctx.SpitRandomizeRange);
+                }
+                if (_ctx.PLT_Timer > spitTime)
+                {
+                    setSpitTime = false;
+                    _ctx.MyAnimator.SetTrigger(_ctx.GetSpitHash);
+                }
+                break;
+            case PetrollerObjectInfo.TrackingStatus.LostTracked:
+                _ctx.MyAnimator.SetBool(_ctx.IsUncomfortableHash, true);
+                _ctx.MyAnimator.ResetTrigger(_ctx.GetSpitHash);
+                break;
+            default:
+                break;
         }
         CheckSwitchStates();
     }
@@ -44,7 +55,7 @@ public class PetrollerUncomfortableState : PetrollerBaseState
         {
             SwitchState(_factory.Idle());
         }
-        else if (LT_Timer > _ctx.PassOutThreshold) // being lost tracked for too long
+        else if (_ctx.LT_Timer > _ctx.PassOutThreshold) // being lost tracked for too long
         {
             SwitchState(_factory.Inactive());
         }
