@@ -48,6 +48,7 @@ public class PetrollerUncomfortableState : PetrollerBaseState
         _ctx.MyAnimator.SetBool(_ctx.IsUncomfortableHash, false);
         _ctx.MyAnimator.ResetTrigger(_ctx.GetSpitHash);
         _ctx.MyHaptic.StopRumble();
+        _ctx.ResetCozyTime();
     }
     public override void CheckSwitchStates()
     {

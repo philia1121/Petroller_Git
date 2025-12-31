@@ -11,7 +11,9 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
     [Header("Model and Appearence Settings")]
     [SerializeField] private bool autoInitializeModel;
     [SerializeField] private Transform modelParentTransform, shellParentTransform;
-    [SerializeField] private Transform modelTransform, shellTransform;
+    [SerializeField] private Transform[] modelTransforms;
+    [SerializeField] private Transform shellTransform;
+    private Transform modelTransform;
     [SerializeField] private Transform ghostEffectTransform;
     public bool keepFollow = false;
     [SerializeField] private Material[] modelMaterials;
@@ -59,7 +61,7 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
     }
     public void Initialize_LifeBeing(bool LifeBeing)
     {
-
+        modelTransform = LifeBeing? modelTransforms[0]:modelTransforms[1];
     }
     void Start()
     {

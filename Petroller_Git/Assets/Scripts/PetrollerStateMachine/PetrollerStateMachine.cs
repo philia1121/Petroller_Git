@@ -163,6 +163,7 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
             CozyTimer = 0;
         }
     }
+    public void ResetCozyTime() { CozyTimer = 0; }
     void CountLostTrackedTime()
     {
         switch (PetrollerInfo.CurrentTrackingState)

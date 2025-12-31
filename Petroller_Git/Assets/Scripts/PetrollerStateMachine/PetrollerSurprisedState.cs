@@ -23,6 +23,7 @@ public class PetrollerSurprisedState : PetrollerBaseState
         _ctx.ClipEnd = false;
         _ctx.MyAnimator.ResetTrigger(_ctx.GetSurprisedHash);
         _ctx.MyHaptic.StopRumble();
+        _ctx.ResetCozyTime();
     }
     public override void CheckSwitchStates()
     {

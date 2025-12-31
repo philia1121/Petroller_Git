@@ -19,6 +19,7 @@ public class PetrollerAngryState : PetrollerBaseState
     {
         _ctx.MyAnimator.ResetTrigger(_ctx.GetAngryHash);
         _ctx.MyHaptic.StopRumble();
+        _ctx.ResetCozyTime();
     }
     public override void CheckSwitchStates()
     {
