@@ -61,7 +61,7 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
     }
     public void Initialize_LifeBeing(bool LifeBeing)
     {
-        modelTransform = LifeBeing? modelTransforms[0]:modelTransforms[1];
+        modelTransform = LifeBeing ? modelTransforms[0] : modelTransforms[1];
     }
     void Start()
     {
@@ -311,6 +311,31 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
     {
         shellLastKnownPos = pos;
         shellLastKnownRot = rot;
+    }
+
+    public void ChangeSolution(string newSolution)
+    {
+        switch (newSolution)
+        {
+            case "Center":
+                solution = LostTrackedSolution.SnapToCenter;
+                break;
+            case "RightHand":
+                solution = LostTrackedSolution.SnapToRightHand;
+                break;
+            case "LeftHand":
+                solution = LostTrackedSolution.SnapToLeftHand;
+                break;
+            case "LastKnown":
+                solution = LostTrackedSolution.StayLastKnown;
+                break;
+            case "Fixed":
+                solution = LostTrackedSolution.Fixed;
+                break;
+            default:
+                break;
+        }
+
     }
 }
 

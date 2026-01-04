@@ -27,7 +27,7 @@ public class PetrollerSurprisedState : PetrollerBaseState
     }
     public override void CheckSwitchStates()
     {
-        if (_ctx.PulledEar)
+        if (_ctx.PulledEar | _ctx.Slaped)
         {
             SwitchState(_factory.Angry());
         }
@@ -35,7 +35,7 @@ public class PetrollerSurprisedState : PetrollerBaseState
         {
             SwitchState(_factory.Umcomfortable());
         }
-        else if(_ctx.ClipEnd)
+        else if (_ctx.ClipEnd)
         {
             SwitchState(_factory.Idle());
         }

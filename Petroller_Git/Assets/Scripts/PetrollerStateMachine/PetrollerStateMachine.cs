@@ -61,6 +61,7 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
     [SerializeField] private float sleepThreshold = 15f;
     public bool Speeding { get; private set; }
     public bool PulledEar { get; private set; }
+    public bool Slaped { get; private set; }
     public bool Pressed { get; private set; }
     public bool IsCozy { get; private set; }
     public float CozyTimer { get; private set; } = 0;
@@ -144,6 +145,8 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
         PulledEar = PetrollerInfo.CurrentJoystickDir == PetrollerObjectInfo.JoystickDir.Ear;
         Pressed = PetrollerInfo.HorizontalPress | PetrollerInfo.VerticalPress;
     }
+    public void GetSlaped() { Slaped = true; }
+    public void ResetSlaped() { Slaped = false; }
     public void CheckSpeeding()
     {
         Speeding = PetrollerInfo.Speed > speedingThreshold;
@@ -185,7 +188,7 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
         }
     }
     // for event calling on angry animation event triggered
-    public void TriggerAngryFeedback()
+    public void TriggerAngryFeedback() // trigger via animation event
     {
         MyHaptic.SetConstantRumble(1, HapticAmplitude[2]);
         AFO_AudioPlayer.PlayAudio_Assigned(AllAudioClips[3]);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PetrollerTriggerExtenstion : MonoBehaviour
 {
-    [SerializeField]private PetrollerObjectInfo petrollerInfo;
+    [SerializeField] private PetrollerObjectInfo petrollerInfo;
     void Awake()
     {
         if (!petrollerInfo) petrollerInfo = FindFirstObjectByType<PetrollerObjectInfo>();
@@ -16,6 +16,7 @@ public class PetrollerTriggerExtenstion : MonoBehaviour
         if (marker != null & petrollerInfo)
         {
             petrollerInfo.AddZoneID(marker.zoneID);
+            petrollerInfo.UpdateSlapInfo(Time.frameCount, marker.zoneID);
         }
     }
     void OnTriggerExit(Collider other)

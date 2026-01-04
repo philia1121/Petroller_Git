@@ -60,7 +60,7 @@ public class PetrollerUncomfortableState : PetrollerBaseState
         {
             SwitchState(_factory.Inactive());
         }
-        else if (_ctx.PulledEar)
+        else if (_ctx.PulledEar | _ctx.Slaped)
         {
             SwitchState(_factory.Angry());
         }

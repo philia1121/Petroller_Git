@@ -9,6 +9,7 @@ public class PetrollerAngryState : PetrollerBaseState
     public override void EnterState()
     {
         _ctx.MyAnimator.SetTrigger(_ctx.GetAngryHash);
+        if (_ctx.Slaped) _ctx.ResetSlaped();
     }
     public override void UpdateState()
     {
@@ -20,6 +21,7 @@ public class PetrollerAngryState : PetrollerBaseState
         _ctx.MyAnimator.ResetTrigger(_ctx.GetAngryHash);
         _ctx.MyHaptic.StopRumble();
         _ctx.ResetCozyTime();
+        if (_ctx.Slaped) _ctx.ResetSlaped();
     }
     public override void CheckSwitchStates()
     {

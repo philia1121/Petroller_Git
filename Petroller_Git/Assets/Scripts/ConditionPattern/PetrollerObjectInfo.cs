@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Oculus.Interaction.Editor;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -51,6 +52,11 @@ public class PetrollerObjectInfo : MonoBehaviour
     public Vector3 AngularAcceleration { get; private set; }
     private Vector3 oldAngularVelocity;
     private Vector3 oldVelocity;
+
+    // Impact //
+    public int LastImpactFrame { get; private set; } = -1;
+    public float LastImpactSpeed { get; private set; } = 0f;
+    public string LastImpactZoneID { get; private set; } = "";
 
     // Tracking State //
     OVRInput.Controller controller = OVRInput.Controller.RTouch;
@@ -308,4 +314,10 @@ public class PetrollerObjectInfo : MonoBehaviour
     public void AddZoneID(string zoneID) { currentZoneIDs.Add(zoneID); }
     public void RemoveZoneID(string zoneID) { currentZoneIDs.Remove(zoneID); }
     public bool IsInZone(string zoneID) { return currentZoneIDs.Contains(zoneID); }
+    public void UpdateSlapInfo(int frame, string id)
+    {
+        LastImpactFrame = frame;
+        LastImpactSpeed = Speed;
+        LastImpactZoneID = id;
+    }
 }
