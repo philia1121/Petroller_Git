@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class LostTrackedTimerBar : MonoBehaviour
+using TMPro;
+public class LostTrackedTimerBar : MonoBehaviour, IConfigInitializable
 {
     public bool ignore = false;
+    public bool lifeBeing = true;
     public GameObject barUI;
     public Image bar;
+    public TextMeshProUGUI description;
     PetrollerStateMachine petroller;
     float countdown;
     Coroutine cor;
@@ -46,10 +49,17 @@ public class LostTrackedTimerBar : MonoBehaviour
         {
             timer -= Time.deltaTime;
             bar.fillAmount = timer / countdown;
-            yield return null;
+            description.text = lifeBeing ? "Floatite 的靈魂離開倒數 " : "Fossilite 融合倒數 " + timer.ToString("0.00");
+
+            yield return new WaitForSeconds(0.01f);
         }
         bar.fillAmount = 0;
         yield return new WaitForSeconds(1);
         barUI.SetActive(false);
+    }
+    public void Initialize_LTCompensation(bool value) { }
+    public void Initialize_LifeBeing(bool value)
+    {
+        if (lifeBeing != value) gameObject.SetActive(false);
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.091
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.011022988, g: 0.007708525, b: 0.02367206, a: 0.091}
+  m_IndirectSpecularColor: {r: 0.014091403, g: 0.010930051, b: 0.025868889, a: 0.091}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2960,7 +2960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc5c234723e3a54d8dd09b131117743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshType: 0
+  _meshType: 4
 --- !u!114 &190071404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2991,7 +2991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2609c54f376cffc4da1ab9401cc1a36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skeletonType: 0
+  _skeletonType: 4
   _updateRootPose: 0
   _updateRootScale: 1
   _enablePhysicsCapsules: 0
@@ -4774,6 +4774,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1135964047370601434, guid: 752a5de371f40ed4abadd53cb92999e1, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2947004463060847629, guid: 752a5de371f40ed4abadd53cb92999e1, type: 3}
+      propertyPath: lifeBeing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450827691367690623, guid: 752a5de371f40ed4abadd53cb92999e1, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4994,7 +5006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LT_Compensation: 1
-  LifeBeing: 1
+  LifeBeing: 0
 --- !u!1001 &305836243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26827,7 +26839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc5c234723e3a54d8dd09b131117743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshType: 1
+  _meshType: 5
 --- !u!114 &1681711925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26858,7 +26870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2609c54f376cffc4da1ab9401cc1a36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skeletonType: 1
+  _skeletonType: 5
   _updateRootPose: 0
   _updateRootScale: 1
   _enablePhysicsCapsules: 0
@@ -34549,6 +34561,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 602379617}
+    - target: {fileID: 1135964047370601434, guid: 752a5de371f40ed4abadd53cb92999e1, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
