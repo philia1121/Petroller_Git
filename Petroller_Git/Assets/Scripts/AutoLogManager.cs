@@ -21,6 +21,16 @@ public class AutoLogManager : MonoBehaviour
         if (cor != null) StopCoroutine(cor);
         cor = StartCoroutine(AutoLog());
     }
+    void OnEnable()
+    {
+        GameSignals.OnRequestStartGame += StartAutoLog;
+        GameSignals.OnRequestEndGame += StopAutoLog;
+    }
+    void OnDisable()
+    {
+        GameSignals.OnRequestStartGame -= StartAutoLog;
+        GameSignals.OnRequestEndGame -= StopAutoLog;
+    }
 
     public void StartAutoLog()
     {
@@ -32,7 +42,7 @@ public class AutoLogManager : MonoBehaviour
     public void StopAutoLog()
     {
         auto = false;
-        StopCoroutine(cor);
+        if (cor != null) StopCoroutine(cor);
         cor = null;
     }
 

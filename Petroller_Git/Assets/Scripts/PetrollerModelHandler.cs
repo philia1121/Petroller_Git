@@ -48,6 +48,7 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
     bool onChange = false;
     Vector3 modelLastKnownPos, shellLastKnownPos;
     Quaternion modelLastKnownRot, shellLastKnownRot;
+    bool started = false;
     void Awake()
     {
         foreach (var setting in settings)
@@ -81,6 +82,30 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
         oldUseDebug = useDebugStatus;
         oldHandTrackingState = CheckHandTrackingStatus();
     }
+    void OnEnable()
+    {
+        GameSignals.OnRequestStartGame += OnGameStart;
+        GameSignals.OnRequestEndGame += OnGameEnd;
+    }
+    void OnDisable()
+    {
+        GameSignals.OnRequestStartGame -= OnGameStart;
+        GameSignals.OnRequestEndGame -= OnGameEnd;
+    }
+    void OnGameStart()
+    {
+        started = true;
+    }
+    void OnGameEnd()
+    {
+        started = false;
+        shellParentTransform.gameObject.SetActive(false);
+        ghostEffectTransform.gameObject.SetActive(false);
+        foreach (var mat in modelMaterials)
+        {
+            mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, modelAlphas[0]);
+        }
+    }
 
     void Update()
     {
@@ -100,7 +125,7 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
          | (useDebugStatus && oldUseDebug != useDebugStatus)
          | (oldHandTrackingState != currentHandTrackingState)
          | updatingOffset) ? true : false;
-        if (LT_Compensation && onChange)
+        if (LT_Compensation && onChange & started)
         {
             HandelAppearence();
             HandelOffset();
@@ -109,7 +134,7 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
 
         // updating position and rotation
         HandelModelUpdate();
-        if (LT_Compensation) HandelShellUpdate();
+        if (LT_Compensation & started) HandelShellUpdate();
 
         // update info for next frame
         oldTrackingState = petrollerInfo.CurrentTrackingState;

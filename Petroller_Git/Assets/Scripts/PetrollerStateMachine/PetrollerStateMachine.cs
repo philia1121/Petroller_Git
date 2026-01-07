@@ -12,6 +12,7 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
     public PetrollerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
     public string currentState_string;
     PetrollerStateFactory _states;
+    public bool Started { get; private set; } = false;
 
     // Petroller Info //
     public PetrollerObjectInfo PetrollerInfo { get; private set; }
@@ -78,10 +79,12 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
 
     void OnEnable()
     {
+        GameSignals.OnRequestStartGame += StartGame;
         myAnimationEvent.AnimationTriggerEvent.AddListener(AnimationEventReceiver);
     }
     void OnDisable()
     {
+        GameSignals.OnRequestStartGame -= StartGame;
         myAnimationEvent.AnimationTriggerEvent.RemoveListener(AnimationEventReceiver);
     }
     public void Initialize_LTCompensation(bool value)
@@ -103,12 +106,17 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
         // setup animator parameter hash
         SetupAnimatorHash();
     }
-
     void Start()
     {
         _states = new PetrollerStateFactory(this);
         _currentState = _states.Idle();
         _currentState.EnterState();
+    }
+    public void StartGame()
+    {
+        Started = true;
+        ResetLostTrackedTime();
+        ResetCozyTime();
     }
     void Update()
     {
@@ -187,11 +195,17 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
                 break;
         }
     }
+    void ResetLostTrackedTime()
+    {
+        PLT_Timer = 0;
+        LT_Timer = 0;
+    }
     // for event calling on angry animation event triggered
     public void TriggerAngryFeedback() // trigger via animation event
     {
+        if (!Started) return;
         MyHaptic.SetConstantRumble(1, HapticAmplitude[2]);
-        AFO_AudioPlayer.PlayAudio_Assigned(AllAudioClips[3]);
+        if (AllAudioClips[3]) AFO_AudioPlayer.PlayAudio_Assigned(AllAudioClips[3]);
     }
     public void ResetCatStateMachine()
     {

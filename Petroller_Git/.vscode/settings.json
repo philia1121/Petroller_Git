@@ -58,5 +58,7 @@
     },
     "dotnet.defaultSolution": "Petroller_Git.sln",
     "razor.format.codeBlockBraceOnNextLine": true,
-    "razor.format.enable": false
+    "razor.format.enable": false,
+    "editor.defaultFormatter": null,
+    "editor.formatOnSave": true
 }

@@ -5,27 +5,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using TMPro;
 public class NarrativeBoardManager : MonoBehaviour, IConfigInitializable
 {
     ControlMap controlMap;
-    public GameObject[] AllStarterPages_Lifeless, AllStarterPagers_Life;
-    GameObject[] allStarterPages;
-    public GameObject GameOver_LifeLess, GameOver_Life;
-    GameObject gameOver;
-    public GameObject EndingPage;
+    public GameObject[] WelcomePages;
+    public GameObject[] DescriptionPages;
+    public GameObject TutorialPage;
+    List<GameObject> allPages = new List<GameObject>();
+    public GameObject[] EndingPages;
     int currentPage = 0;
     public bool gameStarted = false;
-    public UnityEvent OnGameStart;
+    bool LT_Compensation;
+    bool lifebeing;
 
-    public void Initialize_LTCompensation(bool LT_Compensation)
+    public void Initialize_LTCompensation(bool value)
     {
-        gameObject.SetActive(LT_Compensation);
+        LT_Compensation = value;
     }
-
-    public void Initialize_LifeBeing(bool LifeBeing)
+    public void Initialize_LifeBeing(bool value)
     {
-        allStarterPages = LifeBeing ? AllStarterPagers_Life : AllStarterPages_Lifeless;
-        gameOver = LifeBeing ? GameOver_Life : GameOver_LifeLess;
+        lifebeing = value;
     }
     void Awake()
     {
@@ -33,19 +33,20 @@ public class NarrativeBoardManager : MonoBehaviour, IConfigInitializable
     }
     void Start()
     {
-        foreach (var page in AllStarterPages_Lifeless)
-        {
-            page.SetActive(false);
-        }
-        foreach (var page in AllStarterPagers_Life)
-        {
-            page.SetActive(false);
-        }
-        EndingPage.SetActive(false);
-        GameOver_LifeLess.SetActive(false);
-        GameOver_Life.SetActive(false);
-        allStarterPages[0].SetActive(true);
+        foreach (var page in WelcomePages) { page.SetActive(false); }
+        foreach (var page in DescriptionPages) { page.SetActive(false); }
+        foreach (var page in EndingPages) { page.SetActive(false); }
+        TutorialPage.SetActive(false);
+
+        PickPages();
         currentPage = 0;
+        allPages[currentPage].SetActive(true);
+    }
+    void PickPages()
+    {
+        allPages.Add(WelcomePages[LT_Compensation ? 0 : 1]);
+        if (LT_Compensation) allPages.Add(DescriptionPages[lifebeing ? 0 : 1]);
+        allPages.Add(TutorialPage);
     }
     void OnEnable()
     {
@@ -53,49 +54,52 @@ public class NarrativeBoardManager : MonoBehaviour, IConfigInitializable
 
         controlMap.PlayerInput.NextPage.started += ctx => ShowNextPage();
         controlMap.PlayerInput.PreviousPage.started += ctx => ShowPreviousPage();
+
+        GameSignals.OnRequestEndGame += ShowEndPage;
     }
     void OnDisable()
     {
         controlMap.PlayerInput.NextPage.started -= ctx => ShowNextPage();
         controlMap.PlayerInput.PreviousPage.started -= ctx => ShowPreviousPage();
+
+        GameSignals.OnRequestEndGame -= ShowEndPage;
     }
 
     void ShowNextPage()
     {
         if (gameStarted) return;
 
-        allStarterPages[currentPage].SetActive(false);
+        allPages[currentPage].SetActive(false);
         currentPage++;
-        if (currentPage < allStarterPages.Length)
+        if (currentPage < allPages.Count)
         {
-            allStarterPages[currentPage].SetActive(true);
+            allPages[currentPage].SetActive(true);
         }
         else
         {
-            foreach (var page in allStarterPages)
+            foreach (var page in allPages)
             {
                 page.gameObject.SetActive(false);
             }
             gameStarted = true;
-            OnGameStart?.Invoke();
+            GameSignals.OnRequestStartGame?.Invoke();
         }
     }
     void ShowPreviousPage()
     {
-        allStarterPages[currentPage].SetActive(false);
+        if (gameStarted) return;
+
+        allPages[currentPage].SetActive(false);
         currentPage--;
+        currentPage = currentPage <= 0 ? 0 : currentPage;
         if (currentPage >= 0)
         {
-            allStarterPages[currentPage].SetActive(true);
+            allPages[currentPage].SetActive(true);
         }
     }
     public void ShowEndPage()
     {
-        EndingPage.SetActive(true);
-    }
-    public void ShowGameOver()
-    {
-        gameOver.SetActive(true);
+        EndingPages[LT_Compensation ? 0 : 1].SetActive(true);
     }
 }
 

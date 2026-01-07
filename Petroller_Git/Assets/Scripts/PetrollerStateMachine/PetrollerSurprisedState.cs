@@ -12,7 +12,7 @@ public class PetrollerSurprisedState : PetrollerBaseState
         _ctx.ClipEnd = false;
         _ctx.MyHaptic.SetConstantRumble(0.2f, _ctx.HapticAmplitude[3]);
         _ctx.AFO_AudioPlayer.StopRandomPlay();
-        _ctx.AFO_AudioPlayer.PlayAudio_Assigned(_ctx.AllAudioClips[4]);
+        if(_ctx.AllAudioClips[4]) _ctx.AFO_AudioPlayer.PlayAudio_Assigned(_ctx.AllAudioClips[4]);
     }
     public override void UpdateState()
     {

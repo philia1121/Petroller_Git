@@ -14,7 +14,7 @@ public class PetrollerUncomfortableState : PetrollerBaseState
     {
         _ctx.MyAnimator.SetBool(_ctx.IsUncomfortableHash, true);
         _ctx.MyAnimator.ResetTrigger(_ctx.GetSpitHash);
-        _ctx.AFO_AudioPlayer.StartRandomPLay(new AudioClip[] { _ctx.AllAudioClips[5] }, 1, 3);
+        if (_ctx.AllAudioClips[5]) _ctx.AFO_AudioPlayer.StartRandomPLay(new AudioClip[] { _ctx.AllAudioClips[5] }, 1, 3);
         _ctx.MyHaptic.StartIntervalRumble(_ctx.UncomfortableHaticDuration, _ctx.UncomfortableHapticInterval, _ctx.HapticAmplitude[3]);
         setSpitTime = false;
     }
@@ -45,6 +45,7 @@ public class PetrollerUncomfortableState : PetrollerBaseState
     }
     public override void ExitState()
     {
+        _ctx.MyAnimator.SetFloat(_ctx.IdleBlendHash, 0.5f);
         _ctx.MyAnimator.SetBool(_ctx.IsUncomfortableHash, false);
         _ctx.MyAnimator.ResetTrigger(_ctx.GetSpitHash);
         _ctx.MyHaptic.StopRumble();

@@ -4,28 +4,26 @@ using UnityEngine;
 
 public class GameFlowManager : MonoBehaviour
 {
-    NarrativeBoardManager narrativeManager;
-    AutoLogManager autoLogManager;
     public float gameDuration = 120;
     public float CountDown { get; private set; }
-    void Awake()
+    Coroutine cor;
+    void OnEnable()
     {
-        narrativeManager = FindFirstObjectByType<NarrativeBoardManager>();
-        autoLogManager = FindFirstObjectByType<AutoLogManager>();
+        GameSignals.OnRequestStartGame += StartGame;
+        GameSignals.OnRequestEndGame += EndGame;
     }
-    void Start()
+    void OnDisable()
     {
-        narrativeManager.OnGameStart.AddListener(StartGame);
+        GameSignals.OnRequestStartGame -= StartGame;
+        GameSignals.OnRequestEndGame -= EndGame;
     }
     public void StartGame()
     {
-        autoLogManager.StartAutoLog();
-        StartCoroutine(GameCountDown());
+        cor = StartCoroutine(GameCountDown());
     }
     public void EndGame()
     {
-        autoLogManager.StopAutoLog();
-        narrativeManager.ShowEndPage();
+        if (cor != null) StopCoroutine(cor);
     }
     IEnumerator GameCountDown()
     {
@@ -37,4 +35,9 @@ public class GameFlowManager : MonoBehaviour
         }
         EndGame();
     }
+}
+public static class GameSignals
+{
+    public static System.Action OnRequestStartGame;
+    public static System.Action OnRequestEndGame;
 }

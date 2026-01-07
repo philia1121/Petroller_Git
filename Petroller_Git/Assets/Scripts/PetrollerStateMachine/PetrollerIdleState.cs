@@ -10,7 +10,7 @@ public class PetrollerIdleState : PetrollerBaseState
     {
         _ctx.MyAnimator.SetFloat(_ctx.IdleBlendHash, 0);
         _ctx.MyHaptic.StopRumble();
-        _ctx.AFO_AudioPlayer.StartRandomPLay(new AudioClip[] { _ctx.AllAudioClips[0], _ctx.AllAudioClips[1] }, 1, 5, true);
+        if (_ctx.AllAudioClips[0] & _ctx.AllAudioClips[1]) _ctx.AFO_AudioPlayer.StartRandomPLay(new AudioClip[] { _ctx.AllAudioClips[0], _ctx.AllAudioClips[1] }, 1, 5, true);
     }
     public override void UpdateState()
     {
@@ -29,6 +29,8 @@ public class PetrollerIdleState : PetrollerBaseState
     }
     public override void CheckSwitchStates()
     {
+        if (!_ctx.Started) return;
+
         if (_ctx.PulledEar | _ctx.Slaped)
         {
             SwitchState(_factory.Angry());
