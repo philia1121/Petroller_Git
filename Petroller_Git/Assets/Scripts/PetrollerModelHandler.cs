@@ -121,17 +121,17 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
         currentHandTrackingState = CheckHandTrackingStatus();
 
         // On State Changed
-        onChange = ((oldTrackingState != petrollerInfo.CurrentTrackingState)
-         | (useDebugStatus && oldDebugStatus != debugStatus)
-         | (useDebugStatus && oldUseDebug != useDebugStatus)
-         | (oldHandTrackingState != currentHandTrackingState)
-         | updatingOffset) ? true : false;
-        if (LT_Compensation && onChange & started)
-        {
-            HandelAppearence();
-            HandelOffset();
-            onChange = false;
-        }
+        // onChange = ((oldTrackingState != petrollerInfo.CurrentTrackingState)
+        //  | (useDebugStatus && oldDebugStatus != debugStatus)
+        //  | (useDebugStatus && oldUseDebug != useDebugStatus)
+        //  | (oldHandTrackingState != currentHandTrackingState)
+        //  | updatingOffset) ? true : false;
+        // if (LT_Compensation && onChange & started)
+        // {
+        //     HandelAppearence();
+        //     HandelOffset();
+        //     onChange = false;
+        // }
 
         // updating position and rotation
         HandelModelUpdate();

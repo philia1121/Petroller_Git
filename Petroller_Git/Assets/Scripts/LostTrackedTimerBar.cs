@@ -15,12 +15,6 @@ public class LostTrackedTimerBar : MonoBehaviour, IConfigInitializable
     public TextMeshProUGUI description;
     public GameObject[] GameOver;
 
-    [Header("Camera Following")]
-    public Transform vrCamera;
-    public float distance = 2.0f;
-    public float smoothSpeed = 2.0f;
-    public float updateInterval = 10f;
-
     [Header("System")]
     public MonoBehaviour behaviour;
     Vector3 targetPosition;
@@ -56,14 +50,6 @@ public class LostTrackedTimerBar : MonoBehaviour, IConfigInitializable
     {
         ShowBar(false);
         foreach (var page in GameOver) { page.SetActive(false); }
-
-        if (vrCamera == null)
-            vrCamera = Camera.main.transform;
-
-        UpdateTargetTransform();
-        transform.position = targetPosition;
-        transform.rotation = targetRotation;
-        StartCoroutine(UpdatePositionTimer());
     }
     public void ShowBar(bool value)
     {
@@ -106,36 +92,12 @@ public class LostTrackedTimerBar : MonoBehaviour, IConfigInitializable
     {
         GameOver[lifeBeing ? 0 : 1].SetActive(true);
     }
-
-    void Update()
-    {
-        // 每一幀都平滑地移向目標位置與旋轉
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * smoothSpeed);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.position - vrCamera.position), Time.deltaTime * smoothSpeed);
-    }
-    IEnumerator UpdatePositionTimer()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(updateInterval);
-            UpdateTargetTransform();
-        }
-    }
-    void UpdateTargetTransform()
-    {
-        // 計算新位置：相機位置 + 相機正前方 * 距離
-        targetPosition = vrCamera.position + (vrCamera.forward * distance);
-
-        // 讓 UI 面向使用者 (LookAt 反向)
-        // 如果你希望 UI 始終保持水平，不隨頭部仰角轉動，可以鎖定 Y 軸
-        targetRotation = Quaternion.LookRotation(transform.position - vrCamera.position);
-    }
     public void Initialize_LTCompensation(bool value)
     {
         gameObject.SetActive(value);
     }
     public void Initialize_LifeBeing(bool value)
     {
-        if (lifeBeing != value) gameObject.SetActive(false);
+        lifeBeing = value;
     }
 }

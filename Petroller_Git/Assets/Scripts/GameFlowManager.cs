@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameFlowManager : MonoBehaviour
 {
     public float gameDuration = 120;
     public float CountDown { get; private set; }
     Coroutine cor;
+    public UnityEvent OnGameEnd;
     void OnEnable()
     {
         GameSignals.OnRequestStartGame += StartGame;
@@ -24,6 +26,7 @@ public class GameFlowManager : MonoBehaviour
     public void EndGame()
     {
         if (cor != null) StopCoroutine(cor);
+        OnGameEnd?.Invoke();
     }
     IEnumerator GameCountDown()
     {

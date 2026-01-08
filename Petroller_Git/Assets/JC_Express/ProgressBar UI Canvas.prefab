@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6407468609716212500}
   - component: {fileID: 2947004463060847629}
   - component: {fileID: 8890572596668126631}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ProgressBar UI Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,8 @@ MonoBehaviour:
   vrCamera: {fileID: 0}
   distance: 1.5
   smoothSpeed: 3
-  updateInterval: 1.5
+  updateInterval: 1
+  behaviour: {fileID: 8890572596668126631}
 --- !u!114 &8890572596668126631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,7 +223,7 @@ GameObject:
   - component: {fileID: 7334109943817204422}
   - component: {fileID: 6881082142063684898}
   - component: {fileID: 8147487338691205175}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +298,7 @@ GameObject:
   - component: {fileID: 8256453570512861151}
   - component: {fileID: 6206977235504711139}
   - component: {fileID: 3996702410794739924}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ProgressBar1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +312,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2647420888613792827}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.059999995, y: 0.059999995, z: 0.059999995}
   m_ConstrainProportionsScale: 1
@@ -319,10 +320,10 @@ RectTransform:
   - {fileID: 7334109943817204422}
   - {fileID: 5854535777289969006}
   m_Father: {fileID: 444742649776362450}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -2}
   m_SizeDelta: {x: 150, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6206977235504711139
@@ -376,7 +377,7 @@ GameObject:
   - component: {fileID: 8914479998470219344}
   - component: {fileID: 854070638636312225}
   - component: {fileID: 5384407751792180147}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: GameOver Broad L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,17 +391,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2741231292448034439}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5062225722191194913}
   m_Father: {fileID: 444742649776362450}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -2}
   m_SizeDelta: {x: 80, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1558105857961008583
@@ -493,7 +494,7 @@ GameObject:
   - component: {fileID: 3233208515384063966}
   - component: {fileID: 8621034601162303677}
   - component: {fileID: 9184617379427064367}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -642,7 +643,7 @@ GameObject:
   - component: {fileID: 7204912022811931838}
   - component: {fileID: 8583981508174717459}
   - component: {fileID: 3266276248258786657}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +791,7 @@ GameObject:
   - component: {fileID: 5854535777289969006}
   - component: {fileID: 1988188518724951347}
   - component: {fileID: 3450827691367690623}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -926,7 +927,7 @@ GameObject:
   - component: {fileID: 2851493252780171838}
   - component: {fileID: 3766499354378427368}
   - component: {fileID: 3677078482305330281}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: GameOver Broad Lless
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -940,17 +941,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9068130312140166143}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7693275682426945965}
   m_Father: {fileID: 444742649776362450}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -2}
   m_SizeDelta: {x: 80, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &133916650147520852

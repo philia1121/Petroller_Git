@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Condition_Slap
   m_EditorClassIdentifier: 
   targetZoneID: Hand
-  minSlapSpeed: 0.3
+  minSlapSpeed: 0.5
