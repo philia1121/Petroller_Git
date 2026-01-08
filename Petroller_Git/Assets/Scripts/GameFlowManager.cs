@@ -33,7 +33,15 @@ public class GameFlowManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             CountDown--;
         }
-        EndGame();
+        GameSignals.OnRequestEndGame?.Invoke();
+    }
+    public void ForceStartGame()
+    {
+        GameSignals.OnRequestStartGame?.Invoke();
+    }
+    public void ForceEndGame()
+    {
+        GameSignals.OnRequestEndGame?.Invoke();
     }
 }
 public static class GameSignals

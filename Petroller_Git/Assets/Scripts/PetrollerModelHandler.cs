@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
@@ -361,6 +362,13 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
                 break;
         }
 
+    }
+    public void OnLongLostTracked()
+    {
+        if (!LT_Compensation | !started) return;
+        HandelAppearence();
+        HandelOffset();
+        onChange = false;
     }
 }
 

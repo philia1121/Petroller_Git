@@ -84,7 +84,6 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
     }
     void OnDisable()
     {
-        GameSignals.OnRequestStartGame -= StartGame;
         myAnimationEvent.AnimationTriggerEvent.RemoveListener(AnimationEventReceiver);
     }
     public void Initialize_LTCompensation(bool value)
