@@ -12,6 +12,7 @@ public class NarrativeBoardManager : MonoBehaviour, IConfigInitializable
     public GameObject[] WelcomePages;
     public GameObject[] DescriptionPages;
     public GameObject TutorialPage;
+    public GameObject[] VideoSets;
     List<GameObject> allPages = new List<GameObject>();
     public GameObject[] EndingPages;
     int currentPage = 0;
@@ -26,6 +27,8 @@ public class NarrativeBoardManager : MonoBehaviour, IConfigInitializable
     public void Initialize_LifeBeing(bool value)
     {
         lifebeing = value;
+        VideoSets[0].SetActive(lifebeing);
+        VideoSets[1].SetActive(!lifebeing);
     }
     void Awake()
     {
