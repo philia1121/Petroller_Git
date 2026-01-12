@@ -71,6 +71,7 @@ public class MTimesInNSecondsLogic : BaseTimeLogic
 
     public override bool Tick(bool isConditionMet, float deltaTime)
     {
+        bool wasActive = IsCurrentlyActive;
         float currentTime = Time.time;
 
         // 1. 移除佇列中超過 N 秒的舊時間戳
@@ -85,20 +86,21 @@ public class MTimesInNSecondsLogic : BaseTimeLogic
             eventTimestamps.Enqueue(currentTime);
         }
         wasMetLastFrame = isConditionMet;
+        IsCurrentlyActive = eventTimestamps.Count >= timesToHappen;
 
-        // 3. 檢查次數是否達標
-        if (eventTimestamps.Count >= timesToHappen)
+        if (IsCurrentlyActive && !wasActive)
         {
-            return true; // 達成！
+            eventTimestamps.Clear();
         }
 
-        return false;
+        return IsCurrentlyActive && !wasActive;
     }
 
     public override void Reset()
     {
         eventTimestamps.Clear();
         wasMetLastFrame = false;
+        IsCurrentlyActive = false;
     }
 }
 

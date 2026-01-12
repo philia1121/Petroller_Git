@@ -10,7 +10,7 @@ public class PetrollerHappyState : PetrollerBaseState
     {
         _ctx.MyAnimator.SetBool(_ctx.IsHappyHash, true);
         _ctx.MyHaptic.SetConstantRumble(_ctx.SleepThreshold, _ctx.HapticAmplitude[1]);
-        if(_ctx.AllAudioClips[2])_ctx.AFO_AudioPlayer.StartRandomPLay(new AudioClip[] { _ctx.AllAudioClips[2] }, 1, 3);
+        if (_ctx.AllAudioClips[2]) _ctx.AFO_AudioPlayer.StartRandomPLay(new AudioClip[] { _ctx.AllAudioClips[2] }, 1, 3);
     }
     public override void UpdateState()
     {
@@ -26,6 +26,7 @@ public class PetrollerHappyState : PetrollerBaseState
     {
         _ctx.MyAnimator.SetBool(_ctx.IsHappyHash, false);
         _ctx.MyHaptic.StopRumble();
+        _ctx.ResetPat();
     }
     public override void CheckSwitchStates()
     {

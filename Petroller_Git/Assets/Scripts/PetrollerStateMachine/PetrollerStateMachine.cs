@@ -63,6 +63,7 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
     public bool Speeding { get; private set; }
     public bool PulledEar { get; private set; }
     public bool Slaped { get; private set; }
+    public bool Patted { get; private set; }
     public bool Pressed { get; private set; }
     public bool IsCozy { get; private set; }
     public float CozyTimer { get; private set; } = 0;
@@ -154,6 +155,8 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
     }
     public void GetSlaped() { Slaped = true; }
     public void ResetSlaped() { Slaped = false; }
+    public void GetPat() { Patted = true; }
+    public void ResetPat() { Patted = false; }
     public void CheckSpeeding()
     {
         Speeding = PetrollerInfo.Speed > speedingThreshold;

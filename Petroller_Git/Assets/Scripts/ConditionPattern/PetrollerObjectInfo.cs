@@ -69,6 +69,9 @@ public class PetrollerObjectInfo : MonoBehaviour
 
     // Tracking Zone //
     private HashSet<string> currentZoneIDs = new HashSet<string>();
+    // Hand Interaction //
+    public HandInteraction CurrentInteraction { get; private set; } = HandInteraction.None;
+    public int LastInteractionFrame { get; private set; } = -1;
 
     void Awake()
     {
@@ -143,6 +146,10 @@ public class PetrollerObjectInfo : MonoBehaviour
 
         oldAngularVelocity = currentAngularVelocity;
         oldVelocity = currentVelocity;
+    }
+    void LateUpdate()
+    {
+        CurrentInteraction = HandInteraction.None;
     }
     TrackingStatus HandleTrackingStatus()
     {
@@ -319,5 +326,13 @@ public class PetrollerObjectInfo : MonoBehaviour
         LastImpactFrame = frame;
         LastImpactSpeed = Speed;
         LastImpactZoneID = id;
+    }
+    public void ReceiveInteraction(HandInteraction interaction)
+    {
+        CurrentInteraction = interaction;
+        if (interaction != HandInteraction.None)
+        {
+            LastInteractionFrame = Time.frameCount;
+        }
     }
 }

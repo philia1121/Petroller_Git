@@ -10,6 +10,7 @@ public class HandModelHandler : MonoBehaviour
     public Material mat;
     public bool isTrackingGood;
     public Transform PalmTransform { get; private set; }
+    public Transform MidFingerTransfrom { get; private set; }
     [Header("核心組件 (Core Components)")]
     public OVRHand hand;
     public OVRSkeleton skeleton;
@@ -51,6 +52,7 @@ public class HandModelHandler : MonoBehaviour
         }
 
         PalmTransform = skeleton.Bones[(int)OVRSkeleton.BoneId.XRHand_Palm].Transform;
+        MidFingerTransfrom = skeleton.Bones[(int)OVRSkeleton.BoneId.XRHand_MiddleIntermediate].Transform;
     }
 
     void LateUpdate()

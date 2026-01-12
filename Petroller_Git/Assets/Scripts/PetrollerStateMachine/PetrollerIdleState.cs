@@ -43,7 +43,7 @@ public class PetrollerIdleState : PetrollerBaseState
         {
             SwitchState(_factory.Surprised());
         }
-        else if (_ctx.CozyTimer > _ctx.HappyThreshold)
+        else if (_ctx.CozyTimer > _ctx.HappyThreshold | _ctx.Patted)
         {
             SwitchState(_factory.Happy());
         }

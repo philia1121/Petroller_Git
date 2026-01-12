@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2706990078054232269}
   - component: {fileID: 6944318995516215762}
   - component: {fileID: 6541828234616624658}
+  - component: {fileID: -4013258671111592220}
   m_Layer: 0
   m_Name: Hand Collider
-  m_TagString: Untagged
+  m_TagString: HandCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 3135750693912766094}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0057, y: 0, z: -0.01208}
-  m_LocalScale: {x: 0.08163036, y: 0.03465724, z: 0.08865251}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.07265451, y: 0.03976225, z: 0.1095153}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -50,7 +51,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3135750693912766094}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -119,3 +120,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoneID: Hand
+--- !u!114 &-4013258671111592220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135750693912766094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28130cf82b580e2449121f1cd3d9204e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
