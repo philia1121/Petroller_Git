@@ -29,7 +29,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3050
+  m_CustomRenderQueue: 2500
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -116,7 +116,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _Noise_Scale: 1.86
+    - _Noise_Scale: 1.12
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -127,20 +127,20 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
-    - _Start_Height: -4.88
-    - _Strengh: 1.05
+    - _Start_Height: -21.91
+    - _Strengh: 0.64
     - _Strengh_Adjust: 0.8039999
-    - _Substract_Multiplyer: 0.52
-    - _Substract_Multiplyer2: 7.17
+    - _Substract_Multiplyer: 2.55
+    - _Substract_Multiplyer2: 4.81
     - _Substract_Multiplyer_Time: 48.85
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _divide_Multiplyer: 0.17
-    - _time: 3.58
+    - _time: 3.06
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.21383637, g: 0.20778438, b: 0.20778438, a: 1}
+    - _Color: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
