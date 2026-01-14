@@ -109,14 +109,14 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _End_Height: 14.58
+    - _End_Height: 23.6
     - _EnvironmentReflections: 1
     - _Float: 0.92
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _Noise_Scale: 3.84
+    - _Noise_Scale: 1.86
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -127,17 +127,17 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
-    - _Start_Height: 0.34
-    - _Strengh: 5
+    - _Start_Height: -4.88
+    - _Strengh: 1.05
     - _Strengh_Adjust: 0.8039999
-    - _Substract_Multiplyer: 0.09
-    - _Substract_Multiplyer2: 0.66
-    - _Substract_Multiplyer_Time: 0.22
+    - _Substract_Multiplyer: 0.52
+    - _Substract_Multiplyer2: 7.17
+    - _Substract_Multiplyer_Time: 48.85
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _divide_Multiplyer: 0.17
-    - _time: 2.31
+    - _time: 3.58
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0.21383637, g: 0.20778438, b: 0.20778438, a: 1}
