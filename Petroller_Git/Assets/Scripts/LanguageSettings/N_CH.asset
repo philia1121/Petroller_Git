@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: N_CH
+  m_EditorClassIdentifier: Assembly-CSharp::NLTC_LanguageData
+  WelcomeText: "\u6B61\u8FCE\u4F60\u7684\u5230\u4F86\n\u9AD4\u9A57\u5373\u5C07\u958B\u59CB"
+  EndingText: "\u4F60\u5373\u5C07\u96E2\u958B\u6B64\u6B21\u9AD4\u9A57\L\u8ACB\u82B1\u4E00\u9EDE\u6642\u9593\u56DE\u60F3\u525B\u525B\u7684\u4E92\u52D5\u9AD4\u9A57\u4E2D\uFF0C\u6240\u611F\u53D7\u5230\u7684\u89F8\u611F\u3001\u8072\u97F3\u8207\u56DE\u61C9\uFF0C\L\u6211\u5011\u63A5\u4E0B\u4F86\u6703\u8A62\u554F\u4F60\u4E00\u4E9B\u611F\u60F3\uFF1B\L\u5982\u679C\u6709\u4EFB\u4F55\u7279\u5225\u7684\u611F\u53D7\uFF0C\u4E5F\u5F88\u6B61\u8FCE\u4E3B\u52D5\u8207\u6211\u5011\u5206\u4EAB\u3002"

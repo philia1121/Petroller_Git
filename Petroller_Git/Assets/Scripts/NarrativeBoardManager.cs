@@ -9,12 +9,12 @@ using TMPro;
 public class NarrativeBoardManager : MonoBehaviour, IConfigInitializable
 {
     ControlMap controlMap;
-    public GameObject[] WelcomePages;
-    public GameObject[] DescriptionPages;
+    public GameObject WelcomePage;
+    public GameObject DescriptionPage;
     public GameObject TutorialPage;
     public GameObject[] VideoSets;
     List<GameObject> allPages = new List<GameObject>();
-    public GameObject[] EndingPages;
+    public GameObject EndingPage;
     int currentPage = 0;
     public bool gameStarted = false;
     bool LT_Compensation;
@@ -36,9 +36,9 @@ public class NarrativeBoardManager : MonoBehaviour, IConfigInitializable
     }
     void Start()
     {
-        foreach (var page in WelcomePages) { page.SetActive(false); }
-        foreach (var page in DescriptionPages) { page.SetActive(false); }
-        foreach (var page in EndingPages) { page.SetActive(false); }
+        WelcomePage.SetActive(false);
+        DescriptionPage.SetActive(false);
+        EndingPage.SetActive(false);
         TutorialPage.SetActive(false);
 
         PickPages();
@@ -47,8 +47,8 @@ public class NarrativeBoardManager : MonoBehaviour, IConfigInitializable
     }
     void PickPages()
     {
-        allPages.Add(WelcomePages[LT_Compensation ? 0 : 1]);
-        if (LT_Compensation) allPages.Add(DescriptionPages[lifebeing ? 0 : 1]);
+        allPages.Add(WelcomePage);
+        if (LT_Compensation) allPages.Add(DescriptionPage);
         allPages.Add(TutorialPage);
     }
     void OnEnable()
@@ -102,7 +102,7 @@ public class NarrativeBoardManager : MonoBehaviour, IConfigInitializable
     }
     public void ShowEndPage()
     {
-        EndingPages[LT_Compensation ? 0 : 1].SetActive(true);
+        EndingPage.SetActive(true);
     }
 }
 

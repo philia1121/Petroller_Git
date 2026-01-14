@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5095f5bb01075e14285e8eb5c1d65cde, type: 3}
+  m_Name: LTC_Cat_EN
+  m_EditorClassIdentifier: 
+  WelcomeText: "Welcome to Cloudveil Realm.\LLike Earth, it has plants, minerals,
+    and hidden forms of life\u2014but their nature differs from what we know. In
+    Cloudveil, the boundary between living and non-living is blurred. Most entities
+    appear as geometric forms, where shape is not just appearance, but a transferable
+    state between matter and consciousness."
+  DescriptionText: "The creature you\u2019re holding is called Floatite.\LIt is one
+    of the most common beings in the Cloudveil Realm. Its appearance closely resembles
+    the surrounding minerals; when still, it almost completely blends into nearby
+    rocks, making it hard to distinguish.\nFloatites do not walk. Instead, they float
+    through the air, gently rising or drifting along air currents. Their vocalizations
+    are very similar to those of a cat. When deeply asleep, their ears fold down
+    and their body returns to a mineral-like, motionless state.\nYou may gently press
+    or lightly shake it. If it feels uncomfortable, it will protest through sound
+    and color\u2014at this moment, look at its face and calm it. If treated roughly
+    for too long, the Floatite will quietly withdraw itself, leaving behind only
+    a lingering sense of touch."
+  EndingText: "You are about to leave Cloudveil Realm.\LPlease take a moment to reflect
+    on the sensations, sounds, and responses you experienced during the interaction.\LWe
+    will ask you a few questions next, and you are very welcome to share any feelings
+    or impressions you found especially meaningful."

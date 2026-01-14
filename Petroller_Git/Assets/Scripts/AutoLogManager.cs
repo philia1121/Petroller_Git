@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class AutoLogManager : MonoBehaviour
+public class AutoLogManager : MonoBehaviour, IConfigInitializable
 {
     public bool auto = true;
     public float LogInterval = 1;
@@ -13,7 +13,8 @@ public class AutoLogManager : MonoBehaviour
     public bool Observer_Changed = false;
     public bool RTouch_Tracked, LTouch_Tracked;
     Coroutine cor;
-
+    bool LT_C;
+    bool Life;
     void Start()
     {
         if (auto)
@@ -31,10 +32,20 @@ public class AutoLogManager : MonoBehaviour
         GameSignals.OnRequestStartGame -= StartAutoLog;
         GameSignals.OnRequestEndGame -= StopAutoLog;
     }
+    public void Initialize_LTCompensation(bool value)
+    {
+        LT_C = value;
+    }
+    public void Initialize_LifeBeing(bool value)
+    {
+        Life = value;
+    }
 
     public void StartAutoLog()
     {
         auto = true;
+        CSVWriter.CSV_WriteTableTitle((LT_C ? "LT_Compensation" : "None") + "," + (Life ? "Cat" : "Stone"));
+        CSVWriter.CSV_WriteTableTitle("");
         CSVWriter.CSV_WriteTableTitle("Real World Time,Game World Time,Participant,Observer,RTouch");
         if (cor != null) StopCoroutine(cor);
         cor = StartCoroutine(AutoLog());

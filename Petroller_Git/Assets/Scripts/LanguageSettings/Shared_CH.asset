@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Shared_CH
+  m_EditorClassIdentifier: Assembly-CSharp::SharedContent_LanguageData
+  InstructionText: "\u95B1\u8B80\u5B8C\u7562\n\u8ACB\u901A\u77E5\u7814\u7A76\u4EBA\u54E1"
+  TutorialText: "\u4F60\u53EF\u4EE5\u81EA\u7531\u5730\u8DDF\u4ED6\u4E92\u52D5\uFF0C\u4F8B\u5982\uFF1A"
+  VideoTexts:
+  - "\u64E0\u58D3"
+  - "\u6416\u6643"
+  - "\u62CD\u62CD"
+  Countdown_Life: "Floatite \u7684\u9748\u9B42\u96E2\u958B\u5012\u6578 "
+  GameOver_Life: "Floatite \u5DF2\u96E2\u958B\u3002"
+  Countdown_Lifeless: "Fossilite \u878D\u5408\u5012\u6578 "
+  GameOver_Lifeless: "\u4F60\u624B\u4E2D\u7684 Fossilite \u878D\u5408\u70BA\u7A69\u5B9A\u72C0\u614B\u3002"

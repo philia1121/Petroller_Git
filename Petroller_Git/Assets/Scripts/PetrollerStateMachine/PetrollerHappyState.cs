@@ -36,7 +36,8 @@ public class PetrollerHappyState : PetrollerBaseState
         }
         else if (_ctx.LT_Compensation && _ctx.PetrollerInfo.CurrentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
         {
-            SwitchState(_factory.Umcomfortable());
+            // SwitchState(_factory.Umcomfortable());
+            SwitchState(_factory.Angry());
         }
         else if (_ctx.Pressed | _ctx.Speeding)
         {

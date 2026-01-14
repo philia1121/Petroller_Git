@@ -33,6 +33,7 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
     public bool useDebugStatus;
     bool oldUseDebug;
     public bool updatingOffset;
+    public bool forceStart;
     public PetrollerObjectInfo.TrackingStatus debugStatus;
     PetrollerObjectInfo.TrackingStatus oldDebugStatus;
 
@@ -121,21 +122,21 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
         currentHandTrackingState = CheckHandTrackingStatus();
 
         // On State Changed
-        // onChange = ((oldTrackingState != petrollerInfo.CurrentTrackingState)
-        //  | (useDebugStatus && oldDebugStatus != debugStatus)
-        //  | (useDebugStatus && oldUseDebug != useDebugStatus)
-        //  | (oldHandTrackingState != currentHandTrackingState)
-        //  | updatingOffset) ? true : false;
-        // if (LT_Compensation && onChange & started)
-        // {
-        //     HandelAppearence();
-        //     HandelOffset();
-        //     onChange = false;
-        // }
+        onChange = ((oldTrackingState != petrollerInfo.CurrentTrackingState)
+         | (useDebugStatus && oldDebugStatus != debugStatus)
+         | (useDebugStatus && oldUseDebug != useDebugStatus)
+         | (oldHandTrackingState != currentHandTrackingState)
+         | updatingOffset) ? true : false;
+        if (LT_Compensation && onChange & (started | forceStart))
+        {
+            HandelAppearence();
+            HandelOffset();
+            onChange = false;
+        }
 
         // updating position and rotation
         HandelModelUpdate();
-        if (LT_Compensation & started) HandelShellUpdate();
+        if (LT_Compensation & (started | forceStart)) HandelShellUpdate();
 
         // update info for next frame
         oldTrackingState = petrollerInfo.CurrentTrackingState;

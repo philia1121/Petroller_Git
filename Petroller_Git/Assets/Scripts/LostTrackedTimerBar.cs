@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.PlayerLoop;
 
-public class LostTrackedTimerBar : MonoBehaviour, IConfigInitializable
+public class LostTrackedTimerBar : MonoBehaviour, IConfigInitializable, ILanguageInitializable
 {
     public bool ignore = false;
     public bool lifeBeing = true;
@@ -15,10 +16,12 @@ public class LostTrackedTimerBar : MonoBehaviour, IConfigInitializable
     public TextMeshProUGUI description;
     public GameObject[] GameOver;
 
+    [Header("Language")]
+    public SharedContent_LanguageData[] lanConfigs;
+    string countdownText;
+
     [Header("System")]
     public MonoBehaviour behaviour;
-    Vector3 targetPosition;
-    Quaternion targetRotation;
     float countdown;
     Coroutine cor;
     void Awake()
@@ -78,7 +81,7 @@ public class LostTrackedTimerBar : MonoBehaviour, IConfigInitializable
         {
             timer -= Time.deltaTime;
             bar.fillAmount = timer / countdown;
-            description.text = (lifeBeing ? "Floatite 的靈魂離開倒數 " : "Fossilite 融合倒數 ") + (timer > 0 ? timer.ToString("0.00") : "0.00");
+            description.text = countdownText + (timer > 0 ? timer.ToString("0.00") : "0.00");
 
             yield return new WaitForSeconds(0.01f);
         }
@@ -99,5 +102,10 @@ public class LostTrackedTimerBar : MonoBehaviour, IConfigInitializable
     public void Initialize_LifeBeing(bool value)
     {
         lifeBeing = value;
+    }
+    public void Initialize_Language(InterfaceConfig.LanguageConfig lan)
+    {
+        int i = lan == InterfaceConfig.LanguageConfig.CH ? 0 : 1;
+        countdownText = lifeBeing ? lanConfigs[i].Countdown_Life : lanConfigs[i].Countdown_Lifeless;
     }
 }
