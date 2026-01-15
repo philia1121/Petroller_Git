@@ -34,6 +34,7 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
     bool oldUseDebug;
     public bool updatingOffset;
     public bool forceStart;
+    public bool forceShellNoShow;
     public PetrollerObjectInfo.TrackingStatus debugStatus;
     PetrollerObjectInfo.TrackingStatus oldDebugStatus;
 
@@ -127,7 +128,7 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
          | (useDebugStatus && oldUseDebug != useDebugStatus)
          | (oldHandTrackingState != currentHandTrackingState)
          | updatingOffset) ? true : false;
-        if (LT_Compensation && onChange & (started | forceStart))
+        if (LT_Compensation && onChange & (started | forceStart) & !forceShellNoShow)
         {
             HandelAppearence();
             HandelOffset();
@@ -136,7 +137,7 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
 
         // updating position and rotation
         HandelModelUpdate();
-        if (LT_Compensation & (started | forceStart)) HandelShellUpdate();
+        if (LT_Compensation & (started | forceStart) & !forceShellNoShow) HandelShellUpdate();
 
         // update info for next frame
         oldTrackingState = petrollerInfo.CurrentTrackingState;
@@ -160,7 +161,7 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
                 ghostEffectTransform.gameObject.SetActive(false);
                 foreach (var mat in modelMaterials)
                 {
-                    mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, modelAlphas[0]);
+                    mat.SetFloat("_Alpha", modelAlphas[0]);
                 }
                 break;
             case PetrollerObjectInfo.TrackingStatus.PresumptiveLostTracked:
@@ -168,15 +169,15 @@ public class PetrollerModelHandler : MonoBehaviour, IConfigInitializable
                 ghostEffectTransform.gameObject.SetActive(false);
                 foreach (var mat in modelMaterials)
                 {
-                    mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, modelAlphas[0]);
+                    mat.SetFloat("_Alpha", modelAlphas[0]);
                 }
                 break;
             case PetrollerObjectInfo.TrackingStatus.LostTracked:
                 shellParentTransform.gameObject.SetActive(true);
-                ghostEffectTransform.gameObject.SetActive(true);
+                ghostEffectTransform.gameObject.SetActive(false);
                 foreach (var mat in modelMaterials)
                 {
-                    mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, modelAlphas[1]);
+                    mat.SetFloat("_Alpha", modelAlphas[1]);
                 }
                 break;
         }

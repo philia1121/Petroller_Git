@@ -24,24 +24,41 @@ public class PetrollerSleepState : PetrollerBaseState
     }
     public override void ExitState()
     {
+        if (_ctx.FinishedRead && !_ctx.Started) GameSignals.OnRequestStartGame?.Invoke();
         _ctx.MyAnimator.SetBool(_ctx.IsSleepingHash, false);
         _ctx.MyAnimator.SetFloat(_ctx.SleepBlendHash, 0);
         _ctx.MyHaptic.StopRumble();
     }
     public override void CheckSwitchStates()
     {
-        if (_ctx.PulledEar | _ctx.Slaped)
+        if (!_ctx.FinishedRead) return;
+
+        if (!_ctx.Started)
         {
-            SwitchState(_factory.Angry());
+            if (_ctx.PulledEar | _ctx.Slaped)
+            {
+                SwitchState(_factory.Angry());
+            }
+            else if (_ctx.Pressed | _ctx.Speeding)
+            {
+                SwitchState(_factory.Surprised());
+            }
         }
-        else if (_ctx.LT_Compensation && _ctx.PetrollerInfo.CurrentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
+        else
         {
-            // SwitchState(_factory.Umcomfortable());
-            SwitchState(_factory.Angry());
-        }
-        else if (_ctx.Pressed | _ctx.Speeding)
-        {
-            SwitchState(_factory.Surprised());
+            if (_ctx.PulledEar | _ctx.Slaped)
+            {
+                SwitchState(_factory.Angry());
+            }
+            else if (_ctx.LT_Compensation && _ctx.PetrollerInfo.CurrentTrackingState != PetrollerObjectInfo.TrackingStatus.Tracked)
+            {
+                // SwitchState(_factory.Umcomfortable());
+                SwitchState(_factory.Angry());
+            }
+            else if (_ctx.Pressed | _ctx.Speeding)
+            {
+                SwitchState(_factory.Surprised());
+            }
         }
     }
     void RandomAnimationBlend()

@@ -12,6 +12,7 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
     public PetrollerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
     public string currentState_string;
     PetrollerStateFactory _states;
+    public bool FinishedRead { get; private set; } = false;
     public bool Started { get; private set; } = false;
 
     // Petroller Info //
@@ -109,14 +110,14 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
     void Start()
     {
         _states = new PetrollerStateFactory(this);
-        _currentState = _states.Idle();
+        _currentState = _states.Sleep();
         _currentState.EnterState();
     }
     public void StartGame()
     {
-        Started = true;
         ResetLostTrackedTime();
         ResetCozyTime();
+        Started = true;
     }
     void Update()
     {
@@ -161,6 +162,7 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
     {
         Speeding = PetrollerInfo.Speed > speedingThreshold;
     }
+    public void SetFinishedRead(bool value) { FinishedRead = value; }
     void AnimationEventReceiver() { ClipEnd = true; }
     public void GetReboot() { Reboot = true; }
     void CountCozyTime()

@@ -15,6 +15,7 @@ public class NarrativeBoardManager : MonoBehaviour, IConfigInitializable
     public GameObject[] VideoSets;
     List<GameObject> allPages = new List<GameObject>();
     public GameObject EndingPage;
+    public PetrollerStateMachine[] stateMachines;
     int currentPage = 0;
     public bool gameStarted = false;
     bool LT_Compensation;
@@ -85,7 +86,8 @@ public class NarrativeBoardManager : MonoBehaviour, IConfigInitializable
                 page.gameObject.SetActive(false);
             }
             gameStarted = true;
-            GameSignals.OnRequestStartGame?.Invoke();
+
+            foreach (var item in stateMachines) item.SetFinishedRead(true);
         }
     }
     void ShowPreviousPage()

@@ -29,7 +29,7 @@ public class PetrollerIdleState : PetrollerBaseState
     }
     public override void CheckSwitchStates()
     {
-        if (!_ctx.Started) return;
+        // if (!_ctx.Started) return;
 
         if (_ctx.PulledEar | _ctx.Slaped)
         {
