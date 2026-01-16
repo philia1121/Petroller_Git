@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   specialRange: 0
   rangeCenter: {fileID: 0}
-  triggerRadius: 0.15
+  triggerRadius: 0.1

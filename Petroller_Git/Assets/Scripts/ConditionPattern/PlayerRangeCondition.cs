@@ -32,7 +32,6 @@ public class PlayerRangeCondition : BaseCondition
         Vector3 objPosFlat = new Vector3(objPos.x, 0, objPos.z);
 
         float horizontalDistance = Vector3.Distance(headPosFlat, objPosFlat);
-        // Debug.Log(horizontalDistance);
 
         if (horizontalDistance < triggerRadius)
         {
@@ -41,11 +40,12 @@ public class PlayerRangeCondition : BaseCondition
         else
         {
             // 加上 0.05f 的緩衝區，避免在邊界閃爍
-            if (inRange && horizontalDistance > (triggerRadius + 0.05f))
-            {
-                inRange = false;
-            }
+            // if (inRange && horizontalDistance > (triggerRadius + 0.005f))
+            // {
+            inRange = false;
+            // }
         }
+        Debug.Log(horizontalDistance + ", in range: " + inRange);
         return inRange;
     }
 }

@@ -24,7 +24,6 @@ public class PetrollerSleepState : PetrollerBaseState
     }
     public override void ExitState()
     {
-        if (_ctx.FinishedRead && !_ctx.Started) GameSignals.OnRequestStartGame?.Invoke();
         _ctx.MyAnimator.SetBool(_ctx.IsSleepingHash, false);
         _ctx.MyAnimator.SetFloat(_ctx.SleepBlendHash, 0);
         _ctx.MyHaptic.StopRumble();
@@ -35,12 +34,12 @@ public class PetrollerSleepState : PetrollerBaseState
 
         if (!_ctx.Started)
         {
-            if (_ctx.PulledEar | _ctx.Slaped)
+            _ctx.ResetCozyTime();
+            _ctx.ResetLostTrackedTime();
+
+            if (_ctx.Pressed | _ctx.Speeding)
             {
-                SwitchState(_factory.Angry());
-            }
-            else if (_ctx.Pressed | _ctx.Speeding)
-            {
+                if (_ctx.FinishedRead && !_ctx.Started) GameSignals.OnRequestStartGame?.Invoke();
                 SwitchState(_factory.Surprised());
             }
         }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a9f2e2d22a638478f990d8a7658078, type: 3}
   m_Name: Condition_FacingAtFront
   m_EditorClassIdentifier: 
-  frontAngleThreshold: 45
-  backAngleThreshold: 70
+  frontAngleThreshold: 55
+  backAngleThreshold: 60
   desiredFacing: 0

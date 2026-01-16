@@ -162,7 +162,12 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
     {
         Speeding = PetrollerInfo.Speed > speedingThreshold;
     }
-    public void SetFinishedRead(bool value) { FinishedRead = value; }
+    public void SetFinishedRead(bool value)
+    {
+        FinishedRead = value;
+        ResetCozyTime();
+        ResetLostTrackedTime();
+    }
     void AnimationEventReceiver() { ClipEnd = true; }
     public void GetReboot() { Reboot = true; }
     void CountCozyTime()
@@ -199,7 +204,7 @@ public class PetrollerStateMachine : MonoBehaviour, IConfigInitializable
                 break;
         }
     }
-    void ResetLostTrackedTime()
+    public void ResetLostTrackedTime()
     {
         PLT_Timer = 0;
         LT_Timer = 0;
