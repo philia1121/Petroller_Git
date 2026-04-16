@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ControllerFollower : MonoBehaviour
 {
-    [SerializeField]private OVRInput.Controller targetController = OVRInput.Controller.RTouch; 
-    [SerializeField]private bool autoInitializeModel;
-    [SerializeField]private Transform modelTransform;
-    [SerializeField]private Vector3 model_initialPos, model_initialRot;
+    [SerializeField] private OVRInput.Controller targetController = OVRInput.Controller.RTouch;
+    [SerializeField] private bool autoInitializeModel;
+    [SerializeField] private Transform modelTransform;
+    [SerializeField] private Vector3 model_initialPos, model_initialRot;
+    [SerializeField] private bool keepFollow = true;
     private Vector3 lastKnownPosition;
     private Quaternion lastKnownRotation;
 
@@ -15,13 +16,15 @@ public class ControllerFollower : MonoBehaviour
     {
         if (modelTransform == null)
             modelTransform = this.transform.GetChild(0).transform;
-        if(autoInitializeModel)
+        if (autoInitializeModel)
+        {
             modelTransform.position = model_initialPos;
             modelTransform.rotation = Quaternion.Euler(model_initialRot);
+        }
     }
     void Update()
     {
-        if (OVRInput.GetControllerPositionTracked(targetController))
+        if (keepFollow)
         {
             transform.position = OVRInput.GetLocalControllerPosition(targetController);
             transform.rotation = OVRInput.GetLocalControllerRotation(targetController);
@@ -31,8 +34,25 @@ public class ControllerFollower : MonoBehaviour
         }
         else
         {
-            transform.position = lastKnownPosition;
-            transform.rotation = lastKnownRotation;
+            if (OVRInput.GetControllerPositionTracked(targetController))
+            {
+                transform.position = OVRInput.GetLocalControllerPosition(targetController);
+                lastKnownPosition = transform.position;
+            }
+            else
+            {
+                transform.position = lastKnownPosition;
+            }
+
+            if (OVRInput.GetControllerOrientationTracked(targetController))
+            {
+                transform.rotation = OVRInput.GetLocalControllerRotation(targetController);
+                lastKnownRotation = transform.rotation;
+            }
+            else
+            {
+                transform.rotation = lastKnownRotation;
+            }
         }
     }
 }
