@@ -322,6 +322,34 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Prototype"",
+            ""id"": ""ff4988e7-0fe6-42e9-9ea3-e4ae634bb2f7"",
+            ""actions"": [
+                {
+                    ""name"": ""RecordButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""80f99edc-9090-48c0-9fd6-d0303e47be54"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""5609f638-182e-443a-b135-17972a8834d3"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RecordButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -342,6 +370,9 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
         m_Petroller_DeviceAngularVelocity = m_Petroller.FindAction("DeviceAngularVelocity", throwIfNotFound: true);
         m_Petroller_DeviceAcceleration = m_Petroller.FindAction("DeviceAcceleration", throwIfNotFound: true);
         m_Petroller_DeviceAugularAcceleration = m_Petroller.FindAction("DeviceAugularAcceleration", throwIfNotFound: true);
+        // Prototype
+        m_Prototype = asset.FindActionMap("Prototype", throwIfNotFound: true);
+        m_Prototype_RecordButton = m_Prototype.FindAction("RecordButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -571,6 +602,52 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
         }
     }
     public PetrollerActions @Petroller => new PetrollerActions(this);
+
+    // Prototype
+    private readonly InputActionMap m_Prototype;
+    private List<IPrototypeActions> m_PrototypeActionsCallbackInterfaces = new List<IPrototypeActions>();
+    private readonly InputAction m_Prototype_RecordButton;
+    public struct PrototypeActions
+    {
+        private @ControlMap m_Wrapper;
+        public PrototypeActions(@ControlMap wrapper) { m_Wrapper = wrapper; }
+        public InputAction @RecordButton => m_Wrapper.m_Prototype_RecordButton;
+        public InputActionMap Get() { return m_Wrapper.m_Prototype; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PrototypeActions set) { return set.Get(); }
+        public void AddCallbacks(IPrototypeActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PrototypeActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PrototypeActionsCallbackInterfaces.Add(instance);
+            @RecordButton.started += instance.OnRecordButton;
+            @RecordButton.performed += instance.OnRecordButton;
+            @RecordButton.canceled += instance.OnRecordButton;
+        }
+
+        private void UnregisterCallbacks(IPrototypeActions instance)
+        {
+            @RecordButton.started -= instance.OnRecordButton;
+            @RecordButton.performed -= instance.OnRecordButton;
+            @RecordButton.canceled -= instance.OnRecordButton;
+        }
+
+        public void RemoveCallbacks(IPrototypeActions instance)
+        {
+            if (m_Wrapper.m_PrototypeActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPrototypeActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PrototypeActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PrototypeActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PrototypeActions @Prototype => new PrototypeActions(this);
     public interface IPlayerInputActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -588,5 +665,9 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
         void OnDeviceAngularVelocity(InputAction.CallbackContext context);
         void OnDeviceAcceleration(InputAction.CallbackContext context);
         void OnDeviceAugularAcceleration(InputAction.CallbackContext context);
+    }
+    public interface IPrototypeActions
+    {
+        void OnRecordButton(InputAction.CallbackContext context);
     }
 }

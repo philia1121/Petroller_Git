@@ -300,6 +300,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Prototype",
+            "id": "ff4988e7-0fe6-42e9-9ea3-e4ae634bb2f7",
+            "actions": [
+                {
+                    "name": "RecordButton",
+                    "type": "Button",
+                    "id": "80f99edc-9090-48c0-9fd6-d0303e47be54",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5609f638-182e-443a-b135-17972a8834d3",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RecordButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
