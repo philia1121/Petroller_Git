@@ -26,32 +26,32 @@ public class ControllerFollower : MonoBehaviour
     {
         if (keepFollow)
         {
-            transform.position = OVRInput.GetLocalControllerPosition(targetController);
-            transform.rotation = OVRInput.GetLocalControllerRotation(targetController);
+            modelTransform.position = OVRInput.GetLocalControllerPosition(targetController);
+            modelTransform.rotation = OVRInput.GetLocalControllerRotation(targetController);
 
-            lastKnownPosition = transform.position;
-            lastKnownRotation = transform.rotation;
+            lastKnownPosition = modelTransform.position;
+            lastKnownRotation = modelTransform.rotation;
         }
         else
         {
             if (OVRInput.GetControllerPositionTracked(targetController))
             {
-                transform.position = OVRInput.GetLocalControllerPosition(targetController);
-                lastKnownPosition = transform.position;
+                modelTransform.position = OVRInput.GetLocalControllerPosition(targetController);
+                lastKnownPosition = modelTransform.position;
             }
             else
             {
-                transform.position = lastKnownPosition;
+                modelTransform.position = lastKnownPosition;
             }
 
             if (OVRInput.GetControllerOrientationTracked(targetController))
             {
-                transform.rotation = OVRInput.GetLocalControllerRotation(targetController);
-                lastKnownRotation = transform.rotation;
+                modelTransform.rotation = OVRInput.GetLocalControllerRotation(targetController);
+                lastKnownRotation = modelTransform.rotation;
             }
             else
             {
-                transform.rotation = lastKnownRotation;
+                modelTransform.rotation = lastKnownRotation;
             }
         }
     }
