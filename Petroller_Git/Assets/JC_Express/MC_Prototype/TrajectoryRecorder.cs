@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 public class TrajectoryRecorder : MonoBehaviour
 {
     public float recordInterval = 0.015f;
@@ -12,6 +13,7 @@ public class TrajectoryRecorder : MonoBehaviour
     private float startTime;
     ControlMap controlMap;
     Transform VRMainCam;
+    public HandSkeletonFinder[] skeletonFinder;
     public TrackingInfo trackingInfo;
     Coroutine cor;
 
@@ -102,10 +104,15 @@ public class TrajectoryRecorder : MonoBehaviour
         // Left Controller
         wp.pos_LCont = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch);
         wp.rot_LCont = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch);
+        wp.pos_LPalm = skeletonFinder[0].PalmTransform ? skeletonFinder[0].PalmTransform.position : Vector3.zero;
+        wp.rot_LPalm = skeletonFinder[0].PalmTransform ? skeletonFinder[0].PalmTransform.rotation : Quaternion.identity;
 
         // Right Controller
         wp.pos_RCont = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch);
         wp.rot_RCont = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch);
+        wp.pos_RPalm = skeletonFinder[1].PalmTransform ? skeletonFinder[1].PalmTransform.position : Vector3.zero;
+        wp.rot_RPalm = skeletonFinder[1].PalmTransform ? skeletonFinder[1].PalmTransform.rotation : Quaternion.identity;
+
         // Left Hand
         wp.pos_LHand = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand);
         wp.rot_LHand = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LHand);
@@ -143,5 +150,10 @@ public class TrajectoryRecorder : MonoBehaviour
         filePrefix = prefix;
     }
     public string GetFilePrefix() { return filePrefix; }
+    public void SetMotionType(string motion)
+    {
+        if (motion == null) return;
+        currentSession.motionType = motion;
+    }
 
 }

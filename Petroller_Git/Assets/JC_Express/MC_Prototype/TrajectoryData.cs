@@ -19,10 +19,14 @@ public class MultiTrackWaypoint
     // Left Hand
     public Vector3 pos_LHand;
     public Quaternion rot_LHand;
+    public Vector3 pos_LPalm;
+    public Quaternion rot_LPalm;
 
     // Right Hand
     public Vector3 pos_RHand;
     public Quaternion rot_RHand;
+    public Vector3 pos_RPalm;
+    public Quaternion rot_RPalm;
 
     // HMD
     public Vector3 pos_HMD;
@@ -41,5 +45,6 @@ public class MultiTrackWaypoint
 [System.Serializable]
 public class TrajectorySession
 {
+    public string motionType = "";
     public List<MultiTrackWaypoint> waypoints = new List<MultiTrackWaypoint>();
 }

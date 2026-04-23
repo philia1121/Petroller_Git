@@ -7,7 +7,7 @@ public class TrajectoryRecorder_Config : MonoBehaviour
     [SerializeField] private bool setOnAwake = true;
     [SerializeField] private NamingType namingType = NamingType.Custom;
     [SerializeField] private string filePrefix = "MultiTraj";
-
+    [SerializeField] private string motionType = "";
     void Awake()
     {
         if (!setOnAwake) return;
@@ -25,14 +25,15 @@ public class TrajectoryRecorder_Config : MonoBehaviour
                 fPrefix = System.Guid.NewGuid().ToString();
                 break;
         }
-        if (TrajectoryRecorder.instance) TrajectoryRecorder.instance.SetFilePrefix(fPrefix);
+        ChangeConfig_Prefix(fPrefix);
+        ChangeCongfig_MotionType(motionType);
     }
-    public void ChangeConfig(string prefix)
+    public void ChangeConfig_Prefix(string prefix)
     {
         if (TrajectoryRecorder.instance) TrajectoryRecorder.instance.SetFilePrefix(prefix);
     }
-    public void ChangeConfigRandom()
+    public void ChangeCongfig_MotionType(string mType)
     {
-        if (TrajectoryRecorder.instance) TrajectoryRecorder.instance.SetFilePrefix(System.Guid.NewGuid().ToString());
+        if (TrajectoryRecorder.instance) TrajectoryRecorder.instance.SetMotionType(mType);
     }
 }
