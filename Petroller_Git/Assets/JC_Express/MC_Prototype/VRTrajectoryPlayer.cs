@@ -13,7 +13,9 @@ public class VRTrajectoryPlayer : MonoBehaviour
     [Header("VR 綁定物件")]
     public Transform hmdTarget;
     public Transform lHandTarget;
+    public Transform lPalmTarget;
     public Transform rHandTarget;
+    public Transform rPalmTarget;
     public Transform lContTarget;
     public Transform rContTarget;
 
@@ -164,6 +166,16 @@ public class VRTrajectoryPlayer : MonoBehaviour
         {
             rHandTarget.localPosition = Vector3.Lerp(a.pos_RHand, b.pos_RHand, t);
             rHandTarget.localRotation = Quaternion.Slerp(a.rot_RHand, b.rot_RHand, t);
+        }
+        if (lPalmTarget)
+        {
+            lPalmTarget.localPosition = Vector3.Lerp(a.pos_LPalm, b.pos_LPalm, t);
+            lPalmTarget.localRotation = Quaternion.Slerp(a.rot_LPalm, b.rot_LPalm, t);
+        }
+        if (rPalmTarget)
+        {
+            rPalmTarget.localPosition = Vector3.Lerp(a.pos_RPalm, b.pos_RPalm, t);
+            rPalmTarget.localRotation = Quaternion.Slerp(a.rot_RPalm, b.rot_RPalm, t);
         }
     }
 

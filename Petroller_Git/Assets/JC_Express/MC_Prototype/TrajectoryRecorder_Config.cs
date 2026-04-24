@@ -8,7 +8,7 @@ public class TrajectoryRecorder_Config : MonoBehaviour
     [SerializeField] private NamingType namingType = NamingType.Custom;
     [SerializeField] private string filePrefix = "MultiTraj";
     [SerializeField] private string motionType = "";
-    void Awake()
+    void Start()
     {
         if (!setOnAwake) return;
 

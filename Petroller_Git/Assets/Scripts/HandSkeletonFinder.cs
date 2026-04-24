@@ -18,6 +18,6 @@ public class HandSkeletonFinder : MonoBehaviour
             return;
         }
         PalmTransform = skeleton.Bones[(int)OVRSkeleton.BoneId.XRHand_Palm].Transform;
-        MidFingerTransfrom = skeleton.Bones[(int)OVRSkeleton.BoneId.XRHand_MiddleIntermediate].Transform;
+        MidFingerTransfrom = skeleton.Bones[(int)OVRPlugin.BoneId.XRHand_MiddleProximal - 3].Transform;
     }
 }

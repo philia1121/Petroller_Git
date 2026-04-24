@@ -20,6 +20,7 @@ public class TrajectoryRecorder : MonoBehaviour
     //added for making this into singleton
     public static TrajectoryRecorder instance;
     string filePrefix = "MultiTraj";
+    string motionType = "";
 
     void Awake()
     {
@@ -92,6 +93,7 @@ public class TrajectoryRecorder : MonoBehaviour
     void StartNewSession()
     {
         currentSession = new TrajectorySession();
+        currentSession.motionType = motionType;
         startTime = Time.time;
     }
     void OnRecord()
@@ -104,14 +106,14 @@ public class TrajectoryRecorder : MonoBehaviour
         // Left Controller
         wp.pos_LCont = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch);
         wp.rot_LCont = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch);
-        wp.pos_LPalm = skeletonFinder[0].PalmTransform ? skeletonFinder[0].PalmTransform.position : Vector3.zero;
-        wp.rot_LPalm = skeletonFinder[0].PalmTransform ? skeletonFinder[0].PalmTransform.rotation : Quaternion.identity;
+        wp.pos_LPalm = skeletonFinder[0].MidFingerTransfrom ? skeletonFinder[0].MidFingerTransfrom.position : Vector3.zero;
+        wp.rot_LPalm = skeletonFinder[0].MidFingerTransfrom ? skeletonFinder[0].MidFingerTransfrom.rotation : Quaternion.identity;
 
         // Right Controller
         wp.pos_RCont = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch);
         wp.rot_RCont = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch);
-        wp.pos_RPalm = skeletonFinder[1].PalmTransform ? skeletonFinder[1].PalmTransform.position : Vector3.zero;
-        wp.rot_RPalm = skeletonFinder[1].PalmTransform ? skeletonFinder[1].PalmTransform.rotation : Quaternion.identity;
+        wp.pos_RPalm = skeletonFinder[1].MidFingerTransfrom ? skeletonFinder[1].MidFingerTransfrom.position : Vector3.zero;
+        wp.rot_RPalm = skeletonFinder[1].MidFingerTransfrom ? skeletonFinder[1].MidFingerTransfrom.rotation : Quaternion.identity;
 
         // Left Hand
         wp.pos_LHand = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand);
@@ -153,7 +155,7 @@ public class TrajectoryRecorder : MonoBehaviour
     public void SetMotionType(string motion)
     {
         if (motion == null) return;
-        currentSession.motionType = motion;
+        motionType = motion;
     }
 
 }
