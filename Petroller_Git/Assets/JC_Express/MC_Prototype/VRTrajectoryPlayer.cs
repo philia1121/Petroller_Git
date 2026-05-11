@@ -34,7 +34,8 @@ public class VRTrajectoryPlayer : MonoBehaviour
         Color.blue,                 // 5: LHand_Rot
         Color.magenta,              // 6: LCont_Pos
         new Color(0.5f, 0f, 0.5f)   // 7: LCont_Rot (紫)
-    };
+
+};
 
     private TrajectorySession data;
     private float maxTime;
@@ -203,7 +204,7 @@ public class VRTrajectoryPlayer : MonoBehaviour
         DrawLostTrackingBlocks(wp => !wp.LHand_PosTracked, 4);
         DrawLostTrackingBlocks(wp => !wp.LHand_RotTracked, 5);
         DrawLostTrackingBlocks(wp => !wp.LCont_PosTracked, 6);
-        DrawLostTrackingBlocks(wp => !wp.LCont_RotTracked, 7);
+        DrawLostTrackingBlocks(wp => !wp.VisualTracked, 7);
     }
 
     // 合併連續的 Lost Tracked 訊號為一個區塊，減少 UI 繪製壓力

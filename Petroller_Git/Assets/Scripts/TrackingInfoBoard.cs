@@ -7,11 +7,13 @@ public class TrackingInfoBoard : MonoBehaviour
     public TrackingInfo trackingInfo;
     public Image[] Pos_Signal, Rot_Signal;    // Start is called before the first frame update
     public Color[] SignalColors;
+    public Image user;
     void Start()
     {
         if (!trackingInfo) trackingInfo = FindFirstObjectByType<TrackingInfo>();
         foreach (var signal in Pos_Signal) signal.color = SignalColors[0];
         foreach (var signal in Rot_Signal) signal.color = SignalColors[0];
+        user.color = SignalColors[0];
     }
 
     // Update is called once per frame
@@ -19,6 +21,7 @@ public class TrackingInfoBoard : MonoBehaviour
     {
         UpdatePosSignal();
         UpdateRotSignal();
+        UpdateUserSignal();
     }
 
     public void UpdatePosSignal()
@@ -48,5 +51,9 @@ public class TrackingInfoBoard : MonoBehaviour
         Rot_Signal[1].color = LC ? SignalColors[1] : SignalColors[0];
         Rot_Signal[2].color = RC ? SignalColors[1] : SignalColors[0];
         Rot_Signal[3].color = RH ? SignalColors[1] : SignalColors[0];
+    }
+    public void UpdateUserSignal()
+    {
+        user.color = trackingInfo.GetComponent<TrajectoryRecorder>().GetVisualTracked() ? SignalColors[1] : SignalColors[0];
     }
 }

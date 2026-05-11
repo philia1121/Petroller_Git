@@ -4,13 +4,18 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+using System.Xml.XPath;
 public class TrajectoryRecorder : MonoBehaviour
 {
     public float recordInterval = 0.015f;
     public bool isRecording = false;
     public Material mat;
+    public AudioSource audioSource;
+    public float waitTime = 60;
+    Coroutine soundCor;
     private TrajectorySession currentSession;
     private float startTime;
+    bool visualTracked = true;
     ControlMap controlMap;
     Transform VRMainCam;
     public HandSkeletonFinder[] skeletonFinder;
@@ -36,6 +41,8 @@ public class TrajectoryRecorder : MonoBehaviour
     {
         controlMap.Prototype.Enable();
         controlMap.Prototype.RecordButton.started += ctx => ToggleRecording();
+        controlMap.Prototype.SayLT.started += ctx => SetVisualTracked(false);
+        controlMap.Prototype.SayBK.started += ctx => SetVisualTracked(true);
     }
 
     public void ToggleRecording()
@@ -47,12 +54,14 @@ public class TrajectoryRecorder : MonoBehaviour
             StartNewSession();
             if (cor != null) StopCoroutine(cor);
             cor = StartCoroutine(RecordRoutine());
+            soundCor = StartCoroutine(SoundTimer(waitTime));
             Debug.Log("start recording");
         }
         else
         {
             if (mat) mat.color = Color.white;
             if (cor != null) StopCoroutine(cor);
+            if (soundCor != null) StopCoroutine(soundCor);
             SaveToFile();
             Debug.Log("stop recording");
         }
@@ -136,9 +145,15 @@ public class TrajectoryRecorder : MonoBehaviour
         wp.LHand_RotTracked = trackingInfo.Get_LHand_RotTracked();
         wp.LCont_PosTracked = trackingInfo.Get_LController_PosTracked();
         wp.LCont_RotTracked = trackingInfo.Get_RController_RotTracked();
+        wp.VisualTracked = visualTracked;
 
         currentSession.waypoints.Add(wp);
     }
+    public void SetVisualTracked(bool value)
+    {
+        visualTracked = value;
+    }
+    public bool GetVisualTracked() { return visualTracked; }
     void SaveToFile()
     {
         string json = JsonUtility.ToJson(currentSession, true);
@@ -157,5 +172,12 @@ public class TrajectoryRecorder : MonoBehaviour
         if (motion == null) return;
         motionType = motion;
     }
+
+    IEnumerator SoundTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        audioSource.Play();
+    }
+
 
 }

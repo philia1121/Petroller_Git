@@ -313,6 +313,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SayLT",
+                    "type": "Button",
+                    "id": "8b7c87b9-6fcf-44dd-ac8a-dd9c03531743",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SayBK",
+                    "type": "Button",
+                    "id": "7ad2d04e-98ad-43b1-a8ad-b38b736fa83c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -324,6 +342,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "RecordButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a1adc2ba-f9f4-4943-b133-88f5c8ddefe7",
+                    "path": "<XRController>{LeftHand}/{TriggerButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SayLT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "56ff01f1-342b-412b-b2b2-3a08f5cfc7d8",
+                    "path": "<XRController>{LeftHand}/{GripButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SayBK",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

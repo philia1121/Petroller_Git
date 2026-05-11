@@ -335,6 +335,24 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SayLT"",
+                    ""type"": ""Button"",
+                    ""id"": ""8b7c87b9-6fcf-44dd-ac8a-dd9c03531743"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SayBK"",
+                    ""type"": ""Button"",
+                    ""id"": ""7ad2d04e-98ad-43b1-a8ad-b38b736fa83c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -346,6 +364,28 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""RecordButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1adc2ba-f9f4-4943-b133-88f5c8ddefe7"",
+                    ""path"": ""<XRController>{LeftHand}/{TriggerButton}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SayLT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56ff01f1-342b-412b-b2b2-3a08f5cfc7d8"",
+                    ""path"": ""<XRController>{LeftHand}/{GripButton}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SayBK"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -373,6 +413,8 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
         // Prototype
         m_Prototype = asset.FindActionMap("Prototype", throwIfNotFound: true);
         m_Prototype_RecordButton = m_Prototype.FindAction("RecordButton", throwIfNotFound: true);
+        m_Prototype_SayLT = m_Prototype.FindAction("SayLT", throwIfNotFound: true);
+        m_Prototype_SayBK = m_Prototype.FindAction("SayBK", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -607,11 +649,15 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Prototype;
     private List<IPrototypeActions> m_PrototypeActionsCallbackInterfaces = new List<IPrototypeActions>();
     private readonly InputAction m_Prototype_RecordButton;
+    private readonly InputAction m_Prototype_SayLT;
+    private readonly InputAction m_Prototype_SayBK;
     public struct PrototypeActions
     {
         private @ControlMap m_Wrapper;
         public PrototypeActions(@ControlMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @RecordButton => m_Wrapper.m_Prototype_RecordButton;
+        public InputAction @SayLT => m_Wrapper.m_Prototype_SayLT;
+        public InputAction @SayBK => m_Wrapper.m_Prototype_SayBK;
         public InputActionMap Get() { return m_Wrapper.m_Prototype; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -624,6 +670,12 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
             @RecordButton.started += instance.OnRecordButton;
             @RecordButton.performed += instance.OnRecordButton;
             @RecordButton.canceled += instance.OnRecordButton;
+            @SayLT.started += instance.OnSayLT;
+            @SayLT.performed += instance.OnSayLT;
+            @SayLT.canceled += instance.OnSayLT;
+            @SayBK.started += instance.OnSayBK;
+            @SayBK.performed += instance.OnSayBK;
+            @SayBK.canceled += instance.OnSayBK;
         }
 
         private void UnregisterCallbacks(IPrototypeActions instance)
@@ -631,6 +683,12 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
             @RecordButton.started -= instance.OnRecordButton;
             @RecordButton.performed -= instance.OnRecordButton;
             @RecordButton.canceled -= instance.OnRecordButton;
+            @SayLT.started -= instance.OnSayLT;
+            @SayLT.performed -= instance.OnSayLT;
+            @SayLT.canceled -= instance.OnSayLT;
+            @SayBK.started -= instance.OnSayBK;
+            @SayBK.performed -= instance.OnSayBK;
+            @SayBK.canceled -= instance.OnSayBK;
         }
 
         public void RemoveCallbacks(IPrototypeActions instance)
@@ -669,5 +727,7 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
     public interface IPrototypeActions
     {
         void OnRecordButton(InputAction.CallbackContext context);
+        void OnSayLT(InputAction.CallbackContext context);
+        void OnSayBK(InputAction.CallbackContext context);
     }
 }
