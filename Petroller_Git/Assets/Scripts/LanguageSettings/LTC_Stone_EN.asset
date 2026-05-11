@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5095f5bb01075e14285e8eb5c1d65cde, type: 3}
+  m_Name: LTC_Stone_EN
+  m_EditorClassIdentifier: 
+  WelcomeText: "Welcome to Cloudveil Realm.\LLike Earth, it has plants, minerals,
+    and hidden forms of life\u2014but their nature differs from what we know. In
+    Cloudveil, the boundary between living and non-living is blurred. Most entities
+    appear as geometric forms, where shape is not just appearance, but a transferable
+    state between matter and consciousness."
+  DescriptionText: "What you are holding is Fossilite\na common mineral in the Cloudveil
+    Realm.\LWhen still, it looks like an ordinary rock. When squeezed or gently shaken,
+    it emits metallic, instrument-like sounds.\nExcessive striking or flipping causes
+    the sound to become sharp, and the Fossilite may begin to drift, leaving only
+    a lingering sense of touch\u2014an indication of the boundary between life and
+    non-life merging.\LTo stop this, return it to its original orientation."
+  EndingText: "You are about to leave Cloudveil Realm.\LPlease take a moment to reflect
+    on the sensations, sounds, and responses you experienced during the interaction.\LWe
+    will ask you a few questions next, and you are very welcome to share any feelings
+    or impressions you found especially meaningful."

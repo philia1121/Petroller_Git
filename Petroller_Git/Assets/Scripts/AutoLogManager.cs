@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class AutoLogManager : MonoBehaviour
+public class AutoLogManager : MonoBehaviour, IConfigInitializable
 {
     public bool auto = true;
     public float LogInterval = 1;
@@ -11,40 +12,65 @@ public class AutoLogManager : MonoBehaviour
     public bool Participant_Changed = false;
     public bool Observer_Changed = false;
     public bool RTouch_Tracked, LTouch_Tracked;
-    public int recordCount = 130;
-
+    Coroutine cor;
+    bool LT_C;
+    bool Life;
     void Start()
     {
-        if(auto)
-            RecordCSVWriter.WriteTableTitle("Real World Time,Game World Time,Participant,Observer,LTouch,RTouch");
-            StartCoroutine(AutoLog());
+        if (auto)
+            CSVWriter.CSV_WriteTableTitle("Real World Time,Game World Time,Participant,Observer,RTouch");
+        if (cor != null) StopCoroutine(cor);
+        cor = StartCoroutine(AutoLog());
+    }
+    void OnEnable()
+    {
+        GameSignals.OnRequestStartGame += StartAutoLog;
+        GameSignals.OnRequestEndGame += StopAutoLog;
+    }
+    void OnDisable()
+    {
+        GameSignals.OnRequestStartGame -= StartAutoLog;
+        GameSignals.OnRequestEndGame -= StopAutoLog;
+    }
+    public void Initialize_LTCompensation(bool value)
+    {
+        LT_C = value;
+    }
+    public void Initialize_LifeBeing(bool value)
+    {
+        Life = value;
     }
 
     public void StartAutoLog()
     {
         auto = true;
-        RecordCSVWriter.WriteTableTitle("Real World Time,Game World Time,Participant,Observer,LTouch,RTouch");
-        StartCoroutine(AutoLog());
+        CSVWriter.CSV_WriteTableTitle((LT_C ? "LT_Compensation" : "None") + "," + (Life ? "Cat" : "Stone"));
+        CSVWriter.CSV_WriteTableTitle("");
+        CSVWriter.CSV_WriteTableTitle("Real World Time,Game World Time,Participant,Observer,RTouch");
+        if (cor != null) StopCoroutine(cor);
+        cor = StartCoroutine(AutoLog());
+    }
+    public void StopAutoLog()
+    {
+        auto = false;
+        if (cor != null) StopCoroutine(cor);
+        cor = null;
     }
 
     IEnumerator AutoLog()
     {
-        while(auto)
+        while (auto)
         {
-            string participant = Participant_Tracked? "Tracked" : "Lost";
-            string observer = Observer_Tracked? "Tracked" : "Lost";
-            participant += Participant_Changed? " O," : ",";
-            observer += Observer_Changed? " O," : ",";
+            string participant = Participant_Tracked ? "Tracked" : "Lost";
+            string observer = Observer_Tracked ? "Tracked" : "Lost";
+            participant += Participant_Changed ? " O," : ",";
+            observer += Observer_Changed ? " O," : ",";
             Participant_Changed = false;
             Observer_Changed = false;
-            string L = OVRInput.GetControllerPositionTracked(OVRInput.Controller.LTouch)? "Tracked," : "Lost,";
-            string R = OVRInput.GetControllerPositionTracked(OVRInput.Controller.RTouch)? "Tracked," : "Lost,";
-            string data = participant + observer + L + R;
-            RecordCSVWriter.CSV_WriteByTime(true, true, data);
+            string R = OVRInput.GetControllerPositionTracked(OVRInput.Controller.RTouch) ? "Tracked," : "Lost,";
+            string data = participant + observer + R;
+            CSVWriter.CSV_WriteByTime(true, true, data);
 
-            recordCount --;
-            auto = (recordCount < 1)? false : true;
-            
             yield return new WaitForSeconds(LogInterval);
         }
         yield return null;
