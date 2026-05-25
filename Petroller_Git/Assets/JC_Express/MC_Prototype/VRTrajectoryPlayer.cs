@@ -256,4 +256,62 @@ public class VRTrajectoryPlayer : MonoBehaviour
         rt.offsetMin = Vector2.zero;
         rt.offsetMax = Vector2.zero;
     }
+
+    public void ReadLogAndFindTimestamps()
+    {
+        if (data == null || data.waypoints == null)
+        {
+            Debug.LogError("JSON 解析失敗，或是檔案內沒有 waypoints 資料。");
+            return;
+        }
+
+        // 3. 設定布林值標記，用來記錄是否已經找到「第一次」的狀況
+        bool foundStartMotion = false;
+        bool foundRContPos = false;
+        bool foundRContRot = false;
+        bool foundVisual = false;
+
+        // 4. 走訪每一筆 Waypoint 資料
+        foreach (var wp in data.waypoints)
+        {
+            // 找第一次 startMotion = true
+            if (!foundStartMotion && wp.startMotion == true)
+            {
+                Debug.Log($"[找到] 第一次出現 startMotion=true 的 timestamp: {wp.timestamp}");
+                foundStartMotion = true;
+            }
+
+            // 找第一次 RCont_PosTracked = false
+            if (!foundRContPos && wp.RCont_PosTracked == false)
+            {
+                Debug.Log($"[找到] 第一次出現 RCont_PosTracked=false 的 timestamp: {wp.timestamp}");
+                foundRContPos = true;
+            }
+
+            // 找第一次 RCont_RotTracked = false
+            if (!foundRContRot && wp.RCont_RotTracked == false)
+            {
+                Debug.Log($"[找到] 第一次出現 RCont_RotTracked=false 的 timestamp: {wp.timestamp}");
+                foundRContRot = true;
+            }
+
+            if (!foundVisual && wp.VisualTracked == false)
+            {
+                Debug.Log($"[找到] 第一次出現 VisualTracked=false 的 timestamp: {wp.timestamp}");
+                foundVisual = true;
+            }
+
+            // 如果三個條件都找到了，就可以提早結束迴圈以節省效能
+            if (foundStartMotion && foundRContPos && foundRContRot && foundVisual)
+            {
+                break;
+            }
+        }
+
+        // 5. 如果整個檔案跑完都沒有找到，可以印出提示
+        if (!foundStartMotion) Debug.Log("記錄檔中未找到 startMotion=true 的情況。");
+        if (!foundRContPos) Debug.Log("記錄檔中未找到 RCont_PosTracked=false 的情況。");
+        if (!foundRContRot) Debug.Log("記錄檔中未找到 RCont_RotTracked=false 的情況。");
+        if (!foundVisual) Debug.Log("記錄檔中未找到 VisualTracked=false 的情況。");
+    }
 }

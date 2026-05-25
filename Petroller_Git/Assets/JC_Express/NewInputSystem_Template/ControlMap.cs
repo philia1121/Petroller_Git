@@ -353,6 +353,15 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SayStart"",
+                    ""type"": ""Button"",
+                    ""id"": ""650018b0-2bf0-440d-a552-56f27694bdeb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -388,6 +397,17 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
                     ""action"": ""SayBK"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c58402a-3a85-49be-83d8-de787935628a"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SayStart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -415,6 +435,7 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
         m_Prototype_RecordButton = m_Prototype.FindAction("RecordButton", throwIfNotFound: true);
         m_Prototype_SayLT = m_Prototype.FindAction("SayLT", throwIfNotFound: true);
         m_Prototype_SayBK = m_Prototype.FindAction("SayBK", throwIfNotFound: true);
+        m_Prototype_SayStart = m_Prototype.FindAction("SayStart", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -651,6 +672,7 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
     private readonly InputAction m_Prototype_RecordButton;
     private readonly InputAction m_Prototype_SayLT;
     private readonly InputAction m_Prototype_SayBK;
+    private readonly InputAction m_Prototype_SayStart;
     public struct PrototypeActions
     {
         private @ControlMap m_Wrapper;
@@ -658,6 +680,7 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
         public InputAction @RecordButton => m_Wrapper.m_Prototype_RecordButton;
         public InputAction @SayLT => m_Wrapper.m_Prototype_SayLT;
         public InputAction @SayBK => m_Wrapper.m_Prototype_SayBK;
+        public InputAction @SayStart => m_Wrapper.m_Prototype_SayStart;
         public InputActionMap Get() { return m_Wrapper.m_Prototype; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -676,6 +699,9 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
             @SayBK.started += instance.OnSayBK;
             @SayBK.performed += instance.OnSayBK;
             @SayBK.canceled += instance.OnSayBK;
+            @SayStart.started += instance.OnSayStart;
+            @SayStart.performed += instance.OnSayStart;
+            @SayStart.canceled += instance.OnSayStart;
         }
 
         private void UnregisterCallbacks(IPrototypeActions instance)
@@ -689,6 +715,9 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
             @SayBK.started -= instance.OnSayBK;
             @SayBK.performed -= instance.OnSayBK;
             @SayBK.canceled -= instance.OnSayBK;
+            @SayStart.started -= instance.OnSayStart;
+            @SayStart.performed -= instance.OnSayStart;
+            @SayStart.canceled -= instance.OnSayStart;
         }
 
         public void RemoveCallbacks(IPrototypeActions instance)
@@ -729,5 +758,6 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
         void OnRecordButton(InputAction.CallbackContext context);
         void OnSayLT(InputAction.CallbackContext context);
         void OnSayBK(InputAction.CallbackContext context);
+        void OnSayStart(InputAction.CallbackContext context);
     }
 }

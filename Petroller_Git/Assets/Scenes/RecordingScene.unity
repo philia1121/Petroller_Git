@@ -906,6 +906,7 @@ GameObject:
   m_Component:
   - component: {fileID: 361481103}
   - component: {fileID: 361481104}
+  - component: {fileID: 361481105}
   m_Layer: 0
   m_Name: Replayer
   m_TagString: Untagged
@@ -949,7 +950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   folderPath: C:/Users/User/AppData/LocalLow/JC_Express/Petroller
   subFolder: 
-  fileName: ViewInAngle_20260508_205154
+  fileName: ViewInAngle_20260522_203513
   hmdTarget: {fileID: 1318325880}
   lHandTarget: {fileID: 390144382}
   lPalmTarget: {fileID: 1824337162}
@@ -969,6 +970,35 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 1, g: 0, b: 1, a: 1}
   - {r: 0.5, g: 0, b: 0.5, a: 1}
+--- !u!114 &361481105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361481101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32a25ee0780e6b5468047b0f868ccab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showFiredText: 0
+  key: 32
+  HotKeyEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 361481104}
+        m_TargetAssemblyTypeName: VRTrajectoryPlayer, Assembly-CSharp
+        m_MethodName: ReadLogAndFindTimestamps
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &376103316
 GameObject:
   m_ObjectHideFlags: 0

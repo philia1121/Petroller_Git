@@ -41,6 +41,7 @@ public class MultiTrackWaypoint
     public bool LCont_PosTracked;
     public bool LCont_RotTracked;
     public bool VisualTracked;
+    public bool startMotion;
 }
 
 [System.Serializable]

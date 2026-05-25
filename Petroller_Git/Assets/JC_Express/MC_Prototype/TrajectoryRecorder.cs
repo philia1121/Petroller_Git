@@ -16,6 +16,7 @@ public class TrajectoryRecorder : MonoBehaviour
     private TrajectorySession currentSession;
     private float startTime;
     bool visualTracked = true;
+    bool startM = false;
     ControlMap controlMap;
     Transform VRMainCam;
     public HandSkeletonFinder[] skeletonFinder;
@@ -43,6 +44,7 @@ public class TrajectoryRecorder : MonoBehaviour
         controlMap.Prototype.RecordButton.started += ctx => ToggleRecording();
         controlMap.Prototype.SayLT.started += ctx => SetVisualTracked(false);
         controlMap.Prototype.SayBK.started += ctx => SetVisualTracked(true);
+        controlMap.Prototype.SayStart.started += ctx => SetMotionStart(true);
     }
 
     public void ToggleRecording()
@@ -64,7 +66,14 @@ public class TrajectoryRecorder : MonoBehaviour
             if (soundCor != null) StopCoroutine(soundCor);
             SaveToFile();
             Debug.Log("stop recording");
+
+            ResetAll();
         }
+    }
+    void ResetAll()
+    {
+        visualTracked = true;
+        startM = false;
     }
 
     public void StartRecording()
@@ -146,6 +155,7 @@ public class TrajectoryRecorder : MonoBehaviour
         wp.LCont_PosTracked = trackingInfo.Get_LController_PosTracked();
         wp.LCont_RotTracked = trackingInfo.Get_RController_RotTracked();
         wp.VisualTracked = visualTracked;
+        wp.startMotion = startM;
 
         currentSession.waypoints.Add(wp);
     }
@@ -154,6 +164,10 @@ public class TrajectoryRecorder : MonoBehaviour
         visualTracked = value;
     }
     public bool GetVisualTracked() { return visualTracked; }
+    public void SetMotionStart(bool value)
+    {
+        startM = true;
+    }
     void SaveToFile()
     {
         string json = JsonUtility.ToJson(currentSession, true);
