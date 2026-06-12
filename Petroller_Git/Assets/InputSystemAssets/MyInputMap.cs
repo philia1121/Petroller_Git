@@ -73,12 +73,21 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
         },
         {
             ""name"": ""Gameplay"",
-            ""id"": ""1807ceb7-ca96-4352-a61e-fa0bfe4da55c"",
+            ""id"": ""2f8dad00-5b92-49a4-9bbd-3250bbce818c"",
             ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""07735936-7d24-4304-8b15-5cf43e9a550b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
                 {
                     ""name"": ""AnyInput"",
                     ""type"": ""Button"",
-                    ""id"": ""db3a0538-95cd-43df-8cc6-46f6d42058c2"",
+                    ""id"": ""02a718b8-83df-4252-8416-bf2ca13008cc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -88,19 +97,19 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""96593c8e-fdfa-4778-b0b1-bf8d774dba4f"",
-                    ""path"": ""*/{TriggerButton}"",
+                    ""id"": ""aa6eb0c5-2c78-4c89-8357-c82309962acb"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""AnyInput"",
+                    ""action"": ""New action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1ce3efbb-4817-4455-8ce6-6a05da6aa754"",
-                    ""path"": ""<Keyboard>/anyKey"",
+                    ""id"": ""bc2f27ff-1342-431c-a13a-c5ffa49dce2b"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -112,48 +121,12 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
         },
         {
             ""name"": ""Ellie"",
-            ""id"": ""95447849-4482-4480-bb0c-42b0541296ed"",
+            ""id"": ""119323de-738d-4e6c-9c98-3e210b795655"",
             ""actions"": [
                 {
-                    ""name"": ""MoveA"",
+                    ""name"": ""New action"",
                     ""type"": ""Button"",
-                    ""id"": ""7d8592f6-569c-48e4-8527-7ef2d46020b4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MoveB"",
-                    ""type"": ""Button"",
-                    ""id"": ""672c93b0-bd1e-40c4-b2be-d3fa6bf24d21"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MoveC"",
-                    ""type"": ""Button"",
-                    ""id"": ""69b60b80-8c32-44cf-833f-57044b329750"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Reset"",
-                    ""type"": ""Button"",
-                    ""id"": ""ea72c66f-bd56-407e-88af-f469d310b2bf"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SwitchMove"",
-                    ""type"": ""Button"",
-                    ""id"": ""7f0bd7e8-55fc-47fb-897b-5397f6abaeb0"",
+                    ""id"": ""13ddecf5-337d-4abe-a9fd-24b625f8c0e8"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -162,7 +135,61 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""SwitchBG"",
                     ""type"": ""Button"",
-                    ""id"": ""2eb67a69-f42f-4968-adb1-74f4d5159a3d"",
+                    ""id"": ""31c82216-671f-4e4a-acd1-abcdff2783df"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AnyInput"",
+                    ""type"": ""Button"",
+                    ""id"": ""90c1292e-5d3c-4499-ad6a-f8b7d748dd40"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchMove"",
+                    ""type"": ""Button"",
+                    ""id"": ""350b3d0a-1e91-4165-963b-119610ebb81f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveA"",
+                    ""type"": ""Button"",
+                    ""id"": ""40046028-0cd8-4322-9d5f-96fbdd6bc5e9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveB"",
+                    ""type"": ""Button"",
+                    ""id"": ""de9c6922-4163-4e92-a02e-4ccb27b06903"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveC"",
+                    ""type"": ""Button"",
+                    ""id"": ""6dce0035-431d-442d-9414-ae9a59a6bf33"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""03ca2843-d490-4511-a7dd-b5bfbcab390d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -172,8 +199,52 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""342a951b-a2fa-46e8-a2c1-9936cf537459"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""id"": ""392f77fc-c6a8-4916-92a5-2d47c4b8547f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d9164a2-a202-4e3c-9f03-c4611d997d6a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchBG"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2dd30bc-e991-4406-b5ff-7ceb68f1c91d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f3fe5327-822f-4c21-be7b-375684f04582"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""93c2a7a9-f33b-45da-8935-e10fc4dca712"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -183,8 +254,8 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d0687473-b210-4f19-94ef-ed7f176bd81d"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""id"": ""c0949721-f0a4-4323-a218-98d0683d8f7e"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -194,8 +265,8 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3e84ef37-9dc7-4e02-9549-3e1284dad7ff"",
-                    ""path"": ""<Keyboard>/u"",
+                    ""id"": ""874eeb3a-b565-484a-b5f6-60f1855153fc"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -205,67 +276,12 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8303bd2f-3016-41a1-9046-5f5e3e7f8bc5"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""id"": ""d8ef9c5e-8b73-40f7-9283-10203b8b525a"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Reset"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5198b5d8-95a7-401b-b6a0-34b65870a2e1"",
-                    ""path"": ""<XRController>{LeftHand}/triggerButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwitchMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2b3dcf0f-9b72-4fc6-a9d4-683e7d358bb5"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwitchMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8db05fa0-db86-4f0d-935d-5ecd1e873cd8"",
-                    ""path"": ""<XRController>{LeftHand}/{TriggerButton}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwitchMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""de171e56-436b-42cb-9f1f-43890b55539b"",
-                    ""path"": ""<XRController>{LeftHand}/gripButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwitchBG"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1d66ac67-2bf0-4b10-b93b-babc9afc65ae"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwitchBG"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -280,15 +296,18 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
         m_VRBasic_RH_TrackState = m_VRBasic.FindAction("RH_TrackState", throwIfNotFound: true);
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
+        m_Gameplay_Newaction = m_Gameplay.FindAction("New action", throwIfNotFound: true);
         m_Gameplay_AnyInput = m_Gameplay.FindAction("AnyInput", throwIfNotFound: true);
         // Ellie
         m_Ellie = asset.FindActionMap("Ellie", throwIfNotFound: true);
+        m_Ellie_Newaction = m_Ellie.FindAction("New action", throwIfNotFound: true);
+        m_Ellie_SwitchBG = m_Ellie.FindAction("SwitchBG", throwIfNotFound: true);
+        m_Ellie_AnyInput = m_Ellie.FindAction("AnyInput", throwIfNotFound: true);
+        m_Ellie_SwitchMove = m_Ellie.FindAction("SwitchMove", throwIfNotFound: true);
         m_Ellie_MoveA = m_Ellie.FindAction("MoveA", throwIfNotFound: true);
         m_Ellie_MoveB = m_Ellie.FindAction("MoveB", throwIfNotFound: true);
         m_Ellie_MoveC = m_Ellie.FindAction("MoveC", throwIfNotFound: true);
         m_Ellie_Reset = m_Ellie.FindAction("Reset", throwIfNotFound: true);
-        m_Ellie_SwitchMove = m_Ellie.FindAction("SwitchMove", throwIfNotFound: true);
-        m_Ellie_SwitchBG = m_Ellie.FindAction("SwitchBG", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -404,11 +423,13 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
     // Gameplay
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
+    private readonly InputAction m_Gameplay_Newaction;
     private readonly InputAction m_Gameplay_AnyInput;
     public struct GameplayActions
     {
         private @MyInputMap m_Wrapper;
         public GameplayActions(@MyInputMap wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Gameplay_Newaction;
         public InputAction @AnyInput => m_Wrapper.m_Gameplay_AnyInput;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
@@ -419,6 +440,9 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_GameplayActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_GameplayActionsCallbackInterfaces.Add(instance);
+            @Newaction.started += instance.OnNewaction;
+            @Newaction.performed += instance.OnNewaction;
+            @Newaction.canceled += instance.OnNewaction;
             @AnyInput.started += instance.OnAnyInput;
             @AnyInput.performed += instance.OnAnyInput;
             @AnyInput.canceled += instance.OnAnyInput;
@@ -426,6 +450,9 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IGameplayActions instance)
         {
+            @Newaction.started -= instance.OnNewaction;
+            @Newaction.performed -= instance.OnNewaction;
+            @Newaction.canceled -= instance.OnNewaction;
             @AnyInput.started -= instance.OnAnyInput;
             @AnyInput.performed -= instance.OnAnyInput;
             @AnyInput.canceled -= instance.OnAnyInput;
@@ -450,22 +477,26 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
     // Ellie
     private readonly InputActionMap m_Ellie;
     private List<IEllieActions> m_EllieActionsCallbackInterfaces = new List<IEllieActions>();
+    private readonly InputAction m_Ellie_Newaction;
+    private readonly InputAction m_Ellie_SwitchBG;
+    private readonly InputAction m_Ellie_AnyInput;
+    private readonly InputAction m_Ellie_SwitchMove;
     private readonly InputAction m_Ellie_MoveA;
     private readonly InputAction m_Ellie_MoveB;
     private readonly InputAction m_Ellie_MoveC;
     private readonly InputAction m_Ellie_Reset;
-    private readonly InputAction m_Ellie_SwitchMove;
-    private readonly InputAction m_Ellie_SwitchBG;
     public struct EllieActions
     {
         private @MyInputMap m_Wrapper;
         public EllieActions(@MyInputMap wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Ellie_Newaction;
+        public InputAction @SwitchBG => m_Wrapper.m_Ellie_SwitchBG;
+        public InputAction @AnyInput => m_Wrapper.m_Ellie_AnyInput;
+        public InputAction @SwitchMove => m_Wrapper.m_Ellie_SwitchMove;
         public InputAction @MoveA => m_Wrapper.m_Ellie_MoveA;
         public InputAction @MoveB => m_Wrapper.m_Ellie_MoveB;
         public InputAction @MoveC => m_Wrapper.m_Ellie_MoveC;
         public InputAction @Reset => m_Wrapper.m_Ellie_Reset;
-        public InputAction @SwitchMove => m_Wrapper.m_Ellie_SwitchMove;
-        public InputAction @SwitchBG => m_Wrapper.m_Ellie_SwitchBG;
         public InputActionMap Get() { return m_Wrapper.m_Ellie; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -475,6 +506,18 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_EllieActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_EllieActionsCallbackInterfaces.Add(instance);
+            @Newaction.started += instance.OnNewaction;
+            @Newaction.performed += instance.OnNewaction;
+            @Newaction.canceled += instance.OnNewaction;
+            @SwitchBG.started += instance.OnSwitchBG;
+            @SwitchBG.performed += instance.OnSwitchBG;
+            @SwitchBG.canceled += instance.OnSwitchBG;
+            @AnyInput.started += instance.OnAnyInput;
+            @AnyInput.performed += instance.OnAnyInput;
+            @AnyInput.canceled += instance.OnAnyInput;
+            @SwitchMove.started += instance.OnSwitchMove;
+            @SwitchMove.performed += instance.OnSwitchMove;
+            @SwitchMove.canceled += instance.OnSwitchMove;
             @MoveA.started += instance.OnMoveA;
             @MoveA.performed += instance.OnMoveA;
             @MoveA.canceled += instance.OnMoveA;
@@ -487,16 +530,22 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
             @Reset.started += instance.OnReset;
             @Reset.performed += instance.OnReset;
             @Reset.canceled += instance.OnReset;
-            @SwitchMove.started += instance.OnSwitchMove;
-            @SwitchMove.performed += instance.OnSwitchMove;
-            @SwitchMove.canceled += instance.OnSwitchMove;
-            @SwitchBG.started += instance.OnSwitchBG;
-            @SwitchBG.performed += instance.OnSwitchBG;
-            @SwitchBG.canceled += instance.OnSwitchBG;
         }
 
         private void UnregisterCallbacks(IEllieActions instance)
         {
+            @Newaction.started -= instance.OnNewaction;
+            @Newaction.performed -= instance.OnNewaction;
+            @Newaction.canceled -= instance.OnNewaction;
+            @SwitchBG.started -= instance.OnSwitchBG;
+            @SwitchBG.performed -= instance.OnSwitchBG;
+            @SwitchBG.canceled -= instance.OnSwitchBG;
+            @AnyInput.started -= instance.OnAnyInput;
+            @AnyInput.performed -= instance.OnAnyInput;
+            @AnyInput.canceled -= instance.OnAnyInput;
+            @SwitchMove.started -= instance.OnSwitchMove;
+            @SwitchMove.performed -= instance.OnSwitchMove;
+            @SwitchMove.canceled -= instance.OnSwitchMove;
             @MoveA.started -= instance.OnMoveA;
             @MoveA.performed -= instance.OnMoveA;
             @MoveA.canceled -= instance.OnMoveA;
@@ -509,12 +558,6 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
             @Reset.started -= instance.OnReset;
             @Reset.performed -= instance.OnReset;
             @Reset.canceled -= instance.OnReset;
-            @SwitchMove.started -= instance.OnSwitchMove;
-            @SwitchMove.performed -= instance.OnSwitchMove;
-            @SwitchMove.canceled -= instance.OnSwitchMove;
-            @SwitchBG.started -= instance.OnSwitchBG;
-            @SwitchBG.performed -= instance.OnSwitchBG;
-            @SwitchBG.canceled -= instance.OnSwitchBG;
         }
 
         public void RemoveCallbacks(IEllieActions instance)
@@ -539,15 +582,18 @@ public partial class @MyInputMap: IInputActionCollection2, IDisposable
     }
     public interface IGameplayActions
     {
+        void OnNewaction(InputAction.CallbackContext context);
         void OnAnyInput(InputAction.CallbackContext context);
     }
     public interface IEllieActions
     {
+        void OnNewaction(InputAction.CallbackContext context);
+        void OnSwitchBG(InputAction.CallbackContext context);
+        void OnAnyInput(InputAction.CallbackContext context);
+        void OnSwitchMove(InputAction.CallbackContext context);
         void OnMoveA(InputAction.CallbackContext context);
         void OnMoveB(InputAction.CallbackContext context);
         void OnMoveC(InputAction.CallbackContext context);
         void OnReset(InputAction.CallbackContext context);
-        void OnSwitchMove(InputAction.CallbackContext context);
-        void OnSwitchBG(InputAction.CallbackContext context);
     }
 }

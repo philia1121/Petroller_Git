@@ -1,5 +1,10 @@
 {
   "dependencies": {
+    "com.google.external-dependency-manager": "file:../Assets/FirebaseRequirement/com.google.external-dependency-manager-1.2.187.tgz",
+    "com.google.firebase.app": "file:../Assets/FirebaseRequirement/com.google.firebase.app-13.6.0.tgz",
+    "com.google.firebase.auth": "file:../Assets/FirebaseRequirement/com.google.firebase.auth-13.6.0.tgz",
+    "com.google.firebase.firestore": "file:../Assets/FirebaseRequirement/com.google.firebase.firestore-13.6.0.tgz",
+    "com.google.firebase.storage": "file:../Assets/FirebaseRequirement/com.google.firebase.storage-13.6.0.tgz",
     "com.mackysoft.serializereference-extensions": "https://github.com/mackysoft/Unity-SerializeReferenceExtensions.git?path=Assets/MackySoft/MackySoft.SerializeReferenceExtensions",
     "com.meta.xr.sdk.core": "72.0.0",
     "com.meta.xr.sdk.interaction.ovr": "72.0.0",
@@ -8,6 +13,7 @@
     "com.unity.feature.development": "1.0.1",
     "com.unity.formats.fbx": "4.2.1",
     "com.unity.inputsystem": "1.7.0",
+    "com.unity.nuget.newtonsoft-json": "3.2.2",
     "com.unity.recorder": "4.0.3",
     "com.unity.render-pipelines.universal": "14.0.10",
     "com.unity.textmeshpro": "3.0.9",

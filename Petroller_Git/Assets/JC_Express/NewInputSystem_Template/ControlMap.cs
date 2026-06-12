@@ -353,6 +353,177 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SayStart"",
+                    ""type"": ""Button"",
+                    ""id"": ""650018b0-2bf0-440d-a552-56f27694bdeb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Record"",
+                    ""type"": ""Button"",
+                    ""id"": ""b6306b31-82fa-406c-a06a-2ceb777c8dd0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Delete"",
+                    ""type"": ""Button"",
+                    ""id"": ""6b8e1134-c9fd-4b09-9671-13bcfa9efa6b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SettingsToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""ef40bc8b-e56e-40e0-a4cf-d3adae03f063"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RJoystick"",
+                    ""type"": ""Button"",
+                    ""id"": ""875c73ff-3b3d-46c7-a597-1526f14eb6bc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left_Trigger"",
+                    ""type"": ""Button"",
+                    ""id"": ""bfc274d4-09a8-4f83-bc2f-aa38f5fc83e6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Right_Trigger"",
+                    ""type"": ""Button"",
+                    ""id"": ""8df7564a-28a7-4374-a831-24451e13f319"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left_Grip"",
+                    ""type"": ""Button"",
+                    ""id"": ""68882027-2908-496a-ad33-9491b9d1a5e6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Right_Grip"",
+                    ""type"": ""Button"",
+                    ""id"": ""99c0f8bc-82d5-4f6d-9fe4-3567fa6047d4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""X"",
+                    ""type"": ""Button"",
+                    ""id"": ""25d2ec0c-847e-42e2-8cc0-a7f1b58bf3e0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""B"",
+                    ""type"": ""Button"",
+                    ""id"": ""7fc26174-8baa-41d7-a3b4-78d188a51110"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""A"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd9d1070-47a2-4ebc-9dd7-e9b78f3d7459"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Y"",
+                    ""type"": ""Button"",
+                    ""id"": ""84802e22-fcfd-4609-8016-6841bca9a655"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ReCenter"",
+                    ""type"": ""Button"",
+                    ""id"": ""b9fa6c3d-16a7-41b9-b5a6-5d2237021e7c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LJoystick"",
+                    ""type"": ""Button"",
+                    ""id"": ""e6e864b6-c8e3-4559-b005-495f931f08f8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LTouchToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""e94bdba0-e48f-411a-a887-3344c60389c1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RHandToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""93608fe4-966f-4ad0-83db-905b9a61840f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LHandToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""15b5ce32-0e66-4f41-a97e-ead10bf6cc7f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RTouchToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""f319a292-3b1e-48cf-a3ce-a1ed3a1a960e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -388,6 +559,215 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
                     ""action"": ""SayBK"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c58402a-3a85-49be-83d8-de787935628a"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SayStart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""32e34393-7b8b-436a-9f9b-f5119745e1a5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Record"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f937f38-3869-4a26-b978-a8a6c7e9ed70"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03779cb7-80f7-461d-8b19-8632b9855d5d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SettingsToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1ebb59f8-198c-4590-af7b-05cd811975e6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RJoystick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11199ceb-f19d-4dc8-9f45-d4058b11031f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left_Trigger"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c73bcb51-b413-4508-bd25-2843d084c10b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right_Trigger"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f7e71bd3-7533-4a35-9f27-3eaa18467863"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left_Grip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3786b043-43cb-43a1-9f7b-593028a5e26a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right_Grip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f8adc8dd-fd01-4c74-a440-8a6eaf6dc91e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""X"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71338322-0561-41c2-b702-5c4b5de99b1d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""B"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c74f31b3-5594-41dc-bd74-73c0fa19e267"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""A"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""055a0b52-746a-4355-b70d-d1c2babcd37f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Y"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""371fbcf8-c4aa-40ee-b3df-d10fb4ad5060"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReCenter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e380333-eac1-4005-8f98-9d6df475e09b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LJoystick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e102b82b-2a80-44c9-a8df-51d1c0a13b29"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LTouchToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3029302a-24ff-45c1-9ea6-c249e9f05f50"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RHandToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f311791-0538-4909-a532-e0f28acfff9f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LHandToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d900bd31-3a25-4ec3-8ff5-37a9c881bd5d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RTouchToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -415,6 +795,25 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
         m_Prototype_RecordButton = m_Prototype.FindAction("RecordButton", throwIfNotFound: true);
         m_Prototype_SayLT = m_Prototype.FindAction("SayLT", throwIfNotFound: true);
         m_Prototype_SayBK = m_Prototype.FindAction("SayBK", throwIfNotFound: true);
+        m_Prototype_SayStart = m_Prototype.FindAction("SayStart", throwIfNotFound: true);
+        m_Prototype_Record = m_Prototype.FindAction("Record", throwIfNotFound: true);
+        m_Prototype_Delete = m_Prototype.FindAction("Delete", throwIfNotFound: true);
+        m_Prototype_SettingsToggle = m_Prototype.FindAction("SettingsToggle", throwIfNotFound: true);
+        m_Prototype_RJoystick = m_Prototype.FindAction("RJoystick", throwIfNotFound: true);
+        m_Prototype_Left_Trigger = m_Prototype.FindAction("Left_Trigger", throwIfNotFound: true);
+        m_Prototype_Right_Trigger = m_Prototype.FindAction("Right_Trigger", throwIfNotFound: true);
+        m_Prototype_Left_Grip = m_Prototype.FindAction("Left_Grip", throwIfNotFound: true);
+        m_Prototype_Right_Grip = m_Prototype.FindAction("Right_Grip", throwIfNotFound: true);
+        m_Prototype_X = m_Prototype.FindAction("X", throwIfNotFound: true);
+        m_Prototype_B = m_Prototype.FindAction("B", throwIfNotFound: true);
+        m_Prototype_A = m_Prototype.FindAction("A", throwIfNotFound: true);
+        m_Prototype_Y = m_Prototype.FindAction("Y", throwIfNotFound: true);
+        m_Prototype_ReCenter = m_Prototype.FindAction("ReCenter", throwIfNotFound: true);
+        m_Prototype_LJoystick = m_Prototype.FindAction("LJoystick", throwIfNotFound: true);
+        m_Prototype_LTouchToggle = m_Prototype.FindAction("LTouchToggle", throwIfNotFound: true);
+        m_Prototype_RHandToggle = m_Prototype.FindAction("RHandToggle", throwIfNotFound: true);
+        m_Prototype_LHandToggle = m_Prototype.FindAction("LHandToggle", throwIfNotFound: true);
+        m_Prototype_RTouchToggle = m_Prototype.FindAction("RTouchToggle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -651,6 +1050,25 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
     private readonly InputAction m_Prototype_RecordButton;
     private readonly InputAction m_Prototype_SayLT;
     private readonly InputAction m_Prototype_SayBK;
+    private readonly InputAction m_Prototype_SayStart;
+    private readonly InputAction m_Prototype_Record;
+    private readonly InputAction m_Prototype_Delete;
+    private readonly InputAction m_Prototype_SettingsToggle;
+    private readonly InputAction m_Prototype_RJoystick;
+    private readonly InputAction m_Prototype_Left_Trigger;
+    private readonly InputAction m_Prototype_Right_Trigger;
+    private readonly InputAction m_Prototype_Left_Grip;
+    private readonly InputAction m_Prototype_Right_Grip;
+    private readonly InputAction m_Prototype_X;
+    private readonly InputAction m_Prototype_B;
+    private readonly InputAction m_Prototype_A;
+    private readonly InputAction m_Prototype_Y;
+    private readonly InputAction m_Prototype_ReCenter;
+    private readonly InputAction m_Prototype_LJoystick;
+    private readonly InputAction m_Prototype_LTouchToggle;
+    private readonly InputAction m_Prototype_RHandToggle;
+    private readonly InputAction m_Prototype_LHandToggle;
+    private readonly InputAction m_Prototype_RTouchToggle;
     public struct PrototypeActions
     {
         private @ControlMap m_Wrapper;
@@ -658,6 +1076,25 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
         public InputAction @RecordButton => m_Wrapper.m_Prototype_RecordButton;
         public InputAction @SayLT => m_Wrapper.m_Prototype_SayLT;
         public InputAction @SayBK => m_Wrapper.m_Prototype_SayBK;
+        public InputAction @SayStart => m_Wrapper.m_Prototype_SayStart;
+        public InputAction @Record => m_Wrapper.m_Prototype_Record;
+        public InputAction @Delete => m_Wrapper.m_Prototype_Delete;
+        public InputAction @SettingsToggle => m_Wrapper.m_Prototype_SettingsToggle;
+        public InputAction @RJoystick => m_Wrapper.m_Prototype_RJoystick;
+        public InputAction @Left_Trigger => m_Wrapper.m_Prototype_Left_Trigger;
+        public InputAction @Right_Trigger => m_Wrapper.m_Prototype_Right_Trigger;
+        public InputAction @Left_Grip => m_Wrapper.m_Prototype_Left_Grip;
+        public InputAction @Right_Grip => m_Wrapper.m_Prototype_Right_Grip;
+        public InputAction @X => m_Wrapper.m_Prototype_X;
+        public InputAction @B => m_Wrapper.m_Prototype_B;
+        public InputAction @A => m_Wrapper.m_Prototype_A;
+        public InputAction @Y => m_Wrapper.m_Prototype_Y;
+        public InputAction @ReCenter => m_Wrapper.m_Prototype_ReCenter;
+        public InputAction @LJoystick => m_Wrapper.m_Prototype_LJoystick;
+        public InputAction @LTouchToggle => m_Wrapper.m_Prototype_LTouchToggle;
+        public InputAction @RHandToggle => m_Wrapper.m_Prototype_RHandToggle;
+        public InputAction @LHandToggle => m_Wrapper.m_Prototype_LHandToggle;
+        public InputAction @RTouchToggle => m_Wrapper.m_Prototype_RTouchToggle;
         public InputActionMap Get() { return m_Wrapper.m_Prototype; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -676,6 +1113,63 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
             @SayBK.started += instance.OnSayBK;
             @SayBK.performed += instance.OnSayBK;
             @SayBK.canceled += instance.OnSayBK;
+            @SayStart.started += instance.OnSayStart;
+            @SayStart.performed += instance.OnSayStart;
+            @SayStart.canceled += instance.OnSayStart;
+            @Record.started += instance.OnRecord;
+            @Record.performed += instance.OnRecord;
+            @Record.canceled += instance.OnRecord;
+            @Delete.started += instance.OnDelete;
+            @Delete.performed += instance.OnDelete;
+            @Delete.canceled += instance.OnDelete;
+            @SettingsToggle.started += instance.OnSettingsToggle;
+            @SettingsToggle.performed += instance.OnSettingsToggle;
+            @SettingsToggle.canceled += instance.OnSettingsToggle;
+            @RJoystick.started += instance.OnRJoystick;
+            @RJoystick.performed += instance.OnRJoystick;
+            @RJoystick.canceled += instance.OnRJoystick;
+            @Left_Trigger.started += instance.OnLeft_Trigger;
+            @Left_Trigger.performed += instance.OnLeft_Trigger;
+            @Left_Trigger.canceled += instance.OnLeft_Trigger;
+            @Right_Trigger.started += instance.OnRight_Trigger;
+            @Right_Trigger.performed += instance.OnRight_Trigger;
+            @Right_Trigger.canceled += instance.OnRight_Trigger;
+            @Left_Grip.started += instance.OnLeft_Grip;
+            @Left_Grip.performed += instance.OnLeft_Grip;
+            @Left_Grip.canceled += instance.OnLeft_Grip;
+            @Right_Grip.started += instance.OnRight_Grip;
+            @Right_Grip.performed += instance.OnRight_Grip;
+            @Right_Grip.canceled += instance.OnRight_Grip;
+            @X.started += instance.OnX;
+            @X.performed += instance.OnX;
+            @X.canceled += instance.OnX;
+            @B.started += instance.OnB;
+            @B.performed += instance.OnB;
+            @B.canceled += instance.OnB;
+            @A.started += instance.OnA;
+            @A.performed += instance.OnA;
+            @A.canceled += instance.OnA;
+            @Y.started += instance.OnY;
+            @Y.performed += instance.OnY;
+            @Y.canceled += instance.OnY;
+            @ReCenter.started += instance.OnReCenter;
+            @ReCenter.performed += instance.OnReCenter;
+            @ReCenter.canceled += instance.OnReCenter;
+            @LJoystick.started += instance.OnLJoystick;
+            @LJoystick.performed += instance.OnLJoystick;
+            @LJoystick.canceled += instance.OnLJoystick;
+            @LTouchToggle.started += instance.OnLTouchToggle;
+            @LTouchToggle.performed += instance.OnLTouchToggle;
+            @LTouchToggle.canceled += instance.OnLTouchToggle;
+            @RHandToggle.started += instance.OnRHandToggle;
+            @RHandToggle.performed += instance.OnRHandToggle;
+            @RHandToggle.canceled += instance.OnRHandToggle;
+            @LHandToggle.started += instance.OnLHandToggle;
+            @LHandToggle.performed += instance.OnLHandToggle;
+            @LHandToggle.canceled += instance.OnLHandToggle;
+            @RTouchToggle.started += instance.OnRTouchToggle;
+            @RTouchToggle.performed += instance.OnRTouchToggle;
+            @RTouchToggle.canceled += instance.OnRTouchToggle;
         }
 
         private void UnregisterCallbacks(IPrototypeActions instance)
@@ -689,6 +1183,63 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
             @SayBK.started -= instance.OnSayBK;
             @SayBK.performed -= instance.OnSayBK;
             @SayBK.canceled -= instance.OnSayBK;
+            @SayStart.started -= instance.OnSayStart;
+            @SayStart.performed -= instance.OnSayStart;
+            @SayStart.canceled -= instance.OnSayStart;
+            @Record.started -= instance.OnRecord;
+            @Record.performed -= instance.OnRecord;
+            @Record.canceled -= instance.OnRecord;
+            @Delete.started -= instance.OnDelete;
+            @Delete.performed -= instance.OnDelete;
+            @Delete.canceled -= instance.OnDelete;
+            @SettingsToggle.started -= instance.OnSettingsToggle;
+            @SettingsToggle.performed -= instance.OnSettingsToggle;
+            @SettingsToggle.canceled -= instance.OnSettingsToggle;
+            @RJoystick.started -= instance.OnRJoystick;
+            @RJoystick.performed -= instance.OnRJoystick;
+            @RJoystick.canceled -= instance.OnRJoystick;
+            @Left_Trigger.started -= instance.OnLeft_Trigger;
+            @Left_Trigger.performed -= instance.OnLeft_Trigger;
+            @Left_Trigger.canceled -= instance.OnLeft_Trigger;
+            @Right_Trigger.started -= instance.OnRight_Trigger;
+            @Right_Trigger.performed -= instance.OnRight_Trigger;
+            @Right_Trigger.canceled -= instance.OnRight_Trigger;
+            @Left_Grip.started -= instance.OnLeft_Grip;
+            @Left_Grip.performed -= instance.OnLeft_Grip;
+            @Left_Grip.canceled -= instance.OnLeft_Grip;
+            @Right_Grip.started -= instance.OnRight_Grip;
+            @Right_Grip.performed -= instance.OnRight_Grip;
+            @Right_Grip.canceled -= instance.OnRight_Grip;
+            @X.started -= instance.OnX;
+            @X.performed -= instance.OnX;
+            @X.canceled -= instance.OnX;
+            @B.started -= instance.OnB;
+            @B.performed -= instance.OnB;
+            @B.canceled -= instance.OnB;
+            @A.started -= instance.OnA;
+            @A.performed -= instance.OnA;
+            @A.canceled -= instance.OnA;
+            @Y.started -= instance.OnY;
+            @Y.performed -= instance.OnY;
+            @Y.canceled -= instance.OnY;
+            @ReCenter.started -= instance.OnReCenter;
+            @ReCenter.performed -= instance.OnReCenter;
+            @ReCenter.canceled -= instance.OnReCenter;
+            @LJoystick.started -= instance.OnLJoystick;
+            @LJoystick.performed -= instance.OnLJoystick;
+            @LJoystick.canceled -= instance.OnLJoystick;
+            @LTouchToggle.started -= instance.OnLTouchToggle;
+            @LTouchToggle.performed -= instance.OnLTouchToggle;
+            @LTouchToggle.canceled -= instance.OnLTouchToggle;
+            @RHandToggle.started -= instance.OnRHandToggle;
+            @RHandToggle.performed -= instance.OnRHandToggle;
+            @RHandToggle.canceled -= instance.OnRHandToggle;
+            @LHandToggle.started -= instance.OnLHandToggle;
+            @LHandToggle.performed -= instance.OnLHandToggle;
+            @LHandToggle.canceled -= instance.OnLHandToggle;
+            @RTouchToggle.started -= instance.OnRTouchToggle;
+            @RTouchToggle.performed -= instance.OnRTouchToggle;
+            @RTouchToggle.canceled -= instance.OnRTouchToggle;
         }
 
         public void RemoveCallbacks(IPrototypeActions instance)
@@ -729,5 +1280,24 @@ public partial class @ControlMap: IInputActionCollection2, IDisposable
         void OnRecordButton(InputAction.CallbackContext context);
         void OnSayLT(InputAction.CallbackContext context);
         void OnSayBK(InputAction.CallbackContext context);
+        void OnSayStart(InputAction.CallbackContext context);
+        void OnRecord(InputAction.CallbackContext context);
+        void OnDelete(InputAction.CallbackContext context);
+        void OnSettingsToggle(InputAction.CallbackContext context);
+        void OnRJoystick(InputAction.CallbackContext context);
+        void OnLeft_Trigger(InputAction.CallbackContext context);
+        void OnRight_Trigger(InputAction.CallbackContext context);
+        void OnLeft_Grip(InputAction.CallbackContext context);
+        void OnRight_Grip(InputAction.CallbackContext context);
+        void OnX(InputAction.CallbackContext context);
+        void OnB(InputAction.CallbackContext context);
+        void OnA(InputAction.CallbackContext context);
+        void OnY(InputAction.CallbackContext context);
+        void OnReCenter(InputAction.CallbackContext context);
+        void OnLJoystick(InputAction.CallbackContext context);
+        void OnLTouchToggle(InputAction.CallbackContext context);
+        void OnRHandToggle(InputAction.CallbackContext context);
+        void OnLHandToggle(InputAction.CallbackContext context);
+        void OnRTouchToggle(InputAction.CallbackContext context);
     }
 }

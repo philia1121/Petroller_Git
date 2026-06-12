@@ -51,12 +51,21 @@
         },
         {
             "name": "Gameplay",
-            "id": "1807ceb7-ca96-4352-a61e-fa0bfe4da55c",
+            "id": "2f8dad00-5b92-49a4-9bbd-3250bbce818c",
             "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "07735936-7d24-4304-8b15-5cf43e9a550b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
                 {
                     "name": "AnyInput",
                     "type": "Button",
-                    "id": "db3a0538-95cd-43df-8cc6-46f6d42058c2",
+                    "id": "02a718b8-83df-4252-8416-bf2ca13008cc",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -66,19 +75,19 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "96593c8e-fdfa-4778-b0b1-bf8d774dba4f",
-                    "path": "*/{TriggerButton}",
+                    "id": "aa6eb0c5-2c78-4c89-8357-c82309962acb",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AnyInput",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "1ce3efbb-4817-4455-8ce6-6a05da6aa754",
-                    "path": "<Keyboard>/anyKey",
+                    "id": "bc2f27ff-1342-431c-a13a-c5ffa49dce2b",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -90,48 +99,12 @@
         },
         {
             "name": "Ellie",
-            "id": "95447849-4482-4480-bb0c-42b0541296ed",
+            "id": "119323de-738d-4e6c-9c98-3e210b795655",
             "actions": [
                 {
-                    "name": "MoveA",
+                    "name": "New action",
                     "type": "Button",
-                    "id": "7d8592f6-569c-48e4-8527-7ef2d46020b4",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "MoveB",
-                    "type": "Button",
-                    "id": "672c93b0-bd1e-40c4-b2be-d3fa6bf24d21",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "MoveC",
-                    "type": "Button",
-                    "id": "69b60b80-8c32-44cf-833f-57044b329750",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Reset",
-                    "type": "Button",
-                    "id": "ea72c66f-bd56-407e-88af-f469d310b2bf",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SwitchMove",
-                    "type": "Button",
-                    "id": "7f0bd7e8-55fc-47fb-897b-5397f6abaeb0",
+                    "id": "13ddecf5-337d-4abe-a9fd-24b625f8c0e8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -140,7 +113,61 @@
                 {
                     "name": "SwitchBG",
                     "type": "Button",
-                    "id": "2eb67a69-f42f-4968-adb1-74f4d5159a3d",
+                    "id": "31c82216-671f-4e4a-acd1-abcdff2783df",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AnyInput",
+                    "type": "Button",
+                    "id": "90c1292e-5d3c-4499-ad6a-f8b7d748dd40",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchMove",
+                    "type": "Button",
+                    "id": "350b3d0a-1e91-4165-963b-119610ebb81f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MoveA",
+                    "type": "Button",
+                    "id": "40046028-0cd8-4322-9d5f-96fbdd6bc5e9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MoveB",
+                    "type": "Button",
+                    "id": "de9c6922-4163-4e92-a02e-4ccb27b06903",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MoveC",
+                    "type": "Button",
+                    "id": "6dce0035-431d-442d-9414-ae9a59a6bf33",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Reset",
+                    "type": "Button",
+                    "id": "03ca2843-d490-4511-a7dd-b5bfbcab390d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -150,8 +177,52 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "342a951b-a2fa-46e8-a2c1-9936cf537459",
-                    "path": "<Keyboard>/s",
+                    "id": "392f77fc-c6a8-4916-92a5-2d47c4b8547f",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1d9164a2-a202-4e3c-9f03-c4611d997d6a",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchBG",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2dd30bc-e991-4406-b5ff-7ceb68f1c91d",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AnyInput",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f3fe5327-822f-4c21-be7b-375684f04582",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "93c2a7a9-f33b-45da-8935-e10fc4dca712",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -161,8 +232,8 @@
                 },
                 {
                     "name": "",
-                    "id": "d0687473-b210-4f19-94ef-ed7f176bd81d",
-                    "path": "<Keyboard>/p",
+                    "id": "c0949721-f0a4-4323-a218-98d0683d8f7e",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -172,8 +243,8 @@
                 },
                 {
                     "name": "",
-                    "id": "3e84ef37-9dc7-4e02-9549-3e1284dad7ff",
-                    "path": "<Keyboard>/u",
+                    "id": "874eeb3a-b565-484a-b5f6-60f1855153fc",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -183,67 +254,12 @@
                 },
                 {
                     "name": "",
-                    "id": "8303bd2f-3016-41a1-9046-5f5e3e7f8bc5",
-                    "path": "<Keyboard>/r",
+                    "id": "d8ef9c5e-8b73-40f7-9283-10203b8b525a",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Reset",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5198b5d8-95a7-401b-b6a0-34b65870a2e1",
-                    "path": "<XRController>{LeftHand}/triggerButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchMove",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2b3dcf0f-9b72-4fc6-a9d4-683e7d358bb5",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchMove",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8db05fa0-db86-4f0d-935d-5ecd1e873cd8",
-                    "path": "<XRController>{LeftHand}/{TriggerButton}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchMove",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "de171e56-436b-42cb-9f1f-43890b55539b",
-                    "path": "<XRController>{LeftHand}/gripButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchBG",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1d66ac67-2bf0-4b10-b93b-babc9afc65ae",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchBG",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

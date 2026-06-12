@@ -21,7 +21,7 @@ public class TrackingInfoBoard : MonoBehaviour
     {
         UpdatePosSignal();
         UpdateRotSignal();
-        UpdateUserSignal();
+        // UpdateUserSignal();
     }
 
     public void UpdatePosSignal()
@@ -52,8 +52,8 @@ public class TrackingInfoBoard : MonoBehaviour
         Rot_Signal[2].color = RC ? SignalColors[1] : SignalColors[0];
         Rot_Signal[3].color = RH ? SignalColors[1] : SignalColors[0];
     }
-    public void UpdateUserSignal()
-    {
-        user.color = trackingInfo.GetComponent<TrajectoryRecorder>().GetVisualTracked() ? SignalColors[1] : SignalColors[0];
-    }
+    // public void UpdateUserSignal()
+    // {
+    //     user.color = trackingInfo.GetComponent<TrajectoryRecorder>().GetVisualTracked() ? SignalColors[1] : SignalColors[0];
+    // }
 }
