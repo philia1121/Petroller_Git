@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class TrajectoryRecorder_Config : MonoBehaviour
 {
-    [SerializeField] private bool setOnAwake = false;
+    [SerializeField] private bool setOnEnable = false;
     [SerializeField] private NamingType namingType = NamingType.Custom;
     [SerializeField] private string filePrefix = "MultiTraj";
-    [SerializeField] private string MotionType = "Undefined";
+    [SerializeField] private string userName = "userN";
+    [SerializeField] private string motionType = "Undefined";
 
     public static TrajectoryRecorder_Config instance;
-    void Awake()
+    void OnEnable()
     {
-        if (!setOnAwake) return;
+        if (!setOnEnable) return;
 
-        if(instance == null)
+        if (instance == null)
             instance = this;
 
         string fPrefix = "";
@@ -29,8 +30,13 @@ public class TrajectoryRecorder_Config : MonoBehaviour
             case NamingType.Guid:
                 fPrefix = System.Guid.NewGuid().ToString();
                 break;
+            case NamingType.UserName:
+                fPrefix = (userName == null) ? "" : userName;
+                break;
         }
         if (TrajectoryRecorder.instance) TrajectoryRecorder.instance.SetFilePrefix(fPrefix);
+        if (TrajectoryRecorder.instance) TrajectoryRecorder.instance.SetUserName(userName);
+        if (TrajectoryRecorder.instance) TrajectoryRecorder.instance.SetMotionType(motionType);
     }
     public void ChangeConfig(string prefix)
     {

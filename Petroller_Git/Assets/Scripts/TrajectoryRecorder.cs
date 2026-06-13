@@ -12,12 +12,14 @@ using Google.MiniJSON;
 using System;
 using Firebase.Storage;
 using Newtonsoft.Json;
+using UnityEngine.UI;
 
 public class TrajectoryRecorder : MonoBehaviour
 {
     [Header("Easy Show")]
     public bool isRecording = false;
     public Material mat;
+    public Image img;
 
     [Header("Save Related")]
     public bool uploadToStore = true;
@@ -36,7 +38,7 @@ public class TrajectoryRecorder : MonoBehaviour
     private StorageRecordData recordData;
 
     public TrackingInfo trackingInfo;
-    
+
     ControlMap controlMap;
     public Transform VRMainCam;
     Coroutine cor;
@@ -55,13 +57,13 @@ public class TrajectoryRecorder : MonoBehaviour
             instance = this;
 
         controlMap = new ControlMap();
-        if(!VRMainCam) VRMainCam = Camera.main.transform;
+        if (!VRMainCam) VRMainCam = Camera.main.transform;
         trackingInfo = FindFirstObjectByType<TrackingInfo>();
         if (!trackingInfo) trackingInfo = gameObject.AddComponent<TrackingInfo>();
 
         InitializeFirestore();
     }
-    
+
     void OnEnable()
     {
         controlMap.Prototype.Enable();
@@ -74,6 +76,7 @@ public class TrajectoryRecorder : MonoBehaviour
         if (isRecording)
         {
             if (mat) mat.color = Color.red;
+            if (img) img.color = Color.red;
 
             startTime = Time.time;
             StartNewSession();
@@ -85,6 +88,7 @@ public class TrajectoryRecorder : MonoBehaviour
         else
         {
             if (mat) mat.color = Color.white;
+            if (img) img.color = Color.white;
             if (cor != null) StopCoroutine(cor);
             SaveToFile();
             Debug.Log("stop recording");
@@ -97,6 +101,7 @@ public class TrajectoryRecorder : MonoBehaviour
         {
             isRecording = !isRecording;
             if (mat) mat.color = Color.red;
+            if (img) img.color = Color.red;
 
             startTime = Time.time;
             StartNewSession();
@@ -112,6 +117,7 @@ public class TrajectoryRecorder : MonoBehaviour
         {
             isRecording = !isRecording;
             if (mat) mat.color = Color.white;
+            if (img) img.color = Color.white;
 
             if (cor != null) StopCoroutine(cor);
             SaveToFile();
@@ -147,10 +153,14 @@ public class TrajectoryRecorder : MonoBehaviour
         UpdateNewWayPoint();
         UpdateNewRecordData();
     }
+    void OnApplicQuit()
+    {
+        StopRecording();
+    }
     void UpdateNewWayPoint()
     {
         // Time Stamp
-        double timeSinceStart = Math.Round(Time.time - startTime,3);
+        double timeSinceStart = Math.Round(Time.time - startTime, 3);
         MultiTrackWaypoint wp = new MultiTrackWaypoint();
         wp.timestamp = timeSinceStart;
 
@@ -229,7 +239,7 @@ public class TrajectoryRecorder : MonoBehaviour
         Debug.Log($"SoA File save at : {frd_path}");
 
         // if (uploadToStore) UploadContentToFirestore(recordData, name);
-        if (uploadToStorage) UploadContentToStorage(frd, $"MC/{name}");
+        if (uploadToStorage) UploadContentToStorage(frd, $"Ellie_Branch/{name}");
     }
 
     #region Firebase Related
@@ -295,6 +305,7 @@ public class TrajectoryRecorder : MonoBehaviour
     {
         if (prefix == null) return;
         filePrefix = prefix;
+        Debug.Log("Set filePreflex as" + prefix);
     }
     public string GetFilePrefix() { return filePrefix; }
     public void SetMotionType(string motion)
@@ -303,14 +314,15 @@ public class TrajectoryRecorder : MonoBehaviour
         m_motion = motion;
         if (currentSession != null) currentSession.motionType = motion;
         if (recordData != null) recordData.motionType = motion;
+        Debug.Log("Set motion type as" + motion);
     }
     public void SetUserName(string name)
     {
         if (name == null) return;
         m_user = name;
-        if (currentSession != null) currentSession.userName= name;
+        if (currentSession != null) currentSession.userName = name;
         if (recordData != null) recordData.userName = name;
-        SetFilePrefix(name);
+        Debug.Log("Set userName as" + name);
     }
 
 }

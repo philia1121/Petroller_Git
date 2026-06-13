@@ -59,7 +59,8 @@ public class PetrollerObjectInfo : MonoBehaviour
     public string LastImpactZoneID { get; private set; } = "";
 
     // Tracking State //
-    OVRInput.Controller controller = OVRInput.Controller.RTouch;
+    [Header("Controller Settings")]
+    public OVRInput.Controller controller = OVRInput.Controller.RTouch;
     public enum TrackingStatus
     { Tracked, PresumptiveLostTracked, LostTracked }
     public TrackingStatus CurrentTrackingState = TrackingStatus.Tracked;
