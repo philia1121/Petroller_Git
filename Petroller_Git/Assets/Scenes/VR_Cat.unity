@@ -389,8 +389,8 @@ MonoBehaviour:
     - rid: 3183446008569528320
       type: {class: MaintainForNSecondsWithGraceLogic, ns: , asm: Assembly-CSharp}
       data:
-        secondsToMaintain: 0.75
-        gracePeriodSeconds: 1
+        secondsToMaintain: 0.5
+        gracePeriodSeconds: 0.15
 --- !u!114 &187219297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1388,6 +1388,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &756995633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 756995634}
+  - component: {fileID: 756995635}
+  m_Layer: 0
+  m_Name: Petroller Model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &756995634
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756995633}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.000000042840835, z: 0.8995197, w: 0.43688026}
+  m_LocalPosition: {x: -0.03125, y: 0.125, z: -0.0625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1476359368}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &756995635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756995633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa9d18127492e2b46bae47e8462e592b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Notes: "\u504F\u79FB\u91CF\u8ABF\u9019\u500B\u7269\u4EF6 transform"
 --- !u!1 &765920553
 GameObject:
   m_ObjectHideFlags: 0
@@ -1959,6 +2004,7 @@ GameObject:
   - component: {fileID: 1228012481}
   - component: {fileID: 1228012483}
   - component: {fileID: 1228012482}
+  - component: {fileID: 1228012484}
   m_Layer: 0
   m_Name: Petroller Model
   m_TagString: Untagged
@@ -2101,6 +2147,19 @@ MonoBehaviour:
   minInterval: 1
   maxInterval: 5
   keepRandomPlay: 0
+--- !u!114 &1228012484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228012480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa9d18127492e2b46bae47e8462e592b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Notes: "\u504F\u79FB\u91CF\u8ABF\u9019\u500B\u7269\u4EF6 transform"
 --- !u!1 &1265146117
 GameObject:
   m_ObjectHideFlags: 0
@@ -2119,7 +2178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1265146118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2225,8 +2284,8 @@ MonoBehaviour:
     - rid: 3183446008569528324
       type: {class: MaintainForNSecondsWithGraceLogic, ns: , asm: Assembly-CSharp}
       data:
-        secondsToMaintain: 0.5
-        gracePeriodSeconds: 0.75
+        secondsToMaintain: 0.25
+        gracePeriodSeconds: 0.15
 --- !u!114 &1265146119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2294,6 +2353,7 @@ GameObject:
   - component: {fileID: 1356786714}
   - component: {fileID: 1356786716}
   - component: {fileID: 1356786715}
+  - component: {fileID: 1356786717}
   m_Layer: 0
   m_Name: Petroller Model
   m_TagString: Untagged
@@ -2436,6 +2496,19 @@ MonoBehaviour:
   minInterval: 1
   maxInterval: 5
   keepRandomPlay: 0
+--- !u!114 &1356786717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356786713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa9d18127492e2b46bae47e8462e592b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Notes: "\u504F\u79FB\u91CF\u8ABF\u9019\u500B\u7269\u4EF6 transform"
 --- !u!1 &1364760579
 GameObject:
   m_ObjectHideFlags: 0
@@ -2874,6 +2947,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1476359368}
+  - component: {fileID: 1476359369}
   m_Layer: 0
   m_Name: B
   m_TagString: Untagged
@@ -2894,9 +2968,28 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 756995634}
   - {fileID: 1625401398}
   m_Father: {fileID: 1823381476}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1476359369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476359367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3bc332f0a61964187a2319554c0f19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetController: 2
+  autoInitializeModel: 0
+  modelTransform: {fileID: 1476359368}
+  model_initialPos: {x: 0, y: 0, z: 0}
+  model_initialRot: {x: 0, y: 0, z: 0}
+  keepFollow: 1
 --- !u!1001 &1513303918
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3686,7 +3779,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 30
+          m_FloatArgument: 20
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -3823,6 +3916,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1736407326}
+  - component: {fileID: 1736407327}
   m_Layer: 0
   m_Name: A
   m_TagString: Untagged
@@ -3845,6 +3939,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1823381476}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1736407327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736407325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3bc332f0a61964187a2319554c0f19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetController: 1
+  autoInitializeModel: 0
+  modelTransform: {fileID: 1736407326}
+  model_initialPos: {x: 0, y: 0, z: 0}
+  model_initialRot: {x: 0, y: 0, z: 0}
+  keepFollow: 1
 --- !u!1 &1752402801
 GameObject:
   m_ObjectHideFlags: 0
@@ -3934,7 +4046,7 @@ MonoBehaviour:
   Notes: "Trajectory Recorder_Config\nFilePreflix: \u6A94\u540D\u524D\u7DB4\nUserName:
     \u4F7F\u7528\u8005\u7DE8\u865F/ID\nMotionType: \u52D5\u4F5C\u985E\u5225\n \nTrajectory
     Recorder_Config \u4E0A\u9762\u7684\u8CC7\u6599\u8A2D\u5B9A\u597D\u4E4B\u5F8C\n\u628A\u524D\u9762\u7684\u7A7A\u683C\u6253\u52FE\uFF0C\u8A2D\u5B9A\u5C31\u6703\u5B58\u5230\u7D00\u9304\u6A94\u4E0A\u3002\n\n/
-    ! \\ \u5BEB\u932F\u7684\u8A71\u5C31\u628A\u6253\u52FE\u53D6\u6D88\uFF0C\u6539\u6210\u6B63\u78BA\u7684\u518D\u6253\u52FE\u4E00\u6B21\uFF0C\u8A18\u9304\u6A94\u6A94\u6848\u5132\u5B58\u524D\u66F4\u6539\u6709\u6548\uFF0C\u5DF2\u7D93\u5B58\u597D\u6A94\u7684\u8981\u624B\u52D5\u6539\u3002"
+    ! \\ \u5BEB\u932F\u7684\u8A71\u5C31\u628A\u6253\u52FE\u53D6\u6D88\uFF0C\u6539\u6210\u6B63\u78BA\u7684\u518D\u6253\u52FE\u4E00\u6B21\uFF0C\u8A18\u9304\u6A94\u6A94\u6848\u5132\u5B58\u524D\u66F4\u6539\u6709\u6548\uFF0C\u5DF2\u7D93\u5B58\u597D\u6A94\u7684\u8981\u624B\u52D5\u6539\u3002\n\n\u5132\u5B58\u5730\u9EDEC:\\Users\\User\\AppData\\LocalLow\\JC_Express\\Petroller_EllieBranch\\SoA"
 --- !u!114 &1752402806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4237,7 +4349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1823381476
 Transform:
   m_ObjectHideFlags: 0
@@ -4269,10 +4381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5329b801c6f022a46970cae30a0a70d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointA_Controller: 1
-  pointB_Controller: 2
   pointA: {fileID: 1736407326}
-  pointB: {fileID: 1476359368}
+  pointB: {fileID: 756995634}
   originalLength: 0.57
   catWidth: 1.75
   catDepth: 1.75
@@ -4487,7 +4597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1837064102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4890,7 +5000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2027721430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4908,7 +5018,7 @@ MonoBehaviour:
   rules:
   - Ignore: 0
     ruleName: Is Higher than
-    condition: {fileID: 11400000, guid: a3f5c133cafbcb7419423abf1f8035f0, type: 2}
+    condition: {fileID: 11400000, guid: 398962e1ca3f0854aa9be397a544e25a, type: 2}
     timeLogic:
       rid: 3183446008569528323
     OnRuleMet:
@@ -4997,7 +5107,7 @@ MonoBehaviour:
       type: {class: MaintainForNSecondsWithGraceLogic, ns: , asm: Assembly-CSharp}
       data:
         secondsToMaintain: 0.5
-        gracePeriodSeconds: 0.75
+        gracePeriodSeconds: 0.15
 --- !u!114 &2027721431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5192,7 +5302,7 @@ SceneRoots:
   - {fileID: 1364760580}
   - {fileID: 1752402802}
   - {fileID: 1680233389}
-  - {fileID: 2112439294}
   - {fileID: 680707882}
+  - {fileID: 2112439294}
   - {fileID: 1958014794}
   - {fileID: 442429948}

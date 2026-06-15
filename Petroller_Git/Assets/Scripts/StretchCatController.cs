@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class StretchCatController : MonoBehaviour
 {
-    [Header("控制物件")]
-    [Tooltip("控制貓咪底部 (屁股) 的物件 A")]
-    [SerializeField] private OVRInput.Controller pointA_Controller = OVRInput.Controller.LTouch;
+    // [Header("控制物件")]
+    // [Tooltip("控制貓咪底部 (屁股) 的物件 A")]
+    // [SerializeField] private OVRInput.Controller pointA_Controller = OVRInput.Controller.LTouch;
 
-    [Tooltip("控制拉伸與臉部方向的物件 B")]
-    [SerializeField] private OVRInput.Controller pointB_Controller = OVRInput.Controller.RTouch;
+    // [Tooltip("控制拉伸與臉部方向的物件 B")]
+    // [SerializeField] private OVRInput.Controller pointB_Controller = OVRInput.Controller.RTouch;
 
     public Transform pointA, pointB;
 
@@ -31,10 +31,10 @@ public class StretchCatController : MonoBehaviour
 
     void Update()
     {
-        pointA.position = OVRInput.GetLocalControllerPosition(pointA_Controller);
-        pointA.rotation = OVRInput.GetLocalControllerRotation(pointA_Controller);
-        pointB.position = OVRInput.GetLocalControllerPosition(pointB_Controller);
-        pointB.rotation = OVRInput.GetLocalControllerRotation(pointB_Controller);
+        // pointA.position = OVRInput.GetLocalControllerPosition(pointA_Controller);
+        // pointA.rotation = OVRInput.GetLocalControllerRotation(pointA_Controller);
+        // pointB.position = OVRInput.GetLocalControllerPosition(pointB_Controller);
+        // pointB.rotation = OVRInput.GetLocalControllerRotation(pointB_Controller);
 
         // 1. 計算 A 到 B 的向量與距離
         Vector3 directionToB = pointB.position - pointA.position;
