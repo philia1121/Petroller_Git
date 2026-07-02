@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Contdition_ControllerDistanceBigger
   m_EditorClassIdentifier: 
   comparison: 0
-  distanceThreshold: 0.6
+  distanceThreshold: 0.5
